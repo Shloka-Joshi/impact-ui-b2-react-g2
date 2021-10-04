@@ -7,7 +7,8 @@ class Login extends React.Component{
             <div className="container-fluid">
                 <div className="card">
                     <div className="card-header">
-                        <h5>Login Page</h5>          
+                        <h5>Login Page</h5>     
+                        <h5>Register Page</h5>     
                     </div>
                     <div className="card-body">
                     
