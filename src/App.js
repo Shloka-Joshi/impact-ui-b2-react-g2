@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './components/login'
+import Home from './shared/header';
 function App() {
   return (
     <div className="container">
@@ -11,6 +12,7 @@ function App() {
           </div>
           <div className="card-body">
            <Login/>
+           <Home/>
           </div>
         </div>
       </div>
