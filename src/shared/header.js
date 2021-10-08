@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Login from "../components/login";
 
 function Home() {
   return (
@@ -9,7 +10,7 @@ function Home() {
             <h4> App Components (Root)</h4>
           </div>
           <div className="card-body">
-           <Login/>
+            <Login />
           </div>
         </div>
       </div>

@@ -8,7 +8,8 @@ export default function BasicCardComponent(props) {
         {props.btnText}
       </a>
     );
-  } else if (props.imgSrc) {
+  }
+  if (props.imgSrc) {
     img = <img src={props.imgSrc} alt="Image" />;
   }
   return (

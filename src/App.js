@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
-import Login from './components/login'
-import Home from './shared/header';
+import logo from "./logo.svg";
+import "./App.css";
+import Login from "./components/login";
+import Home from "./shared/header";
 function App() {
   return (
     <div className="container">
@@ -11,8 +11,8 @@ function App() {
             <h4> App Components (Root)</h4>
           </div>
           <div className="card-body">
-           <Login/>
-           <Home/>
+            <Login />
+            <Home />
           </div>
         </div>
       </div>
