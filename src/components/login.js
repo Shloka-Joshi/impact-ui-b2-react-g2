@@ -1,64 +1,97 @@
 import React  from 'react';
 import CardComponent from '../shared/CardComponent';
+import profileimg from "../images/profile.png";
+import FooterComponent from "../shared/footer";
+import '../styles/homestyle.css';
+import healthcareimg from "../images/healthcare.jpeg"
+import homeimg from "../images/homeicon.png";
 
-import profileimg from "../images/profile.png"
 class Login extends React.Component {
   
     render(){
         return (
             <div>
             <CardComponent title="Login Form">
-               
-                <h6 className="col-md-12 text-center">Select Account Type</h6>
-                &nbsp;
                 <form>
-                <div className="container from-group">
-                    <div className="col-md-12">
+                <div className="container from-group " >
+                <div className="col-md-12">
                 <div className="row">
-                
-                <div className="col-md-4 center">
-                
-                <img src={profileimg}  alt="Image" width="100" />
-                <h6>Patient</h6> &nbsp;
+                <div className="col-md-6">
+                <img  id="side" src={healthcareimg}  alt="Image" />
                 </div>
-                <div className="col-md-4 center">
-                   
-                    <img src={profileimg}  alt="Image" width="100"/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                <div className="col-md-6">
+                <div className="row">
+                <div className="col-md-12">
+                     {/* <div className="card-header">
+                <label>Registration Form</label>
+                </div> */}
+                <div className="card-body">
+                <div style={{textAlign: 'right'}}> <img src={homeimg}  alt="Home" width="20"/></div>
+                
+                <h6>Chosse an account type</h6>  &nbsp;
+                <div className="row" style={{textAlignLast: 'center'}}>
+                    <div className="col-md-4" >
+                    <img src={profileimg}  alt="Profile" width="100"/>
+                    <h6>Patient</h6>
+                    </div>
+                    <div className="col-md-4"> 
+                    <img src={profileimg}  alt="Profile" width="100"/>
                     <h6>Physician</h6>
+                    </div>
+                    <div className="col-md-4">
+                   <img src={profileimg}  alt="Profile" width="100"/>
+                   <h6>Admin</h6>
+                    </div>
                     &nbsp;
-                    </div>
-                    <div className="col-md-4 center">
-                    <img src={profileimg}  alt="Image" width="100"/>
-                    <h6>Admin</h6>
-                    
                 </div>
-                    &nbsp;  &nbsp;
-                    </div>
                 <div>
                 &nbsp;
-                <label>E-mail ID</label>
-                            <input type="text" id="email" className="form-control" placeholder="Email-Id" />
-                    &nbsp;
-                </div>
                 <div>
-                    <label>Password</label>
-                            <input type="password" id="password" className="form-control" placeholder="Password" />
-                    </div>
-                    &nbsp;
+                   <label>E-mail ID</label>
+                            <input type="text" id="email" className="form-control" placeholder="Email-Id" required />
+                            &nbsp;
+                            </div>
+                            <div>
+                <label>Password</label>
+                         <input type="password" id="password" className="form-control" placeholder="Password" required/>
+                </div>   
+                &nbsp;               
+                <div style={{textAlign: 'right'}}><a href="#" >Forgot Password?</a>
+</div>
+        &nbsp;
+                <div className="container from-group">
+            <button className="btn btn-primary" >Back</button>
+            &nbsp;
+            <button className="btn btn-primary" type="submit">Login</button>
+        </div>
+        &nbsp;
+       <div>
+        <a href="#" >Don't have an account? Register</a></div>
+                <div>
                 </div>
-              
-                        <button className="btn btn-primary">Login</button>
-                    </div>  
-                    
-                                  
+                </div>
+                </div>
+                </div>
+               
+               
+
+</div>
+
+               
+                </div>
+                </div>
+                </div>
+               
+                    </div>
+                                
             </form>
-           
-       
         </CardComponent>
+
+        <FooterComponent/>  
         </div>
            
         );
     }
+  
 }
 export default Login;
