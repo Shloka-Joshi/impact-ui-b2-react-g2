@@ -17,11 +17,11 @@ import {
 
 function Dashboard(props) {
   // console.log(props);
-  const menuData = [{ path: '/', component: '', title: 'Dashboard' }, { path: '/allAppointments', component: '', title: 'View All Appointments' }, { path: '/patientDetails', component: PatientDetailsTable, title: 'Patient Details' }]
+  const menuData = [{ path: '/', component: '', title: 'Dashboard' }, { path: '/allAppointments', component: '', title: 'View All Appointments' }, { path: '/dashboard/patientDetails', component: PatientDetailsTable, title: 'Patient Details' }]
   const details = {
     fname: "Sachin",
     lname: "Tendulkar",
-    role: "Physicin",
+    role: "Physician",
     contact: "9876543211",
     mail: "sachin.tendulkar@gmail.com",
     location: "Mumbai",
