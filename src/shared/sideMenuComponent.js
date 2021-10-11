@@ -4,12 +4,9 @@ import '../styles/sideNavStyle.css';
 const SideMenuNav = (props) => {
 
     const menuData = props.menuData;
-    return menuData.map((menu) => 
+    return menuData.map((menu) =>
         <div className="sidebar">
-            <Link to={menu.path} activeStyle={{
-                fontWeight: "bold",
-                color: "red"
-            }}>{menu.title}</Link>
+            <Link to={menu.path} >{menu.title}</Link>
         </div>
     )
 }

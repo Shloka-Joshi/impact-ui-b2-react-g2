@@ -9,55 +9,55 @@ import SideMenuNav from "./sideMenuComponent";
 import PatientDetailsTable from '../components/patient/PatientDetailTable';
 
 import {
-//   BrowserRouter as Router,
+  //   BrowserRouter as Router,
   Switch,
   Route
-//   Link
+  //   Link
 } from "react-router";
 
 function Dashboard(props) {
-    // console.log(props);
-    const menuData = [{ path: '/', component:'', title: 'Dashboard' }, { path: '/allAppointments', component: '', title: 'View All Appointments' }, { path: '/patientDetails', component: PatientDetailsTable, title: 'Patient Details' }]
-    const details = {
-        fname: "Sachin",
-        lname: "Tendulkar",
-        role: "Physicin",
-        contact: "9876543211",
-        mail: "sachin.tendulkar@gmail.com",
-        location: "Mumbai",
-      };
-    return (
-        <div className="container-fluid">
-            <HeaderComponent />
+  // console.log(props);
+  const menuData = [{ path: '/', component: '', title: 'Dashboard' }, { path: '/allAppointments', component: '', title: 'View All Appointments' }, { path: '/dashboard/patientDetails', component: PatientDetailsTable, title: 'Patient Details' }]
+  const details = {
+    fname: "Sachin",
+    lname: "Tendulkar",
+    role: "Physician",
+    contact: "9876543211",
+    mail: "sachin.tendulkar@gmail.com",
+    location: "Mumbai",
+  };
+  return (
+    <div className="container-fluid">
+      <HeaderComponent />
 
-            <div className="row">
-                <div className="col-md-3 card shadow-lg  bg-white rounded">
-                    <div className="col-md-12 card ">
-                        {/* //Profile card */}
-                        <ProfileCardComponent cardData={details}/>
-                        {/* <div><img src={home} alt="Profile" style={{ width: '-webkit-fill-available' }} /></div> */}
-                    </div>
-                    &nbsp;
-                    <div className="col-md-12 card">
-                      {/* {Menu card} */}
-                        <SideMenuNav menuData={menuData}></SideMenuNav>
-                    </div>
-                    &nbsp;
+      <div className="row">
+        <div className="col-md-3 card shadow-lg  bg-white rounded">
+          <div className="col-md-12 card ">
+            {/* //Profile card */}
+            <ProfileCardComponent cardData={details} />
+            {/* <div><img src={home} alt="Profile" style={{ width: '-webkit-fill-available' }} /></div> */}
+          </div>
+          &nbsp;
+          <div className="col-md-12 card">
+            {/* {Menu card} */}
+            <SideMenuNav menuData={menuData}></SideMenuNav>
+          </div>
+          &nbsp;
 
-                </div>
+        </div>
 
         <div className=" col-sm-9 col-md-9 col-lg-9 col-xl-9">
           <div className="containerone">
             {/* //Main Content */}
 
             <div className="row reporttabel">
-            {/* <Router> */}
-                                <Switch>
-                                    {menuData.map(({ path, component }, i) => (
-                                        <Route key={i} path={path} exact component={component} />
-                                    ))}
-                                </Switch>
-                            {/* </Router> */}
+              {/* <Router> */}
+              <Switch>
+                {menuData.map(({ path, component }, i) => (
+                  <Route key={i} path={path} exact component={component} />
+                ))}
+              </Switch>
+              {/* </Router> */}
               {/* <div className="col-md-6 ">
                 <BasicCardComponent
                   title="My Appointment"
@@ -75,7 +75,7 @@ function Dashboard(props) {
                   href="#"
                   btnText="More"
                 />
-              </div> */} 
+              </div> */}
             </div>
 
             {/* <div className="row reporttabel">
