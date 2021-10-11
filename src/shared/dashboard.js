@@ -9,11 +9,11 @@ import SideMenuNav from "./sideMenuComponent";
 import PatientDetailsTable from '../components/patient/PatientDetailTable';
 
 import {
-  BrowserRouter as Router,
+//   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 //   Link
-} from "react-router-dom";
+} from "react-router";
 
 function Dashboard(props) {
     // console.log(props);
@@ -51,13 +51,13 @@ function Dashboard(props) {
             {/* //Main Content */}
 
             <div className="row reporttabel">
-            <Router>
+            {/* <Router> */}
                                 <Switch>
                                     {menuData.map(({ path, component }, i) => (
                                         <Route key={i} path={path} exact component={component} />
                                     ))}
                                 </Switch>
-                            </Router>
+                            {/* </Router> */}
               {/* <div className="col-md-6 ">
                 <BasicCardComponent
                   title="My Appointment"
