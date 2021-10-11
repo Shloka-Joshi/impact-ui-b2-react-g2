@@ -5,6 +5,7 @@ import FooterComponent from "../shared/footer";
 import '../styles/homestyle.css';
 import healthcareimg from "../images/healthcare.jpeg"
 import homeimg from "../images/homeicon.png";
+import {  Link } from "react-router-dom";
 
 class Login extends React.Component {
   
@@ -62,7 +63,7 @@ class Login extends React.Component {
                 <div className="container from-group">
             <button className="btn btn-primary" >Back</button>
             &nbsp;
-            <button className="btn btn-primary" type="submit">Login</button>
+            <Link to="/dashboard" className="Links btn btn-primary">Login</Link>
         </div>
         &nbsp;
        <div>
