@@ -1,0 +1,57 @@
+:root 
+{
+  /* ---style for appbar--- */
+  --appbar-bg-color:#19a3c6;
+  
+  /* ---style for logo--- */
+  --logo-icon-color:#19a3c6;
+  --logo-icon-bg-color:#ffffff;
+
+  /* ---style for buttons---- */
+  --solid-button-color:#19a3c6;
+  --login-button-color: #79222200;
+  ---login-button-color-hover:#071e5500;
+  --button-text-color:#ffffff;
+
+  /* ---style for headings ---*/
+  --h1-text-color:#212121;
+  --h2-text-color:#2419c6;
+  
+  /* ---heading with bg color--- */
+  --heading-bg-color:#19a3c6;
+  --heading-bg--text-color:#fff;
+
+  /* ---list text color & icon color--- */
+  --list-item-color:#000;
+  --list-icon-color:#000;
+
+ 
+
+  /* ---card colors--- */
+  --card-icon-color:#ffffff;
+  --card-bg-color1:#0297b9;
+  --card-bg-color2:#01a3c9;
+  --card-text-color:#ffffff;
+
+
+  /* ---footer style--- */
+  --footer-bg-color:#0297b9;
+  --footer-text-color:#ffffff;
+
+  /* --------paragraph text color---- */
+  --para-text-color:#797d7d;
+
+  /* card colors */
+
+
+}
+.row-inner{
+  width: 1200px;
+  margin: 0 auto;
+  font-family:'Nunito';
+}
+
+@media only screen and (max-width: 600px)
+{
+.row-inner{width: 100%;}  
+}
