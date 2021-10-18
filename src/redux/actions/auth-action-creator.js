@@ -18,7 +18,6 @@ export const registerUser = (params) => {
     axios
       .post("http://localhost:9999/register", params, config)
       .then((response) => {
-        console.log(response);
         payload.message = `Email Id: ${params.email} registered successfully`;
         dispatch(SUCCESS(payload));
       })

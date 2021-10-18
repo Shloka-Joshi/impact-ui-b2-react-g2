@@ -26,7 +26,6 @@ function SignIn({ data, userLogin }) {
     }
     userLogin(body);
   };
-  console.log(data);
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
