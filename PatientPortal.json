@@ -1,5 +1,5 @@
 {
-  "registerData": [
+  "users": [
     {
       "id": "1",
       "firstName": "Missie",
@@ -71,6 +71,60 @@
       "password": "tWHUbM9ZWx",
       "retypePassword": "EalZagS",
       "id": "S9Mm4so"
+    },
+    {
+      "email": "a@gmail.com",
+      "password": "$2a$10$do2Eci147FwGU5D7UJbdwOPQl10XuiqFxy2CJb6dfaAQzt6xQ1TRq",
+      "firstName": "a",
+      "lastName": "a",
+      "contact": "a",
+      "role": "patient",
+      "id": "pMSCVOA"
+    },
+    {
+      "email": "ravi@gmail.com",
+      "password": "$2a$10$JIwP4dBzIO64o.L.sR9k..RwZ5/UjFQuGYvXBl1aEX.hYwMaqGXl.",
+      "firstName": "a",
+      "lastName": "a",
+      "contact": "2",
+      "role": "patient",
+      "id": "YjX-aaD"
+    },
+    {
+      "email": "b@gmai.com",
+      "password": "$2a$10$eQQSRKdwkmYVzKGOu.oMo.BccvKjTejYBGvOwj4C4bUn1nzN5XsXi",
+      "firstName": "b",
+      "lastName": "b",
+      "contact": "6",
+      "role": "patient",
+      "id": "K1QJgGu"
+    },
+    {
+      "email": "c@gmail.com",
+      "password": "$2a$10$EzBadvw3ssDCVA.HEmuseuTM3IrAbYjEss9DYvRmSFbV5URSRTP.q",
+      "firstName": "a",
+      "lastName": "a",
+      "contact": "2",
+      "role": "patient",
+      "id": "6vJEzuf"
+    },
+    {
+      "email": "sh@gmail.com",
+      "password": "$2a$10$rDpgJeEtW.R5CwLd/Cy7r.LtoZ4tDPjgGr1KIl4IKbO/qhksFHOeW",
+      "firstName": "shloka",
+      "lastName": "joshi",
+      "contact": "999",
+      "role": "patient",
+      "id": "Oi3yzEB"
+    },
+    {
+      "email": "am@gamil.com",
+      "password": "$2a$10$khtljghSnngd0GnxwSN0WuezmmFSD.HrgYUVWjqhJf/blc2tqQn9u",
+      "firstName": "a",
+      "lastName": "m",
+      "contact": "2",
+      "role": "patient",
+      "id": "Iha_hRu"
     }
   ],
   "patientDemographics": [
