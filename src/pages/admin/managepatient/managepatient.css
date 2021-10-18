@@ -1,0 +1,61 @@
+
+    .desktop {
+        display: "none",
+        
+        }
+   
+    .mobile {
+        display: 'block';
+        
+        }
+  
+    .title {
+        background-color: #19a3c6;
+        color: #fff;
+        text-align: center;
+        align-items: center;
+        padding: 5px;
+    }
+    .head {
+        background-color: black;
+        color: white;
+    }
+    .root {
+        width: '100%',
+    }
+    .container {
+        max-height: 400,
+    }
+    .button {
+        float:right;
+    }
+    .search {
+        float:left;
+        position: relative;
+        border-radius: 2rem;
+        border: blue;
+       
+        
+        
+    }
+    .searchIcon {
+        padding: 0;
+        height: 100%;
+        position: absolute;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .inputRoot {
+        color: inherit;
+    }
+    .inputInput {
+        padding:0 ;
+        width: 100%;
+        
+    }
+    .icons {
+        align-items: center;
+        display: flex;
+    }

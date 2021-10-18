@@ -1,0 +1,33 @@
+
+    
+    .container {
+        position: sticky;
+        max-height: 100%;
+        color: black;
+        background-color:#fefefe ;
+        top: 0;
+        
+    }
+    .link {
+        text-decoration: None;
+        /* color: #ffffff; */
+        border-radius: 10px; font-family:'Nunito';color:#fff;
+        font-size: 15px;font-weight:700;
+    }
+    .item {
+        
+        display: flex;
+        align-items: center;background-color: var(--solid-button-color);
+        color:  var(--button-text-color);
+        padding:0  10px; 
+        margin: 7px 0;
+    }
+    .icon {
+       
+      color: black  
+    }
+    .text {
+        font-weight: 500;
+            
+    }
+    
