@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -13,77 +13,33 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Grid from '@material-ui/core/Grid';
 import InputBase from '@mui/material/InputBase';
 import './managephysician.css'
-import { Container } from '@material-ui/core';
-
+import {Link} from 'react-router-dom';
+import { connect } from "react-redux";
+import {getrolespecificuserdata} from '../../../redux/actions/physician-action-creator';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
 
 const columns = [
-    { id: 'PhysicianID', label: 'PhysicianID', minWidth: 100, align: 'center' },
-    { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
-    {
-        id: 'Email',
-        label: 'Email',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'RegisteredDate',
-        label: 'RegisteredDate',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'Status',
-        label: 'Status',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toFixed(2),
-    },
-    {
-        id: 'Action',
-        label: 'Action',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toFixed(2),
-    }
+    { id: 'sno', label: 'Serial No.', minWidth: 170, align: 'center' },
+    { id: 'firstName', label: 'First Name', minWidth: 170, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 170, align: 'center' },
+    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center' },
+    { id: 'email', label: 'Email', minWidth: 170, align: 'center'},
+    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center'},
+    { id: 'action', label: 'Action', minWidth: 170, align: 'center'}
 ];
 
-function createData(PhysicianID, Name, Email, RegisteredDate, Status, Action) {
+function Managephysician({data,getrolespecificuserdata}) {
 
-    return { PhysicianID, Name, Email, RegisteredDate, Status, Action };
-}
+    useEffect(()=>{
+        getrolespecificuserdata("physician");
+    },[]);
 
-const rows = [
-    createData('P1', 'Dr.Samuel', 'samuel@yopmail.com', '14/10/2021', 'Pending', 'Edit'),
-    createData('P2', 'Dr.Sam', 'sam@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P3', 'Dr.Ali', 'Ali@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P4', 'Dr.Peter', 'Peter@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P5', 'Dr.Jhon', 'Jhon@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P6', 'Dr.Misse', 'Misse@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P7', 'Dr.Nicolas', 'Nicolas@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P8', 'Dr.Nick', 'Nick@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P9', 'Dr.Sarath', 'sarath@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P10', 'Dr.Susanth', 'susanth@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P11', 'Dr.Rohan', 'Rohan@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P12', 'Dr.Karthick', 'Karthick@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P13', 'Dr.Ishan', 'Ishan@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-
-];
-
-
-    //   searchbutton: {
-    //       marginRight: theme.spacing(2),
-    //       [theme.breakpoints.up("sm")]: {
-    //           display: "none"
-    //       }
-    //   }
-
-
-export default function Managephysician() {
-    
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [menuPopupState, setMenuState] = React.useState(null);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -93,6 +49,21 @@ export default function Managephysician() {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
+
+    const openactionmenu = (event) => setMenuState(event.currentTarget);
+    const closemenupopup = () => setMenuState(null);
+
+    const edituser = (id) => {
+        console.log(id+"       edit");
+    }
+    const viewuser = (id) => {
+        console.log(JSON.stringify(id)+" view");
+    }
+
+    const deleteuser = (id) => {
+        console.log(id+"  delete");
+    }
+
 
     return (
         <Grid>
@@ -109,8 +80,8 @@ export default function Managephysician() {
                     inputProps={{ 'aria-label': 'search' }} />
                
             </div>
-            <Button className='button' variant="contained" color="" href="#contained-buttons">
-                    <AddCircleIcon />Physician
+            <Button className='btn' variant="contained" color="#19a3c6;">
+                    <AddCircleIcon /><Link to="/Addphysician">Add</Link>
                 </Button>
                 </div>
             <Paper className='root'>
@@ -130,14 +101,40 @@ export default function Managephysician() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                            {data.map((row,rowIndex) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
+                                            column.id === 'sno' ? <TableCell key={column.id} align={column.align}>{rowIndex+1}</TableCell> :
+                                               column.id != 'action' ? <TableCell key={column.id} align={column.align}>
+                                                    {value}
+                                                </TableCell> 
+                                                : <TableCell key={column.id} align={column.align}>
+                                                    <Button  variant="contained" id="edit" onClick={()=>edituser(row.id)} >Edit</Button>
+                                                            <IconButton
+                                                                aria-label="more"
+                                                                id="long-button"
+                                                                aria-controls="long-menu"
+                                                                aria-expanded={Boolean(menuPopupState) ? 'true' : undefined}
+                                                                aria-haspopup="true"
+                                                                onClick={openactionmenu}
+                                                            >
+                                                                <MoreVertIcon />
+                                                            </IconButton>
+                                                                <Menu id="long-menu" MenuListProps={{ 'aria-labelledby': 'long-button' }}
+                                                                    anchorEl={menuPopupState} open={Boolean(menuPopupState)} onClose={closemenupopup} PaperProps={{
+                                                                        style: { maxHeight: 48 * 4.5, width: '20ch' },
+                                                                    }}
+                                                                >
+                                                                     <MenuItem key={'view'}  onClick={() =>viewuser(row)}>
+                                                                       View
+                                                                    </MenuItem>
+                                                                    <MenuItem key={'delete'}  onClick={() =>deleteuser(row)}>
+                                                                       Delete
+                                                                    </MenuItem> 
+                                                                </Menu>
                                                 </TableCell>
                                             );
                                         })}
@@ -150,7 +147,7 @@ export default function Managephysician() {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
-                    count={rows.length}
+                    count={data.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
@@ -162,3 +159,16 @@ export default function Managephysician() {
         </Grid>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+      data: state.physiciandata.physicianData,
+    };
+  };
+  const mapdispatchToProps = (dispatch) => {
+    return {
+        getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+    };
+  };
+
+  export default connect(mapStateToProps, mapdispatchToProps)(Managephysician);
