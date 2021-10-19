@@ -18,16 +18,16 @@ function ShellComponent(props) {
 
             <Router>
                 <Switch>
-                    <Route exact path="/Manageappointments">
+                    <Route path="/Manageappointments">
                         <Manageappointment />
                     </Route>
-                    <Route exact path="/Managephysician">
+                    <Route  path="/Managephysician">
                         <Managephysician />
                     </Route>
-                    <Route  exact path="/ManagePatient">
+                    <Route  path="/ManagePatient">
                         <Managepatient />
                     </Route>
-                    <Route exact path="/">
+                    <Route  path="/">
                         <CardComponent title="HOME">
                             <h1>Welcome to the Patient Management Portal</h1>
                         </CardComponent>

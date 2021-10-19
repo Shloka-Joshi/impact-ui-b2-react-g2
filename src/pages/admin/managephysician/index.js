@@ -14,10 +14,11 @@ import Grid from '@material-ui/core/Grid';
 import InputBase from '@mui/material/InputBase';
 import './managephysician.css'
 import { Container } from '@material-ui/core';
-
+import Addphysician  from './add-physician/index';
+import {Link} from 'react-router-dom';
 
 const columns = [
-    { id: 'PhysicianID', label: 'PhysicianID', minWidth: 100, align: 'center' },
+    { id: 'Physician ID', label: 'PhysicianID', minWidth: 100, align: 'center' },
     { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
     {
         id: 'Email',
@@ -27,8 +28,8 @@ const columns = [
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'RegisteredDate',
-        label: 'RegisteredDate',
+        id: 'Registeration Date',
+        label: 'RegisterationDate',
         minWidth: 170,
         align: 'center',
         format: (value) => value.toLocaleString('en-US'),
@@ -49,16 +50,16 @@ const columns = [
     }
 ];
 
-function createData(PhysicianID, Name, Email, RegisteredDate, Status, Action) {
+function createData(PhysicianID, Name, Email, RegisterationDate, Status, Action) {
 
-    return { PhysicianID, Name, Email, RegisteredDate, Status, Action };
+    return { PhysicianID, Name, Email, RegisterationDate, Status, Action };
 }
 
 const rows = [
     createData('P1', 'Dr.Samuel', 'samuel@yopmail.com', '14/10/2021', 'Pending', 'Edit'),
-    createData('P2', 'Dr.Sam', 'sam@yopmail.com', '13/10/2021', 'Active', 'Edit'),
+    createData('P2', 'Dr.Sam', 'sam@yopmail.com', '13/10/2021', 'Active', 'Delete'),
     createData('P3', 'Dr.Ali', 'Ali@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P4', 'Dr.Peter', 'Peter@yopmail.com', '13/10/2021', 'Active', 'Edit'),
+    createData('P4', 'Dr.Peter', 'Peter@yopmail.com', '13/10/2021', 'Active', 'Delete'),
     createData('P5', 'Dr.Jhon', 'Jhon@yopmail.com', '13/10/2021', 'Active', 'Edit'),
     createData('P6', 'Dr.Misse', 'Misse@yopmail.com', '13/10/2021', 'Active', 'Edit'),
     createData('P7', 'Dr.Nicolas', 'Nicolas@yopmail.com', '13/10/2021', 'Active', 'Edit'),
@@ -70,16 +71,6 @@ const rows = [
     createData('P13', 'Dr.Ishan', 'Ishan@yopmail.com', '13/10/2021', 'Active', 'Edit'),
 
 ];
-
-
-    //   searchbutton: {
-    //       marginRight: theme.spacing(2),
-    //       [theme.breakpoints.up("sm")]: {
-    //           display: "none"
-    //       }
-    //   }
-
-
 export default function Managephysician() {
     
     const [page, setPage] = React.useState(0);
@@ -109,8 +100,8 @@ export default function Managephysician() {
                     inputProps={{ 'aria-label': 'search' }} />
                
             </div>
-            <Button className='button' variant="contained" color="" href="#contained-buttons">
-                    <AddCircleIcon />Physician
+            <Button className='btn' variant="contained" color="#19a3c6;" href="/Addphysician">
+                    <AddCircleIcon /><Link to="/Addphysician">Add</Link>
                 </Button>
                 </div>
             <Paper className='root'>

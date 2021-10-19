@@ -3,48 +3,58 @@
         display: "none",
         
         }
+
+        .root{
+            max-height: 100%;
+        }
    
     .mobile {
         display: 'block';
         
         }
+        .tabel-style{
+            width: 100%;
+            max-height: 500px;
+            overflow:scroll;
+            margin-top: 10px;
+        
+        }
   
     .title {
-        background-color: #19a3c6;
-        color: #fff;
+        background-color:rgb(247, 242, 242);
+        color: #19a3c6;
         text-align: center;
-        align-items: center;
         padding: 5px;
+        border-radius: 2rem;
     }
     .head {
         background-color: black;
         color: white;
     }
-    .root {
-        width: '100%',
-    }
-    .container {
-        max-height: 400,
-    }
-    .button {
+ .top-toolbar{
+     padding: 10px;
+     border-radius: 5px;
+     background-color: #fefefe;
+     /* border: 1px solid #000; */
+     margin:5px 0;    display: flow-root;
+
+ }
+    .button-style {
         float:right;
+        background-color: #19a3c6;
+       
     }
     .search {
         float:left;
         position: relative;
-        border-radius: 2rem;
-        border: blue;
-       
-        
-        
-    }
+        }
     .searchIcon {
         padding: 0;
         height: 100%;
         position: absolute;
         pointer-events: none;
         display: flex;
-        align-items: center;
+        align-items: left;
         justify-content: center;
     }
     .inputRoot {
