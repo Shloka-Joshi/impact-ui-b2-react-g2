@@ -7,15 +7,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Grid from '@material-ui/core/Grid';
 import InputBase from '@mui/material/InputBase';
 import './managephysician.css'
 import { Container } from '@material-ui/core';
-import Addphysician  from './add-physician/index';
-import {Link} from 'react-router-dom';
+import Addphysician from './add-physician/index';
+import { Link } from 'react-router-dom';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const columns = [
     { id: 'Physician ID', label: 'PhysicianID', minWidth: 100, align: 'center' },
@@ -72,9 +77,12 @@ const rows = [
 
 ];
 export default function Managephysician() {
-    
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -85,6 +93,9 @@ export default function Managephysician() {
         setPage(0);
     };
 
+
+
+
     return (
         <Grid>
             <div className='title'>
@@ -92,18 +103,40 @@ export default function Managephysician() {
             </div>
 
             <div className="top-toolbar">
-            <div className='search'>
-                <div className='searchIcon'>
-                    <SearchIcon />
+                <div className='search'>
+                    <div className='searchIcon'>
+                        <SearchIcon />
+                    </div>
+                    <InputBase placeholder="Search" className='search'
+                        inputProps={{ 'aria-label': 'search' }} />
+
                 </div>
-                <InputBase placeholder="Search" className='search'
-                    inputProps={{ 'aria-label': 'search' }} />
-               
-            </div>
-            <Button className='btn' variant="contained" color="#19a3c6;" href="/Addphysician">
-                    <AddCircleIcon /><Link to="/Addphysician">Add</Link>
+                <Button  className='btn' variant="contained" onClick={handleOpen} >
+                    <AddCircleIcon />Add
                 </Button>
-                </div>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+                        <Box className='model'>
+                            <Typography id="transition-modal-title" variant="h6" component="h2">
+                                Add Physician
+                            </Typography>
+                            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                               <Addphysician/>
+                            </Typography>
+                        </Box>
+                    </Fade>
+                </Modal>
+            </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
                     <Table stickyHeader aria-label="sticky table">
@@ -148,7 +181,7 @@ export default function Managephysician() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            
+
 
         </Grid>
     );
