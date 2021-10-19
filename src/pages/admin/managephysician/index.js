@@ -23,7 +23,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const columns = [
-    { id: 'Physician ID', label: 'PhysicianID', minWidth: 100, align: 'center' },
+    { id: 'PhysicianID', label: 'Physician ID', minWidth: 100, align: 'center' },
     { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
     {
         id: 'Email',
@@ -33,8 +33,8 @@ const columns = [
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'Registeration Date',
-        label: 'RegisterationDate',
+        id: 'RegisterationDate',
+        label: 'Registeration Date',
         minWidth: 170,
         align: 'center',
         format: (value) => value.toLocaleString('en-US'),

@@ -23,7 +23,7 @@ import Typography from '@mui/material/Typography';
 
 
 const columns = [
-    { id: 'PatientID', label: 'PatienID', minWidth: 100, align: 'center' },
+    { id: 'PatientID', label: 'Patien ID', minWidth: 100, align: 'center' },
     { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
     {
         id: 'Email',
@@ -33,8 +33,8 @@ const columns = [
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'RegisteredDate',
-        label: 'RegisteredDate',
+        id: 'RegisterationDate',
+        label: 'Registeration Date',
         minWidth: 170,
         align: 'center',
         format: (value) => value.toLocaleString('en-US'),
@@ -55,9 +55,9 @@ const columns = [
     }
 ];
 
-function createData(PatientID, Name, Email, RegisteredDate, Status, Action) {
+function createData(PatientID, Name, Email, RegisterationDate, Status, Action) {
 
-    return { PatientID, Name, Email, RegisteredDate, Status, Action };
+    return { PatientID, Name, Email, RegisterationDate, Status, Action };
 }
 
 const rows = [
