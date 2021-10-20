@@ -7,17 +7,23 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Grid from '@material-ui/core/Grid';
 import InputBase from '@mui/material/InputBase';
-import './managepatient.css'
+import './managepatient.css';
+import Addpatient from './add-patient/index';
 import { Container } from '@material-ui/core';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 const columns = [
-    { id: 'PatientID', label: 'PatienID', minWidth: 100, align: 'center' },
+    { id: 'PatientID', label: 'Patien ID', minWidth: 100, align: 'center' },
     { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
     {
         id: 'Email',
@@ -27,8 +33,8 @@ const columns = [
         format: (value) => value.toLocaleString('en-US'),
     },
     {
-        id: 'RegisteredDate',
-        label: 'RegisteredDate',
+        id: 'RegisterationDate',
+        label: 'Registeration Date',
         minWidth: 170,
         align: 'center',
         format: (value) => value.toLocaleString('en-US'),
@@ -49,9 +55,9 @@ const columns = [
     }
 ];
 
-function createData(PatientID, Name, Email, RegisteredDate, Status, Action) {
+function createData(PatientID, Name, Email, RegisterationDate, Status, Action) {
 
-    return { PatientID, Name, Email, RegisteredDate, Status, Action };
+    return { PatientID, Name, Email, RegisterationDate, Status, Action };
 }
 
 const rows = [
@@ -84,6 +90,9 @@ export default function Managephysician() {
     
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -109,9 +118,31 @@ export default function Managephysician() {
                     inputProps={{ 'aria-label': 'search' }} />
                
             </div>
-            <Button className='button-style' variant="contained" color=" #19a3c6" href="#contained-buttons">
+            <Button  className='btn' variant="contained" onClick={handleOpen} >
                     <AddCircleIcon />Add
                 </Button>
+                <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <Fade in={open}>
+                        <Box className='model'>
+                            <Typography id="transition-modal-title" variant="h6" component="h2">
+                                Add Patient
+                            </Typography>
+                            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                               <Addpatient/>
+                            </Typography>
+                        </Box>
+                    </Fade>
+                </Modal>
                 </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
