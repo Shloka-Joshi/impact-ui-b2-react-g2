@@ -12,13 +12,15 @@ export const registerUser = (params) => {
   return (dispatch) => {
     let payload = {
       message: "",
+      isRegistered:'false'
     };
     dispatch(LOAD());
-
+    
     axios
       .post("http://localhost:9999/register", params, config)
       .then((response) => {
         payload.message = `Email Id: ${params.email} registered successfully`;
+        payload.isRegistered = true;
         dispatch(SUCCESS(payload));
       })
       .catch((err) => {
@@ -35,6 +37,7 @@ export const userLogin = (params) => {
       isLoggedIn: false,
       authToken: "",
       role: "",
+      id:"",
     };
     dispatch(LOAD());
 
@@ -45,6 +48,7 @@ export const userLogin = (params) => {
         payload.isLoggedIn = true;
         payload.authToken = response.data.accessToken;
         payload.role = response.data.user.role;
+        payload.id = response.data.user.id;
 
         dispatch(SUCCESS(payload));
       })
