@@ -53,6 +53,11 @@
   margin: 0 auto;
   font-family:'Nunito';
 }
+/* ---remove underline for a link--- */
+.remove-text-decoration{
+ text-decoration: none;
+}
+
 
 .solid-button{
   background-color: var(--solid-button-color);
