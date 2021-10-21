@@ -44,9 +44,14 @@
   /* --------paragraph text color---- */
   --para-text-color:#797d7d;
 
-  /* card colors */
+  /* outline colors */
+--out-line-color:#19a3c6;
 
+/* ---half white--- */
+--card-bg-white-color:#fefefe;
 
+/* ---form--feild--border-color------ */
+--text-feild-border:#0297b9;
 }
 .row-inner{
   width: 1200px;
@@ -57,7 +62,27 @@
 .remove-text-decoration{
  text-decoration: none;
 }
+.page-title{
+  background-color: var(--heading-bg-color);
+  color: var(--heading-text-color);
+  font-family:'Nunito';
+  font-weight: 700;
+  border-radius: 10px;
+  margin: 5px 0 0;
+  font-size: 1.5rem;
+  padding: 5px;
+  outline: 1px solid var(--out-line-color);
+  border: 2px solid #fff;
+}
 
+.inside-page-cards{
+  background-color: var(--card-bg-white-color);
+  /* box-shadow: 0 0 5px rgba(0,0,0); */
+  padding: 10px;
+  /* margin: 10px; */
+  border-radius: 0px;
+  border:1px solid #212121;
+}
 
 .solid-button{
   background-color: var(--solid-button-color);
