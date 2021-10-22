@@ -1,4 +1,5 @@
 import React from "react";
+import reactDom from "react-dom";
 import { AppBar, Button, Grid, Toolbar, makeStyles } from "@material-ui/core";
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -12,7 +13,6 @@ const buttonStyle = makeStyles({
     backgroundColor: 'var(--login-button-color)',
     color: 'var(--button-text-color)',
     fontFamily: 'Nunito', textTransform: 'none', fontWeight: '700',
-    textDecoration:'none',
     '&:hover': {
       backgroundColor: 'var(--login-button-color-hover)',
     },
@@ -23,23 +23,17 @@ function Header() {
   const classes = buttonStyle()
   return (
     <>
-      <AppBar elevation={0} position="sticky" style={{ backgroundColor:'var(--appbar-bg-color)', boxShadow: '0' }} >
+      <AppBar elevation={0} position="sticky" style={{ backgroundColor: 'var(--appbar-bg-color)', boxShadow: '0' }} >
 
         <Toolbar>
           <Grid>
-            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Patient Portal </h2>
+            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Sign Up Yourself </h2>
           </Grid>
           <Grid item xs sm xl lg md></Grid>
           <Grid>
-            <Link to="/login" className='remove-text-decoration'>
-              <Button className={classes.button} style={{ marginRight: '5px' }} color='primary' variant="text">
-                <AccountCircleIcon style={{ marginRight: '5px' }} /> Login
-              </Button>
-            </Link>
-            <Link to="/register" className='remove-text-decoration'>
-              <Button className={classes.button} variant="text">
-                <AppRegistrationIcon style={{ marginRight: '5px' }} />
-                Sign-Up
+            <Link to="/" style={{textDecoration:'none'}}>
+              <Button className={classes.button} style={{ marginRight: '5px' }} color='primary' variant="text" >
+                <AccountCircleIcon style={{ marginRight: '5px' }} />Home 
               </Button>
             </Link>
           </Grid>
