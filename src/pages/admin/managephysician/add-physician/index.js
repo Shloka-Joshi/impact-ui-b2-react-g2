@@ -3,68 +3,83 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './add-physician.css';
 import Button from '@mui/material/Button';
-export default function Addpatient() {
-  const [value, setValue] = React.useState(null);
-  return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          label="Firstname*"
-          id="outlined-size-small"
-          size="small"
-        />
-        <TextField
-          label="Lastname*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-
-        <TextField
-          type="date"
-          id="outlined-size-small"
-          size="small"
-        />
-
-        <TextField
-          label="Email Address*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-        <TextField
-          label="Password*"
-          id="outlined-size-small"
-          size="small"
-        />
-        <TextField
-          label="Re-Type Password*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-        <TextField
-          label="Contact*"
-          id="outlined-size-small"
-          size="small"
-          style={{alignItems:'Left'}}
-        />
-
-        <Button  variant="text" style={{margin:'0', Padding:'0'}}><span className="button1">Submit</span></Button>
-      </div>
 
 
+export default function Addpatient({ handleChange, handleSubmit, userData }) {
 
-    </Box>
-  );
+  return <form onSubmit={handleSubmit} >
+    <div>
+      <TextField
+        label="First Name*"
+        id="firstName"
+        size="small"
+        onChange={handleChange}
+        value={userData.firstName}
+      />
+    </div>
+    <div>
+      <TextField
+        label="Last Name*"
+        id="lastName"
+        size="small"
+        onChange={handleChange}
+        value={userData.lastName}
+
+      />
+    </div>
+    <div>
+      <TextField
+        type="date"
+        id="dob"
+        size="small"
+        onChange={handleChange}
+        value={userData.dob}
+
+      >Date of Birth</TextField>
+    </div>
+    <div>
+      <TextField
+        label="Email Address*"
+        id="email"
+        size="small"
+        onChange={handleChange}
+        value={userData.email}
+
+      />
+    </div>
+    <div>
+      <TextField
+        label="Password*"
+        id="password"
+        size="small"
+        type="password"
+        onChange={handleChange}
+        value={userData.password}
+
+      />
+    </div>
+    <div>
+      <TextField
+        label="Re-Type Password*"
+        id="retypePassword"
+        size="small"
+        type="password"
+        onChange={handleChange}
+        value={userData.retypePassword}
+
+      />
+    </div>
+    <div>
+      <TextField
+        label="Contact*"
+        id="contact"
+        size="small"
+        onChange={handleChange}
+        value={userData.contact}
+
+      />
+
+    </div>
+    <Button type="submit" variant="text" style={{ margin: '0', Padding: '0' }}><span className="button1">Submit</span></Button>
+  </form>
 }
