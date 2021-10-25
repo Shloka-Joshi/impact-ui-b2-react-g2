@@ -2,281 +2,61 @@
   "users": [
     {
       "id": "1",
-      "firstName": "Missie",
-      "lastName": "Bissiker",
-      "Dob": "10/31/1969",
-      "userName": "mbissiker0",
-      "role": "patient",
-      "email": "mbissiker0@techcrunch.com",
-      "contact": "455-342-3039",
-      "password": "tWHUbM9ZWx",
-      "retypePassword": "EalZagS"
-    },
-    {
-      "id": "2",
-      "firstName": "Gui",
-      "lastName": "Robiou",
-      "Dob": "09/07/1994",
-      "userName": "grobiou1",
-      "role": "patient",
-      "email": "grobiou1@ed.gov",
-      "contact": "761-482-9128",
-      "password": "mzbBHW8",
-      "retypePassword": "cFMSBarF"
-    },
-    {
-      "id": "3",
-      "firstName": "Anica",
-      "lastName": "Raincin",
-      "Dob": "11/02/1958",
-      "userName": "araincin2",
-      "role": "patient",
-      "email": "araincin2@hugedomains.com",
-      "contact": "622-932-3256",
-      "password": "735qtnQQe",
-      "retypePassword": "TbazEMWiX"
-    },
-    {
-      "id": "4",
-      "firstName": "Dominga",
-      "lastName": "Lemasney",
-      "Dob": "05/14/1984",
-      "userName": "dlemasney3",
-      "role": "patient",
-      "email": "dlemasney3@mysql.com",
-      "contact": "180-633-2425",
-      "password": "0t1AMNOHxrWq",
-      "retypePassword": "2b0Dd4R"
-    },
-    {
-      "id": "5",
-      "firstName": "Ingamar",
-      "lastName": "Jezard",
-      "Dob": "09/15/2001",
-      "userName": "ijezard4",
-      "role": "patient",
-      "email": "ijezard4@a8.net",
-      "contact": "751-191-4125",
-      "password": "rfwkuuwXCA",
-      "retypePassword": "x7Md0Y"
-    },
-    {
-      "firstName": "Ravi",
-      "lastName": "Pandey",
-      "Dob": "10/31/19",
-      "userName": "mbissiker0",
-      "role": "patient",
-      "email": "mbissiker0@techcrunch.com",
-      "contact": "455-342-3039",
-      "password": "tWHUbM9ZWx",
-      "retypePassword": "EalZagS",
-      "id": "S9Mm4so"
-    },
-    {
-      "email": "a@gmail.com",
-      "password": "$2a$10$do2Eci147FwGU5D7UJbdwOPQl10XuiqFxy2CJb6dfaAQzt6xQ1TRq",
-      "firstName": "a",
-      "lastName": "a",
-      "contact": "a",
-      "role": "patient",
-      "id": "pMSCVOA"
-    },
-    {
-      "email": "ravi@gmail.com",
-      "password": "$2a$10$JIwP4dBzIO64o.L.sR9k..RwZ5/UjFQuGYvXBl1aEX.hYwMaqGXl.",
-      "firstName": "a",
-      "lastName": "a",
-      "contact": "2",
-      "role": "patient",
-      "id": "YjX-aaD"
-    },
-    {
-      "email": "b@gmai.com",
-      "password": "$2a$10$eQQSRKdwkmYVzKGOu.oMo.BccvKjTejYBGvOwj4C4bUn1nzN5XsXi",
-      "firstName": "b",
-      "lastName": "b",
-      "contact": "6",
-      "role": "patient",
-      "id": "K1QJgGu"
-    },
-    {
-      "email": "c@gmail.com",
-      "password": "$2a$10$EzBadvw3ssDCVA.HEmuseuTM3IrAbYjEss9DYvRmSFbV5URSRTP.q",
-      "firstName": "a",
-      "lastName": "a",
-      "contact": "2",
-      "role": "patient",
-      "id": "6vJEzuf"
-    },
-    {
-      "email": "sh@gmail.com",
-      "password": "$2a$10$rDpgJeEtW.R5CwLd/Cy7r.LtoZ4tDPjgGr1KIl4IKbO/qhksFHOeW",
-      "firstName": "shloka",
-      "lastName": "joshi",
-      "contact": "999",
-      "role": "patient",
-      "id": "Oi3yzEB"
-    },
-    {
-      "email": "am@gamil.com",
-      "password": "$2a$10$khtljghSnngd0GnxwSN0WuezmmFSD.HrgYUVWjqhJf/blc2tqQn9u",
-      "firstName": "a",
-      "lastName": "m",
-      "contact": "2",
-      "role": "patient",
-      "id": "Iha_hRu"
-    }
-  ],
-  "patientDemographics": [
-    {
-      "id": "1",
       "firstName": "Cyril",
-      "lastName": "Glisane",
-      "dob": "03/19/1959",
-      "gender": "Polygender",
-      "ethnicity": "American Indian and Alaska Native (AIAN)",
-      "education": "Fachhochschule St. Pölten",
-      "occupation": "Director of Sales",
-      "address": "0781 Macpherson Street",
+      "lastName": "Crome",
+      "dob": "02/05/1978",
+      "role": "patient",
+      "email": "Cyril.Crome@gmail.com",
       "contact": "385-158-6580",
-      "medicalHistory": "Spastic entropion of eyelid",
-      "familyMedicalHistory": "Spastic entropion of eyelid",
-      "surgeries": "Mechanical lagophthalmos",
-      "insuranceProvider": "Koss-Grimes"
+      "password": "Cyril@1234",
+      "retypePassword": "Cyril@1234",
+      "approvedUser": "true",
+      "registrationDate": "10/25/2021"
     },
     {
       "id": "2",
-      "firstName": "Rebe",
-      "lastName": "Delyth",
-      "dob": "02/05/1978",
-      "gender": "Genderqueer",
-      "ethnicity": "Central American",
-      "education": "Universidad Católica Anselmo Llorente",
-      "occupation": "Quality Engineer",
-      "address": "94031 Reinke Street",
-      "contact": "405-540-8280",
-      "medicalHistory": "Oth forn object in oth prt resp tract cause oth injury, subs",
-      "familyMedicalHistory": "Other foreign object in other parts of respiratory tract causing other injury, subsequent encounter",
-      "surgeries": "Late eff inj-undet circ",
-      "insuranceProvider": "Windler Inc"
-    },
-    {
-      "id": "3",
-      "firstName": "Tedmund",
-      "lastName": "Tweed",
-      "dob": "05/25/1953",
-      "gender": "Female",
-      "ethnicity": "Yuman",
-      "education": "Guru Ghasidas University",
-      "occupation": "Engineer I",
-      "address": "094 Cardinal Court",
-      "contact": "881-788-9401",
-      "medicalHistory": "Spastic entropion of right lower eyelid",
-      "familyMedicalHistory": "Spastic entropion of right lower eyelid",
-      "surgeries": "Nonsenile cataract NOS",
-      "insuranceProvider": "Kirlin, Friesen and McClure"
-    },
-    {
-      "id": "4",
       "firstName": "Purcell",
-      "lastName": "Crome",
-      "dob": "12/06/1986",
-      "gender": "Non-binary",
-      "ethnicity": "Comanche",
-      "education": "Music Academy \"Karol Szymanowski\" in Katowice",
-      "occupation": "Developer II",
-      "address": "36187 Hudson Point",
-      "contact": "913-511-5383",
-      "medicalHistory": "Lac w fb of back wall of thorax w/o penet thoracic cavity",
-      "familyMedicalHistory": "Laceration with foreign body of back wall of thorax without penetration into thoracic cavity",
-      "surgeries": "Primary anal syphilis",
-      "insuranceProvider": "Simonis-O'Kon"
+      "lastName": "Glisane",
+      "dob": "07/04/1978",
+      "role": "physician",
+      "email": "Purcell.Glisane@gmail.com",
+      "contact": "385-158-6580",
+      "password": "Purcell@1234",
+      "retypePassword": "Purcell@1234",
+      "approvedUser": "true",
+      "registrationDate": "10/25/2021"
+    },
+    {
+      "email": "Shloka.Joshi@gmail.com",
+      "password": "$2a$10$0GQcm5zZG18b.qz/OEzOVeXCdIg8Jb/OfHgXT9Z04V6QKjYilZnri",
+      "firstName": "Shloka",
+      "lastName": "Joshi",
+      "dob": "1998-04-28",
+      "contact": "1234567890",
+      "role": "admin",
+      "approvedUser": "true",
+      "registrationDate": "2021-10-25T07:42:18.479Z",
+      "id": "ewrwVbO"
     }
   ],
+  "patientDemographics": [],
   "medicationAndAllergies": {
-    "medication": [
-      {
-        "currentMedication": "Bupivacaine Hydrochloride and Epinephrine",
-        "otcMedication": "BUPIVACAINE HYDROCHLORIDE AND EPINEPHRINE BITARTRATE",
-        "herbs": "Ondansetron Hydrochloride",
-        "socialDrug": "Smoke",
-        "pastMedications": "Ondansetron Hydrochloride"
-      },
-      {
-        "currentMedication": "TIGAN",
-        "otcMedication": "trimethobenzamide hydrochloride",
-        "herbs": "TITANIUM DIOXIDE, OCTINOXATE, OXYBENZONE",
-        "socialDrug": "Smoke",
-        "pastMedications": "DIORSNOW WHITE REVEAL PURE TRANSPARENCY MAKEUP SPF 30 021 Linen"
-      }
-    ],
-    "allergies": [
-      {
-        "drugAllergies": null,
-        "otherAllergies": null
-      },
-      {
-        "drugAllergies": null,
-        "otherAllergies": null
-      }
-    ]
+    "medication": [],
+    "allergies": []
   },
-  "immunization": [
+  "immunization": [],
+  "scheduleAppointment": [],
+  "diagnosisReports": [
     {
-      "id": 1,
-      "patientId": "218-85-3285",
-      "vaccineName": "Covishield",
-      "numberOfDoses": 2,
-      "vaccinatedOn": "01/10/1995"
-    },
-    {
-      "id": 2,
-      "patientId": "743-87-5293",
-      "vaccineName": "Covishield",
-      "numberOfDoses": 1,
-      "vaccinatedOn": "01/08/1968"
-    }
-  ],
-  "scheduleAppointment": [
-    {
-      "meetingTitle": null,
-      "description": null,
-      "physician": "Leonelle Poon",
-      "date": "05/19/2024",
-      "time": "1:53 AM",
-      "reason": null
-    },
-    {
-      "meetingTitle": null,
-      "description": null,
-      "physician": "Cleve Pauel",
-      "date": "11/01/2023",
-      "time": "6:14 PM",
-      "reason": null
-    }
-  ],
-  "patientReports": [
-    {
-      "patientVitals": {
-        "bloodPressure": null,
-        "pulseRate": null,
-        "temperature": null,
-        "respiration": null,
-        "height": null,
-        "weight": null
-      },
-      "procedureCode": "0CC6XZZ",
-      "diagnosisCode": "V215XXS",
-      "labReport": "audio/mpeg3",
-      "radiologyReport": "image/tiff",
-      "medication": "oxycodone hydrochloride"
-    }
-  ],
-  "billing": [
-    {
-      "patientBill": "video/mpeg",
-      "paymentMethod": "NetBanking",
-      "paymentHistory": "application/msword"
+      "userId": "",
+      "patientVitals": {},
+      "diagnosisDescription": "",
+      "diagnosisCode": "",
+      "labReport": "",
+      "medicationAndAllergies": {
+        "medication": {},
+        "allergies": {}
+      }
     }
   ],
   "allergies": [

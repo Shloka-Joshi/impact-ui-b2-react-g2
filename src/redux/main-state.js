@@ -5,4 +5,6 @@ export const initialState = {
   role: "",
   errors: "",
   message: "",
+  physicianData : [],
+  patientData: []
 };
