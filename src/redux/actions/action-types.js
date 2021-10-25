@@ -10,5 +10,5 @@ export const ADD = "ADD";
 export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
 
-// theju reference
-export const GET_ALL_DEMO_DATA = "GET_ALL_DEMO_DATA";
+export const GET_PHYSICIAN_DATA = "GET_PHYSICIAN_DATA";
+export const GET_PATIENT_DATA = "GET_PATIENT_DATA";

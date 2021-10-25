@@ -4,7 +4,6 @@ import Footer from "../../components/footer"
 import HomeBody from "./body";
 import '../../styles/common-style.css'
 
-
 function HomePage(){
     return(
         <>

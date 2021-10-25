@@ -1,0 +1,36 @@
+
+    .sidenav{
+        height: 100vh;
+        color: black;
+        /* paddingTop: theme.spacing(10), */
+        background-color: silver;
+        position: sticky;
+        top: 0;
+
+    }
+    .link {
+        text-decoration: None;
+        border-radius: 10px; 
+        font-family:'Nunito';
+        color:#fff;
+        font-size: 15px;
+        font-weight:700;
+    }
+    .item {
+        
+        display: flex;
+        align-items: center;
+        /* background-color: var(--solid-button-color);
+        color:  var(--button-text-color); */
+        padding:0  10px; 
+        margin: 7px 0;
+    }
+    .icon {
+       
+      color: white;  
+    }
+    .text {
+        font-weight: 500;
+            
+    }
+    

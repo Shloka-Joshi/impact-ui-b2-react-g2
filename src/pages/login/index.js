@@ -11,7 +11,6 @@ import { connect } from "react-redux";
 import "../../styles/common-style.css";
 import './login.css'
 import { makeStyles } from "@material-ui/core";
-import { color } from "@mui/system";
 import Footer from '../../components/footer'
 import BasicModal from "../../components/modals";
 import { useHistory } from "react-router";
@@ -32,13 +31,15 @@ const textBoxStyle = makeStyles({
 const theme = createTheme();
 
 
-function SignIn({ data, userLogin }) {
+function SignIn({ data, userLogin ,isLoggedIn}) {
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setOpen(false)
-    if (data.isLoggedIn) { history.push(`/dashboard/${data.id}/${data.role}`) }
+  setOpen(false);
+    if (isLoggedIn) {
+      history.push(`/dashboard/${data.id}/${data.role}`) 
+    }
   };
 
   const [email, setemail] = useState('');
@@ -46,8 +47,6 @@ function SignIn({ data, userLogin }) {
 
     const ch = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const isValid = ch.test(String(emailId).toLowerCase());
-    console.log(isValid)
-
     return isValid;
   }
 
@@ -189,7 +188,8 @@ function SignIn({ data, userLogin }) {
 }
 const mapStateToProps = (state) => {
   return {
-    data: state.data,
+    data: state.auth.data,
+    isLoggedIn: state.auth.isLoggedIn
   };
 };
 const mapdispatchToProps = (dispatch) => {
