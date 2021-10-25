@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import Header from '../../../components/header/index';
-import Sidenav from '../../../components/sidenav';
-import Footer from '../../../components/footer/index';
-import ShellComponent from '../../../components/dashboard-body/index';
+import Header from '../../components/header/index';
+import Sidenav from '../../components/sidenav';
+import Footer from '../../components/footer/index';
+import ShellComponent from '../../components/dashboard-body/index';
 import { Grid } from '@material-ui/core';
 import './dashboard.css';
 import '../../../styles/common-style.css';
