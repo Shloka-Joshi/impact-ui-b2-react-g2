@@ -5,14 +5,17 @@ import App from "./app/app";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware,combineReducers } from "redux";
+import { createStore, applyMiddleware ,combineReducers } from "redux";
 import thunk from "redux-thunk";
 import authReducer from "./redux/reducers/auth-reducer";
+import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import ImmunizationDataReducer from "./redux/reducers/immunization-reducer";
 import DemographicsDataReducer from "./redux/reducers/demographics-reducer";
 
+
 const rootReducer = combineReducers({
-  auth : authReducer,
+  auth: authReducer,
+  physiciandata: PhysicianDataReducer,
   DemographicsData : DemographicsDataReducer,
   immunization :ImmunizationDataReducer,
 });

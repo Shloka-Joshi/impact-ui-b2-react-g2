@@ -7,5 +7,6 @@ export const initialState = {
   message: "",
   DemographicsData : [],
   ImmunizationData : [],
-
+  physicianData : [],
+  patientData: []
 };
