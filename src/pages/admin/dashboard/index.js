@@ -15,7 +15,7 @@ function Dashboard() {
       
       <Grid container>
         <Grid item sm={2} xs={2} lg={2} md={2} xl={2}>
-            <Sidenav role="physicianx"/>
+            <Sidenav />
         </Grid>
 
         <Grid item sm={10} xs={10} xl={10} lg={10} md={10}>

@@ -40,11 +40,11 @@ function SignUp({ registerUser, data }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    data.append("role", "patient");
     let body = {};
     for (let entry of data.entries()) {
       body[entry[0]] = entry[1];
     }
+    body = {...body,role:'patient',approvedUser:"false",registrationDate:new Date()}
     registerUser(body);
     handleOpen();
   };
