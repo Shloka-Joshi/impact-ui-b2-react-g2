@@ -1,0 +1,18 @@
+.section-form{
+    border: 2px solid var(--card-bg-color2);
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family:'Nunito';
+}
+
+.title-vital{
+    background-color: white;
+    color: var(--heading-solid-text-color);
+}
+ul
+{
+    margin: 5px 0;
+    display: block;
+    flex-wrap: wrap;
+    padding: 0;
+}

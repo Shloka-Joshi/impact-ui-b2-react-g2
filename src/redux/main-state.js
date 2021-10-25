@@ -5,4 +5,7 @@ export const initialState = {
   role: "",
   errors: "",
   message: "",
+  DemographicsData : [],
+  ImmunizationData : [],
+
 };

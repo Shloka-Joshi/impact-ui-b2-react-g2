@@ -9,3 +9,7 @@ export const GET_ALL_USERS = "GET_ALL_USER";
 export const ADD = "ADD";
 export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
+
+export const GET_DEMOGRAPHICS_DATA = "GET_DEMOGRAPHICS_DATA";
+export const GET_IMMUNIZATION_DATA = "GET_IMMUNIZATION_DATA";
+
