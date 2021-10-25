@@ -35,20 +35,20 @@ function ShellComponent(props) {
                 //_______________________________Physician Routes_______________________________________________________________________________ */}
                 : role == 'physician' ? 
                 <Switch>
-                    <Route path={`${path}/#`} component={'#'}></Route>
-                    <Route path={`${path}/#`} component={'#'}></Route>
-                    <Route path={`${path}/#`} component={'#'}></Route>
-                    <Route path={`${path}/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
                 </Switch> 
                 //________________________________Patient Routes_________________________________________________________________*/}
 
                 : role == 'patient' ?
                     <Switch>
-                        <Route path={`${path}/#`} component={'#'}></Route>
-                        <Route path={`${path}/#`} component={'#'}></Route>
-                        <Route path={`${path}/#`} component={'#'}></Route>
-                        <Route path={`${path}/#`} component={'#'}></Route>
-                        <Route path={`${path}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
                     </Switch>
                     : 'Not found'}
         </Container>

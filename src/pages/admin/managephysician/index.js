@@ -210,9 +210,6 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
                                                         <VisibilityIcon />
                                                     </Fab>
                                                     </Box>
-                                                    {/* <Button  variant="contained" id="edit" onClick={()=>edituser(row.id)} >Edit</Button>
-                                                    <Button  variant="contained" id="delete" onClick={()=>deleteuser(row.id)} >Delete</Button>
-                                                    <Button  variant="contained" id="view" onClick={()=>viewuser(row.id)} >View</Button> */}
                                                 </TableCell>
                                             );
                                         })}
