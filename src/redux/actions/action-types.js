@@ -9,3 +9,6 @@ export const GET_ALL_USERS = "GET_ALL_USER";
 export const ADD = "ADD";
 export const UPDATE = "UPDATE";
 export const DELETE = "DELETE";
+
+// theju reference
+export const GET_ALL_DEMO_DATA = "GET_ALL_DEMO_DATA";

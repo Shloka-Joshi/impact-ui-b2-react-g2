@@ -5,4 +5,5 @@ export const initialState = {
   role: "",
   errors: "",
   message: "",
+  formDemo: []  //theju-reference
 };

@@ -110,6 +110,10 @@
   border: 2px solid #fff;
 
 }
+.card-style{
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+  border-radius: 30%;
+}
 
 .color-link{
   color: var(--link-text-color) ;
