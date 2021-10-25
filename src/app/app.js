@@ -2,11 +2,7 @@ import HomePage from "../pages/home/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "../pages/register";
 import Login from "../pages/login";
-// import EventCalendar from "../components/event-calendr";
-// import EventCalendar from "../components/event-calendr";
-import ScheduleAppointment from "../pages/patient/schedular";
-import EventCalendar from "../components/my-own-stuff/event-calendr";
-import Dashboard from "../pages/admin/dashboard";
+import Dashboard from "../pages/dashboard";
 
 function App() {
   return (
