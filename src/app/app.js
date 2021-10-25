@@ -2,7 +2,7 @@ import HomePage from "../pages/home/index";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "../pages/register";
 import Login from "../pages/login";
-import Dashboard from "../pages/admin/dashboard";
+import Dashboard from "../pages/dashboard";
 
 function App() {
   return (
