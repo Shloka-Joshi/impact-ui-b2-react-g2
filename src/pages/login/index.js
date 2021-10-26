@@ -13,7 +13,6 @@ import { connect } from "react-redux";
 import "../../styles/common-style.css"
 import "../login/login.css"
 import { makeStyles } from "@material-ui/core";
-import { color } from "@mui/system";
 import Footer from '../../components/footer'
 import BasicModal from "../../components/modals";
 import { useHistory } from "react-router";
@@ -43,13 +42,15 @@ const validationSchema= Yup.object({
   password: Yup.string().required('Required')
 })
 
-function SignIn({ data, userLogin }) {
+function SignIn({ data, userLogin ,isLoggedIn}) {
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
-    setOpen(false)
-    if (data.isLoggedIn) { history.push(`/dashboard/${data.id}/${data.role}`) }
+  setOpen(false);
+    if (isLoggedIn) {
+      history.push(`/dashboard/${data.id}/${data.role}`) 
+    }
   };
 
   
@@ -199,7 +200,8 @@ function SignIn({ data, userLogin }) {
 }
 const mapStateToProps = (state) => {
   return {
-    data: state.data,
+    data: state.auth.data,
+    isLoggedIn: state.auth.isLoggedIn
   };
 };
 const mapdispatchToProps = (dispatch) => {

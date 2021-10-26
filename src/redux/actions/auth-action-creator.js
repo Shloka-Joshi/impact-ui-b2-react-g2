@@ -1,6 +1,5 @@
 import * as ACTION_TYPE from "./action-types";
 import axios from "axios";
-import "../../services/auth-service";
 
 let config = {
   headers: {
@@ -56,7 +55,7 @@ export const userLogin = (params) => {
         payload.message = `LOGIN ERROR: ${err.message} `;
         dispatch(FAILURE(payload));
       });
-  };
+    };
 };
 
 export const LOAD = () => {
