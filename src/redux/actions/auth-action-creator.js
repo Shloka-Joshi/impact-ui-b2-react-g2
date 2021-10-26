@@ -43,16 +43,23 @@ export const userLogin = (params) => {
     axios
       .post("http://localhost:9999/login", params, config)
       .then((response) => {
-        payload.message = `Email Id: ${params.email} logged in successfully`;
-        payload.isLoggedIn = true;
-        payload.authToken = response.data.accessToken;
-        payload.role = response.data.user.role;
-        payload.id = response.data.user.id;
+        if (response.data.user.approvedUser) {
+          payload.message = `Email Id: ${params.email} logged in successfully`;
+          payload.isLoggedIn = true;
+          payload.authToken = response.data.accessToken;
+          payload.role = response.data.user.role;
+          payload.id = response.data.user.id;
 
-        dispatch(SUCCESS(payload));
+          dispatch(SUCCESS(payload));
+
+        } else {
+          payload.message = `${params.email} Not an approved user!`;
+          dispatch(FAILURE(payload));
+
+        }
       })
       .catch((err) => {
-        payload.message = `LOGIN ERROR: ${err.message} `;
+        payload.message = `LOGIN ERROR: ${err.response.data} `;
         dispatch(FAILURE(payload));
       });
     };

@@ -3,7 +3,7 @@ export const initialState = {
   authToken: "",
   data: [],
   role: "",
-  errors: "",
+  errors: [],
   users:[],
   message: "",
   physicianData : [],

@@ -61,7 +61,7 @@ function SignUp({ registerUser, data }) {
     for (let entry of data.entries()) {
       body[entry[0]] = entry[1];
     }
-    body = {...body,role:'patient',approvedUser:"false",registrationDate:new Date()}
+    body = {...body,role:'patient',approvedUser:false,registrationDate:new Date()}
     registerUser(body);
     handleOpen();
   };
@@ -94,9 +94,9 @@ function SignUp({ registerUser, data }) {
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
                 <h3>Heading Comes Here</h3>
-                <Grid item xs={12} lg={5} md={6}>
+                
                   <div className="register-image"></div>
-                </Grid>
+               
                 <p>
                   Some text comes here  Some text comes here Some text comes here Some text comes here
                 </p>

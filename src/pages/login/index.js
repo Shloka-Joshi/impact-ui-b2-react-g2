@@ -42,18 +42,18 @@ const validationSchema= Yup.object({
   password: Yup.string().required('Required')
 })
 
-function SignIn({ data, userLogin ,isLoggedIn}) {
+function SignIn({ data, userLogin ,isLoggedIn, errors}) {
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
   setOpen(false);
-    if (isLoggedIn) {
-      history.push(`/dashboard/${data.id}/${data.role}`) 
-    }
+     if (isLoggedIn) {
+      history.push(`/dashboard/${data.id}/${data.role}`)
+    } 
   };
 
-  
+
 
   const classes = textBoxStyle()
   const handleSubmit = (event) => {
@@ -92,9 +92,7 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
                 <h3>Heading Comes Here</h3>
-                <Grid  item xs={12} lg={5} md={6}>
                   <div className="register-image"></div>
-                </Grid>
                 <p>
                   Some text comes here  Some text comes here Some text comes here Some text comes here
                 </p>
@@ -183,7 +181,8 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                       </Container>
 
                       <BasicModal state={open} onClose={handleClose}>
-                        {data?.message}
+                        {data? data.message: errors?.message}
+                        {/* {data?.message} */}
                       </BasicModal>
                     </div>
                   </ThemeProvider>
@@ -201,7 +200,8 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
 const mapStateToProps = (state) => {
   return {
     data: state.auth.data,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    errors: state.auth.errors
   };
 };
 const mapdispatchToProps = (dispatch) => {
