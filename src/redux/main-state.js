@@ -4,5 +4,6 @@ export const initialState = {
   data: [],
   role: "",
   errors: "",
+  users:[],
   message: "",
 };

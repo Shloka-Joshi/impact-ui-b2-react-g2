@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as Yup from 'yup';
+import {useFormik} from 'formik';
 import { Button } from "../../utils/mui";
 import { CssBaseline } from "../../utils/mui";
 import { TextField } from "../../utils/mui";
@@ -8,8 +10,8 @@ import { Box } from "../../utils/mui";
 import { Container } from "../../utils/mui";
 import { userLogin } from "../../redux/actions/auth-action-creator";
 import { connect } from "react-redux";
-import "../../styles/common-style.css";
-import './login.css'
+import "../../styles/common-style.css"
+import "../login/login.css"
 import { makeStyles } from "@material-ui/core";
 import { color } from "@mui/system";
 import Footer from '../../components/footer'
@@ -31,6 +33,15 @@ const textBoxStyle = makeStyles({
 })
 const theme = createTheme();
 
+const initialValues = {
+  email: '',
+  password:'',
+  }
+
+const validationSchema= Yup.object({
+  email: Yup.string().email('Invalid Email Format').required('Required'),
+  password: Yup.string().required('Required')
+})
 
 function SignIn({ data, userLogin }) {
   let history = useHistory();
@@ -41,15 +52,7 @@ function SignIn({ data, userLogin }) {
     if (data.isLoggedIn) { history.push(`/dashboard/${data.id}/${data.role}`) }
   };
 
-  const [email, setemail] = useState('');
-  const validateEmail = (emailId) => {
-
-    const ch = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const isValid = ch.test(String(emailId).toLowerCase());
-    console.log(isValid)
-
-    return isValid;
-  }
+  
 
   const classes = textBoxStyle()
   const handleSubmit = (event) => {
@@ -62,6 +65,11 @@ function SignIn({ data, userLogin }) {
     userLogin(body);
     handleOpen();
   };
+  const formik= useFormik({
+    initialValues,
+    validationSchema,
+    handleSubmit
+  })
   return (
     <>
       <Header />
@@ -83,13 +91,12 @@ function SignIn({ data, userLogin }) {
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
                 <h3>Heading Comes Here</h3>
+                <Grid  item xs={12} lg={5} md={6}>
+                  <div className="register-image"></div>
+                </Grid>
                 <p>
                   Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
                 </p>
-
               </div>
             </Grid>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -117,8 +124,6 @@ function SignIn({ data, userLogin }) {
                               margin="normal"
                               required
                               fullWidth
-                              value={email}
-                              onChange={(e) => setemail(e.target.value)}
                               id="email"
                               name="email"
                               label="Email Address"
@@ -127,10 +132,9 @@ function SignIn({ data, userLogin }) {
                               InputProps={{
                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                               }}
-
+                              {...formik.getFieldProps('email')}
                             />
-                            {!validateEmail(email) && email != '' && (
-                              <span>Invalid Email</span>)}
+                            {formik.touched.email && formik.errors.email? <div className='error'>{formik.errors.email}</div> : null}
                             <TextField
                               margin="normal"
                               required
@@ -143,10 +147,13 @@ function SignIn({ data, userLogin }) {
                               InputProps={{
                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                               }}
+                               {...formik.getFieldProps('password')}
                             />
+                            {formik.touched.password && formik.errors.password? <div className='error'>{formik.errors.password}</div> : null}
 
                             <Button style={{ margin: '0', padding: '0' }}
                               type="submit"
+                              disabled={!formik.isValid}
                               fullWidth
                               variant="text"
                               sx={{ mt: 3, mb: 2 }}
@@ -158,12 +165,15 @@ function SignIn({ data, userLogin }) {
                             <Grid container>
                               <Grid item xs>
                                 <Link to="#" variant="body2" style={{textDecoration:'none'}}>
+                                  <span className='color-link'>
                                   Forgot password?
+                                  </span>
                                 </Link>
                               </Grid>
                               <Grid item>
                                 <Link to="/register" variant="body2" style={{textDecoration:'none'}}>
-                                  {"Don't have an account? Sign Up"}
+                                  <span className='color-link'>{"Don't have an account? Sign Up"}</span>
+                                  
                                 </Link>
                               </Grid>
                             </Grid>

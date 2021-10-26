@@ -1,5 +1,5 @@
-import "../../styles/common-style.css";
 import * as React from "react";
+import * as Yup from 'yup';
 import { Avatar } from "../../utils/mui";
 import { Button } from "../../utils/mui";
 import { CssBaseline } from "../../utils/mui";
@@ -13,22 +13,39 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { registerUser } from "../../redux/actions/auth-action-creator";
 import { connect } from "react-redux";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import "../../styles/common-style.css"
+import "../../styles/common-style.css";
+import "../register/register.css"
 import Footer from "../../components/footer";
 import BasicModal from "../../components/modals";
 import { useHistory } from "react-router";
-import './register.css';
+// import './register.css';
 import { FormControl } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import Header from '../register/header/index';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import {useFormik} from 'formik';
 
 
 
 const theme = createTheme();
 
+const initialValues = {
+  firstName: '',
+  lastName:'',
+  contact:'',
+  email:'',
+  password:'',
+  cnfPassword:''
+}
 
+const validationSchema= Yup.object({
+  firstName: Yup.string().required('Required'),
+  lastName: Yup.string().required('Required'),
+  contact: Yup.number().required('Required').positive(),
+  email: Yup.string().email('Invalid Email Format').required(),
+  password: Yup.string().required('Required').length(8),
+  cnfPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Passwords Must Match').required('Required')
+})
 
 function SignUp({ registerUser, data }) {
   let history = useHistory();
@@ -48,6 +65,12 @@ function SignUp({ registerUser, data }) {
     registerUser(body);
     handleOpen();
   };
+
+  const formik= useFormik({
+    initialValues,
+    validationSchema,
+    handleSubmit
+  })
 
   return (
     <>
@@ -71,13 +94,12 @@ function SignUp({ registerUser, data }) {
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
                 <h3>Heading Comes Here</h3>
+                <Grid item xs={12} lg={5} md={6}>
+                  <div className="register-image"></div>
+                </Grid>
                 <p>
                   Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
                 </p>
-
               </div>
             </Grid>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -108,7 +130,9 @@ function SignUp({ registerUser, data }) {
                                   InputProps={{
                                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                   }}
+                                  {...formik.getFieldProps('firstName')}
                                 />
+                                {formik.touched.firstName && formik.errors.firstName? <div className='error'>{formik.errors.firstName}</div> : null}
                               </FormControl>
                             </Grid>
 
@@ -124,7 +148,10 @@ function SignUp({ registerUser, data }) {
                                   InputProps={{
                                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                   }}
+                                  {...formik.getFieldProps('lastName')}
                                 />
+                                {formik.touched.lastName && formik.errors.lastName? <div className='error'>{formik.errors.lastName}</div> : null}
+                                
                               </FormControl >
                             </Grid>
                             <Grid item xs={12}>
@@ -154,7 +181,9 @@ function SignUp({ registerUser, data }) {
                                 InputProps={{
                                   startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                 }}
+                                {...formik.getFieldProps('email')}
                               />
+                              {formik.touched.email && formik.errors.email? <div className='error'>{formik.errors.email}</div> : null}
                             </Grid>
                             <Grid item xs={12}>
                               <TextField
@@ -169,12 +198,15 @@ function SignUp({ registerUser, data }) {
                                 InputProps={{
                                   startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                 }}
+                                {...formik.getFieldProps('contact')}
                               />
+                              {formik.touched.contact && formik.errors.contact? <div className='error'>{formik.errors.contact}</div> : null}
                             </Grid>
                             <Grid item xs={12}>
                               <TextField
                                 required
                                 fullWidth
+                                minLength={8}
                                 id="password"
                                 name="password"
                                 label="Password"
@@ -183,26 +215,31 @@ function SignUp({ registerUser, data }) {
                                 InputProps={{
                                   startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                 }}
+                                {...formik.getFieldProps('password')}
                               />
+                              {formik.touched.password && formik.errors.password? <div className='error'>{formik.errors.password}</div> : null}
                             </Grid>
                             <Grid item xs={12}>
                               <TextField
                                 required
                                 fullWidth
-                                id="password"
-                                name="password"
+                                id="cnfPassword"
+                                name="cnfPassword"
                                 placeholder='Re-Type Password'
                                 label="Re-Type Password"
                                 type="password"
                                 InputProps={{
                                   startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                 }}
+                                {...formik.getFieldProps('cnfPassword')}
                               />
+                               {formik.touched.cnfPassword && formik.errors.cnfPassword? <div className='error'>{formik.errors.cnfPassword}</div> : null}
                             </Grid>
                           </Grid>
 
                           <Button styles={{ padding: '0', margin: '0' }}
                             type="submit"
+                            disabled={!formik.isValid}
                             fullWidth
                             variant="text"
                             sx={{ mt: 3, mb: 2 }}>
