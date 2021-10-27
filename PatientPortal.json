@@ -37,6 +37,45 @@
       "approvedUser": "true",
       "registrationDate": "2021-10-25T07:42:18.479Z",
       "id": "ewrwVbO"
+    },
+    {
+      "email": "ravi90@gmail.com",
+      "password": "$2a$10$uG6DMuFGVp0zGDVV/U2NaeBUiHNFdtDjsHglhryo0KUTaNL0BAnS2",
+      "firstName": "rav",
+      "lastName": "pandey",
+      "dob": "2021-10-26",
+      "contact": "6666",
+      "cnfPassword": "abcdefgh",
+      "role": "patient",
+      "approvedUser": "false",
+      "registrationDate": "2021-10-26T13:40:48.879Z",
+      "id": "6lNPIu2"
+    },
+    {
+      "email": "abcdefgh@gmail.com",
+      "password": "$2a$10$s3FZocSpOkBY59sBLpMlA.CocE4990CCpWEspeODZ7XTX8IITE01W",
+      "firstName": "aa",
+      "lastName": "AAAA",
+      "dob": "2021-09-29",
+      "contact": "123456789",
+      "cnfPassword": "abcdefgh",
+      "role": "patient",
+      "approvedUser": "false",
+      "registrationDate": "2021-10-26T13:41:55.669Z",
+      "id": "Ff2y9-6"
+    },
+    {
+      "email": "abcdef@gmail.com",
+      "password": "$2a$10$0nYHyWk3bCa2ORCMUlgfOO/LfLWvXpALGrQAGiPvMGJ0WClt37fAG",
+      "firstName": "aaaa",
+      "lastName": "aa",
+      "dob": "2021-09-27",
+      "contact": "123456789",
+      "cnfPassword": "abcdefgh",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-10-26T13:45:16.445Z",
+      "id": "L8GkhnH"
     }
   ],
   "patientDemographics": [],
