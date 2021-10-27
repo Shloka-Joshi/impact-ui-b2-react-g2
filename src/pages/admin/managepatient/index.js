@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,92 +7,56 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchIcon from '@mui/icons-material/Search';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Grid from '@material-ui/core/Grid';
-import InputBase from '@mui/material/InputBase';
 import './managepatient.css';
-import Addpatient from './add-patient/index';
-import { Container } from '@material-ui/core';
+import { connect } from "react-redux";
+import {getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord} from '../../../redux/actions/patient-action-creator';
+import Addpatient from './add-patient';
+import { Link } from 'react-router-dom';
+import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import '../../../styles/common-style.css';
 
 const columns = [
-    { id: 'PatientID', label: 'Patien ID', minWidth: 100, align: 'center' },
-    { id: 'Name', label: 'Name', minWidth: 170, align: 'center' },
-    {
-        id: 'Email',
-        label: 'Email',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'RegisterationDate',
-        label: 'Registeration Date',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toLocaleString('en-US'),
-    },
-    {
-        id: 'Status',
-        label: 'Status',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toFixed(2),
-    },
-    {
-        id: 'Action',
-        label: 'Action',
-        minWidth: 170,
-        align: 'center',
-        format: (value) => value.toFixed(2),
-    }
+    { id: 'sno', label: 'Serial No.', minWidth: 170, align: 'center' },
+    { id: 'firstName', label: 'First Name', minWidth: 170, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 170, align: 'center' },
+    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center' },
+    { id: 'email', label: 'Email', minWidth: 170, align: 'center'},
+    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center'},
+    { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
 ];
 
-function createData(PatientID, Name, Email, RegisterationDate, Status, Action) {
-
-    return { PatientID, Name, Email, RegisterationDate, Status, Action };
-}
-
-const rows = [
-    createData('P1', 'Samuel', 'samuel@yopmail.com', '14/10/2021', 'Pending', 'Edit'),
-    createData('P2', 'Sam', 'sam@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P3', 'Ali', 'Ali@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P4', 'Peter', 'Peter@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P5', 'Jhon', 'Jhon@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P6', 'Misse', 'Misse@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P7', 'Nicolas', 'Nicolas@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P8', 'Nick', 'Nick@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P9', 'Sarath', 'sarath@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P10', 'Susanth', 'susanth@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P11', 'Rohan', 'Rohan@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P12', 'Karthick', 'Karthick@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-    createData('P13', 'Ishan', 'Ishan@yopmail.com', '13/10/2021', 'Active', 'Edit'),
-
-];
-
-
-    //   searchbutton: {
-    //       marginRight: theme.spacing(2),
-    //       [theme.breakpoints.up("sm")]: {
-    //           display: "none"
-    //       }
-    //   }
-
-
-export default function Managephysician() {
+function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord}) {
     
+    // const tableData = data;
+    const [userTableData,setUserTableData] = React.useState(data);
+
+
+    useEffect(()=>{
+        getpatientdata("patient");
+        
+    },[]);
+
+    
+
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypepassword:""}});
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [selectedActionState, getSelectedAction] = React.useState({action:"",id:''});
+    
+    const [searched, setSearched] = React.useState("");
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -103,6 +67,67 @@ export default function Managephysician() {
         setPage(0);
     };
 
+    const handleOpen = () => {
+        setOpen(true);
+        getSelectedAction({action:'add',id:''});
+    };
+
+    const handleClose = () => {
+        setOpen(false)
+        setFormValue({
+            formData: {firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypePassword:""}
+        });
+    };
+
+    const edituser = (id) => {
+        getSelectedAction({action:"edit",id:id});
+        let user = userTableData.filter((item) => item.id == id);
+        setFormValue(prevState => ({
+            formData: { ...prevState.formData, ...user[0]}
+        }))
+        setOpen(true);
+
+    }
+
+    const viewuser = (id) => {
+
+    }
+    const deleteuser = (id) => {
+        deletepatientrecord(id);
+    }
+
+    const adduserformvaluechange = (e) => {
+        const { id, value } = e.target;
+        setFormValue(prevState => ({
+            formData: { ...prevState.formData, [id]: value }
+        }));
+      };
+
+    const adduserformvaluesubmit = e => {
+        e.preventDefault();
+        setFormValue(prevState => ({
+            formData: {...prevState.formData},
+        }));
+        let body = {...addFormValue.formData,role:'patient',registrationDate:new Date()}
+        if(selectedActionState.action == "add")
+            addnewpatientrecord(body);
+        if(selectedActionState.action == "edit")
+            updateexistingpatientrecord(selectedActionState.id,body)
+        handleClose();
+    };
+
+    const requestSearch = (searchedVal) => {
+        let filteredRows = data.filter((row) => {
+          return row.firstName.toLowerCase().includes(searchedVal.toLowerCase());
+        });
+        setUserTableData(filteredRows);
+      };
+
+      const cancelSearch = () => {
+        setSearched("");
+        requestSearch(searched);
+      };
+
     return (
         <Grid>
             <div className='title'>
@@ -110,17 +135,15 @@ export default function Managephysician() {
             </div>
 
             <div className="top-toolbar">
-            <div className='search'>
-                <div className='searchIcon'>
-                    <SearchIcon />
-                </div>
-                <InputBase placeholder="Search" className='search'
-                    inputProps={{ 'aria-label': 'search' }} />
-               
-            </div>
-            <Button  className='btn' variant="contained" onClick={handleOpen} >
-                    <AddCircleIcon />Add
-                </Button>
+                <SearchBar
+                    className="searchBar"
+                    value={searched}
+                    onChange={(searchVal) => requestSearch(searchVal)}
+                    onCancelSearch={() => cancelSearch()}
+                />
+                <Fab aria-label="add" onClick={handleOpen} style={{ float: 'right', backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                    <AddIcon />
+                </Fab>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
@@ -138,12 +161,18 @@ export default function Managephysician() {
                                 Add Patient
                             </Typography>
                             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                               <Addpatient/>
+                               
+                               <Addpatient
+                               handleChange={adduserformvaluechange}
+                               userData={addFormValue.formData}
+                               handleSubmit={adduserformvaluesubmit}
+                               
+                               />
                             </Typography>
                         </Box>
                     </Fade>
                 </Modal>
-                </div>
+            </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
                     <Table stickyHeader aria-label="sticky table">
@@ -161,14 +190,28 @@ export default function Managephysician() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                            {userTableData.map((row,rowIndex) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number' ? column.format(value) : value}
+                                            column.id === 'sno' ? <TableCell key={column.id} align={column.align}>{rowIndex+1}</TableCell> :
+                                               column.id != 'action' ? <TableCell key={column.id} align={column.align}>
+                                                    {value}
+                                                </TableCell> 
+                                                : <TableCell key={column.id} align={column.align}>
+                                                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                        <EditIcon />
+                                                    </Fab>
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                        <DeleteIcon />
+                                                    </Fab>
+                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                        <VisibilityIcon />
+                                                    </Fab>
+                                                    </Box>
                                                 </TableCell>
                                             );
                                         })}
@@ -181,15 +224,30 @@ export default function Managephysician() {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
-                    count={rows.length}
+                    count={userTableData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            
 
         </Grid>
     );
 }
+
+const mapStateToProps = (state) => {
+    return {
+      data: state.patientdata.patientData,
+    };
+  };
+  const mapdispatchToProps = (dispatch) => {
+    return {
+        getpatientdata: (data) => dispatch(getpatientdata(data)),
+        deletepatientrecord: (id) => dispatch(deletepatientrecord(id)),
+        addnewpatientrecord: (data) => dispatch(addnewpatientrecord(data)),
+        updateexistingpatientrecord: (id,data) => dispatch(updateexistingpatientrecord(id,data))
+    };
+  };
+
+  export default connect(mapStateToProps, mapdispatchToProps)(Managepatient);
