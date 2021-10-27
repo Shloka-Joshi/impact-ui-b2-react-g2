@@ -47,7 +47,7 @@ const validationSchema= Yup.object({
   cnfPassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Passwords Must Match').required('Required')
 })
 
-function SignUp({ registerUser, data }) {
+function SignUp({ registerUser, data, err }) {
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -260,15 +260,13 @@ function SignUp({ registerUser, data }) {
                   </ThemeProvider>
 
                   <BasicModal state={open} onClose={handleClose}>
-                    {data?.message}
+                    {data?data.message: err?.message}
                   </BasicModal>
                 </div>
               </div>
             </Grid>
           </Grid>
-
         </Box>
-
       </Container>
       <Footer />
     </>
@@ -276,8 +274,10 @@ function SignUp({ registerUser, data }) {
   );
 }
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    data: state.data,
+    data: state.auth.data,
+    err: state.auth.errors
   };
 };
 
