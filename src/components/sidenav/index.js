@@ -5,37 +5,28 @@ import TodayIcon from '@mui/icons-material/Today';
 import HomeIcon from '@mui/icons-material/Home';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import '../../styles/common-style.css';
+import Profilecard from "./profile-card";
+const profilrcardDetails = {
+    fname: "Sam",
+    lname: "Kamal",
+    role: "Admin",
+   Weight:"80KG",
+   Height:"170CM",
+   BloodPressure:"120/80"
+};
 
 function Sidenav(props) {
     let { id, role } = useParams();
 
     return (
         <Container className='sidenav'>
+            <div>
             <Grid>
-                <Card className='root'>
-                    <CardActionArea>
-                        <CardMedia
-                            className='media'
-                            image="/images/user.png"
-                            title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                sam
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+            <Profilecard cardData={profilrcardDetails} />
             </Grid>
+            </div>
             {/* For Admin___________________________________________________________________________________________ */}
             {role== 'admin'? 
             <Container>
