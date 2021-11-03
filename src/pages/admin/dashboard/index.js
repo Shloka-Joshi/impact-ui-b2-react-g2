@@ -9,8 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-import {getpatientdata} from "../../../redux/actions/patient-action-creator";
-// import {getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord} from '../../../redux/actions/physician-action-creator';
+import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/patient-action-creator";
 import SearchBar from "material-ui-search-bar";
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -28,19 +27,18 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
 ];
 
-function AdminDashboard({data,getpatientdata}) {
-    
-    const [userTableData,setUserTableData] = React.useState([]);
+function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletepatientrecord}) {
+
+    let user = data?.filter((item) => !item.approvedUser);
+
+    const [userTableData,setUserTableData] = React.useState(user);
 
 
     useEffect(()=>{
         getpatientdata("patient");
-        let newUserData = data.filter((item) => { if (!item.approvedUser) return item });
-        setUserTableData(newUserData);
-    },[data]);
+    },[]);
 
     
-
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     
@@ -55,11 +53,12 @@ function AdminDashboard({data,getpatientdata}) {
         setPage(0);
     };
 
-    const accept = () =>{
-
+    const accept = (user) => {
+        let approvedUser = {...user,approvedUser:true};
+        updateexistingpatientrecord(user.id,approvedUser)
     }
-    const reject = () => {
-
+    const reject = (id) => {
+        deletepatientrecord(id);
     }
 
     const requestSearch = (searchedVal) => {
@@ -117,7 +116,7 @@ function AdminDashboard({data,getpatientdata}) {
                                                 </TableCell> 
                                                 : <TableCell key={column.id} align={column.align}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>accept(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>accept(row)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
                                                         <CheckIcon />
                                                     </Fab>
                                                     <Fab className="actions" aria-label="delete" id="delete" onClick={()=>reject(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
@@ -150,12 +149,14 @@ function AdminDashboard({data,getpatientdata}) {
 
 const mapStateToProps = (state) => {
     return {
-      data: state.physiciandata.physicianData,
+        data: state.patientdata.patientData
     };
   };
   const mapdispatchToProps = (dispatch) => {
     return {
-        getpatientdata: (data) => dispatch(getpatientdata(data))
+        getpatientdata: (data) => dispatch(getpatientdata(data)),
+        updateexistingpatientrecord: (id,data) => dispatch(updateexistingpatientrecord(id,data)),
+        deletepatientrecord: (id) => dispatch(deletepatientrecord(id))
     };
   };
 

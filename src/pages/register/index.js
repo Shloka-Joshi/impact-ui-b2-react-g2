@@ -53,6 +53,7 @@ function SignUp({ registerUser, data, err }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
+    history.push('/');
   };
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -10,7 +10,7 @@
       "contact": "385-158-6580",
       "password": "Cyril@1234",
       "retypePassword": "Cyril@1234",
-      "approvedUser": "true",
+      "approvedUser": true,
       "registrationDate": "10/25/2021"
     },
     {
@@ -23,7 +23,7 @@
       "contact": "385-158-6580",
       "password": "Purcell@1234",
       "retypePassword": "Purcell@1234",
-      "approvedUser": "true",
+      "approvedUser": true,
       "registrationDate": "10/25/2021"
     },
     {
@@ -34,48 +34,22 @@
       "dob": "1998-04-28",
       "contact": "1234567890",
       "role": "admin",
-      "approvedUser": "true",
+      "approvedUser": true,
       "registrationDate": "2021-10-25T07:42:18.479Z",
       "id": "ewrwVbO"
     },
     {
-      "email": "ravi90@gmail.com",
-      "password": "$2a$10$uG6DMuFGVp0zGDVV/U2NaeBUiHNFdtDjsHglhryo0KUTaNL0BAnS2",
-      "firstName": "rav",
-      "lastName": "pandey",
-      "dob": "2021-10-26",
-      "contact": "6666",
-      "cnfPassword": "abcdefgh",
+      "email": "anjali.k@ytup.com",
+      "password": "$2a$10$wZ85gNI9h9j5I3Mu5gEYtOcnfRlt1y5ISMwwgIAAZQUH4JUETLWmG",
+      "firstName": "anjali",
+      "lastName": "k",
+      "dob": "1999-02-09",
+      "contact": "1234567890",
+      "cnfPassword": "anju@123",
       "role": "patient",
-      "approvedUser": "false",
-      "registrationDate": "2021-10-26T13:40:48.879Z",
-      "id": "6lNPIu2"
-    },
-    {
-      "email": "abcdefgh@gmail.com",
-      "password": "$2a$10$s3FZocSpOkBY59sBLpMlA.CocE4990CCpWEspeODZ7XTX8IITE01W",
-      "firstName": "aa",
-      "lastName": "AAAA",
-      "dob": "2021-09-29",
-      "contact": "123456789",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": "false",
-      "registrationDate": "2021-10-26T13:41:55.669Z",
-      "id": "Ff2y9-6"
-    },
-    {
-      "email": "abcdef@gmail.com",
-      "password": "$2a$10$0nYHyWk3bCa2ORCMUlgfOO/LfLWvXpALGrQAGiPvMGJ0WClt37fAG",
-      "firstName": "aaaa",
-      "lastName": "aa",
-      "dob": "2021-09-27",
-      "contact": "123456789",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-26T13:45:16.445Z",
-      "id": "L8GkhnH"
+      "approvedUser": true,
+      "registrationDate": "2021-11-03T06:48:06.434Z",
+      "id": "yAeK_V6"
     }
   ],
   "patientDemographics": [],
