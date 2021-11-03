@@ -11,7 +11,7 @@ export const registerUser = (params) => {
   return (dispatch) => {
     let payload = {
       message: "",
-      isRegistered:'false'
+      isRegistered:false
     };
     dispatch(LOAD());
     
@@ -23,7 +23,7 @@ export const registerUser = (params) => {
         dispatch(SUCCESS(payload));
       })
       .catch((err) => {
-        payload.message = `REGISTRATION ERROR: ${err.message} `;
+        payload.message = ` ERROR: ${err.message} `;
         dispatch(FAILURE(payload));
       });
   };
@@ -59,11 +59,26 @@ export const userLogin = (params) => {
         }
       })
       .catch((err) => {
-        payload.message = `LOGIN ERROR: ${err.response.data} `;
+        payload.message = `LOGIN ERROR: ${err.response?err.response.data:'Internal Server Error'} `;
         dispatch(FAILURE(payload));
       });
     };
 };
+export  function Logout()
+{
+    let payload = {
+      message: "Logged Out Successfully",
+      isLoggedIn: false,
+      authToken: "",
+      role: "",
+      id:"",
+    };
+
+
+    return (dispatch) => {
+        return dispatch({type:  ACTION_TYPE.LOGOUT, data: payload});
+    };
+}
 
 export const LOAD = () => {
   return {
