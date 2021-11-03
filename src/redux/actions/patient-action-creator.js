@@ -10,9 +10,7 @@ let config = {
 
 let authToken = ''
 axios.interceptors.request.use((req) => {
-    if (req.method === "get") {
       req.headers.authorization = `Bearer ${authToken}`;
-    }
     return req;
   });
   
