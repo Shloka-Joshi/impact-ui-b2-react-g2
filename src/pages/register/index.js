@@ -13,12 +13,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { registerUser } from "../../redux/actions/auth-action-creator";
 import { connect } from "react-redux";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import CheckIcon from '@mui/icons-material/Check';
 import "../../styles/common-style.css";
 import "../register/register.css"
 import Footer from "../../components/footer";
 import BasicModal from "../../components/modals";
 import { useHistory } from "react-router";
-// import './register.css';
 import { FormControl } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import Header from '../register/header/index';
@@ -86,7 +86,7 @@ function SignUp({ registerUser, data, err }) {
         </Box>
       </Container>
 
-      <Container className='section-form' maxWidth='md'>
+      <Container className='section-form' maxWidth='md' style={{padding:'0', marginBottom:'35px'}}>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid container>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -94,17 +94,26 @@ function SignUp({ registerUser, data, err }) {
                 <center>
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
-                <h3>Heading Comes Here</h3>
+                <h3>Create Your Account</h3>
                 
                   <div className="register-image"></div>
                
-                <p>
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
+                <p style={{lineHeight:'1.6rem'}}>
+                  One point solution to your paperless healthcare
+                  <br />
+                  Digital platform to store prescriptions
+                  <br />
+                  Manage Doctors' Appointment 
+                  <br />
+                  Online Medications
                 </p>
+
+                
               </div>
+             
             </Grid>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
-              <div className='reg-right-col'>
+              <div className='reg-right-col' style={{margin:'10px 0'}}>
                 <div className='form'>
                   <ThemeProvider theme={theme}>
                     <Container component="main" maxWidth="lg">
@@ -247,7 +256,7 @@ function SignUp({ registerUser, data, err }) {
                             <div className='solid-button'>Sign Up</div>
                           </Button>
 
-                          <Grid container justifyContent="center" >
+                          <Grid container justifyContent="center" style={{marginBottom:'10px'}} >
                             <Grid item>
                               <RouterLink to="/login" style={{ textDecoration: 'none' }}>
                                 <span className='color-link'>Already have an account? Sign in</span>
