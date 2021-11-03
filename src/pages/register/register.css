@@ -1,11 +1,29 @@
 .reg-left-col{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
     text-align: center;
+    justify-content: center;
     color: var( --card-text-color);
     background-color: var(--card-bg-color2);
     padding: 40px 50px;
     height: 100%;
     font-family:'Nunito';
     
+}
+
+.reg-right-col{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+ul.register-list li{
+    display: block;
+
+
 }
 
 .section-form{

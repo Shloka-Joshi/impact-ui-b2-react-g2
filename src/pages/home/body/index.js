@@ -9,6 +9,7 @@ import AppRegistrationTwoToneIcon from '@mui/icons-material/AppRegistrationTwoTo
 import { makeStyles } from "@material-ui/core";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import {Link} from 'react-router-dom';
 import '../../../styles/common-style.css'
 const buttonStyle = makeStyles({
     button: {
@@ -39,16 +40,21 @@ function HomeBody(){
                             <div>
                                 <h2>We Take Care Of</h2>
                                 <h1 className="heading-para" >Your Health</h1>
-                                <p>Some text comes  here Some text comes here Some text comes hereSome text comes here  Some text comes here Some text comes here Some text comes hereSome text comes here  Some text comes here Some text comes here Some text comes hereSome text comes here  Some text comes here Some text comes here Some text comes here</p>
+                                <p>A patient portal is a website for your personal health care. The online tool helps you to keep track of your health care provider visits, test results, prescriptions, and so on.<br />Taking good care of yourself is paramount to success of your recovery process.
+                                <br />
+                                Advanced health management portal to address the health disparities that underlie our health system.
+                                You can access all of your personal health information from all of your providers in one place. </p>
                             <h3 className="sub-heading">Track and analyze all your data in one central location.</h3>
                             <ul>
                                 <li><CheckIcon style={{color:'var(--list-icon-color)', paddingRight:'5px' }}/> Demographics  </li>
                                 <li><CheckIcon style={{color:'var(--list-icon-color)', paddingRight:'5px' }}/> Medication </li>
                                 <li><CheckIcon style={{color:'var(--list-icon-color)', paddingRight:'5px' }}/> Vitals  </li>
                             </ul>
-                            <Button className={classes.button} variant="contained">
+                            <Link to='/login' style={{textDecoration:'none'}}>
+                            <Button className={classes.button} variant="contained" >
                                 Get Appointment
                             </Button>
+                            </Link>
                             </div>
                         </div>
                   </Grid>
@@ -68,9 +74,9 @@ function HomeBody(){
                     <Card style={{borderRadius:'0',boxShadow:'0',backgroundColor:'var(--card-bg-color1)'}} >
                         <CardContent className="card">
                             <span className="cardIcons"><AccessTimeIcon style={{fontSize:'3rem'}}/></span> <br/>    
-                            <h2>Opening Hours</h2>
+                            <h2>Accessible 24x7</h2>
                             <p>
-                                Some text comes here  Some text comes here Some text comes here Some text comes here
+                                Round the clock access to a specialist reduces wait times and delivers dedicated higher quality care. An accessible doctor also improves patient and family satisfaction due to better and more frequent communication
                             </p>
                         </CardContent>
                     </Card>
@@ -83,7 +89,9 @@ function HomeBody(){
                         <span className="cardIcons"><AppRegistrationTwoToneIcon style={{fontSize:'3rem'}}/></span>   
                             <h2>Book an Appointment</h2>
                             <p>
-                                Some text comes here  Some text comes here Some text comes here Some text comes here
+                                Register yourself to experience a seemless medicare solution,
+                                Patients can book appointments online, cancel or reschedule.<br /> Doctors can be notified  take actions.
+                                pre-scheduled, walk-ins and online appointments
                             </p>
                         </CardContent>
                     </Card>
@@ -96,7 +104,16 @@ function HomeBody(){
                         <span className="cardIcons"><PermPhoneMsgIcon style={{fontSize:'3rem'}}/></span> <br/>    
                             <h2>Contact Us</h2>
                             <p>
-                                Some text comes here  Some text comes here Some text comes here Some text comes here
+                                Phone Number:987-654-3210
+                                <br/>
+                                Landline:0321-987-9999
+                                <br/>
+                                -----
+                                <br/>
+                                Mail:patientportal@portal.com
+                                <br/>
+                                Fax:123-456-7890
+
                             </p>
                         </CardContent>
                     </Card>

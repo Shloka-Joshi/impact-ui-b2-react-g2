@@ -83,7 +83,7 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
           </Grid>
         </Box>
       </Container>
-      <Container className='section-form' maxWidth='md'>
+      <Container className='section-form' maxWidth='md' style={{padding:'0', marginBottom:'35px'}} >
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid container>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -91,10 +91,11 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
                 <center>
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
-                <h3>Heading Comes Here</h3>
+                <h3>To Continue, Sign In</h3>
                   <div className="register-image"></div>
-                <p>
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
+                <p> 
+                  Changing the way you recieve healthcare with "Medical Excellence"
+                
                 </p>
               </div>
             </Grid>
@@ -150,7 +151,7 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
                             />
                             {formik.touched.password && formik.errors.password? <div className='error'>{formik.errors.password}</div> : null}
 
-                            <Button style={{ margin: '0', padding: '0' }}
+                            <Button style={{ margin: '10px 0' , padding: '0' }}
                               type="submit"
                               disabled={!formik.isValid}
                               fullWidth
@@ -181,6 +182,7 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
                       </Container>
 
                       <BasicModal state={open} onClose={handleClose}>
+                        {/* Null check */}
                         {data? data.message: errors?.message}
                         {/* {data?.message} */}
                       </BasicModal>
