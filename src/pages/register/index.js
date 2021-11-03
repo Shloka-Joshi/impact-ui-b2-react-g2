@@ -53,6 +53,7 @@ function SignUp({ registerUser, data, err }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
+    history.push('/');
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -274,7 +275,6 @@ function SignUp({ registerUser, data, err }) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     data: state.auth.data,
     err: state.auth.errors
