@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { makeStyles } from '@material-ui/core';
 import {Container} from '../../../utils/mui';
 import {Button} from  '../../../utils/mui';
-import Modal from '@mui/material/Modal';
 import { Grid } from  '../../../utils/mui';
 import {MenuItem} from  '../../../utils/mui';
 import { CssBaseline } from '@material-ui/core';
@@ -10,17 +9,16 @@ import TextField from '@mui/material/TextField';
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { setdemographics } from "../../../redux/actions/demographics-action-creator";
-import Header from "../header";
+import { connect,useSelector ,useDispatch} from "react-redux";
+import {adddemographicsdata, getrolespecificuserdata} from "../../../redux/actions/demographics-action-creator";
 import { FormControl } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
 import './demographics.css';
-import Footer from "../../../components/footer";
-import BasicModal from "../../../components/modals";
 import Select from '@mui/material/Select';
+
 const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -32,42 +30,38 @@ const style = {position: 'absolute',top: '50%',left: '50%',transform: 'translate
   width: 400,bgcolor: 'background.paper',border: '2px solid #000',boxShadow: 24,p: 4,
 };
 
-function PatientDemographics({data, setdemographics,getdemographicdata}) {
+function PatientDemographics({DemographicsData,adddemographicsdata, getrolespecificuserdata}) 
+{
+  let { id, role } = useParams();
+console.log(id);
 
- // const id =useRoute();
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const demographicsdata = new FormData(event.currentTarget);
-      let body = {};
-      for (let entry of demographicsdata.entries()) {
-        body[entry[0]] = entry[1];
-      }
-    //  let body = {...body,userId: id }
-      setdemographics(body);
-    };
 
-    // const tableData =data;
-    // useEffect(() =>  {
-    //   getdemographicdata("demographics");
-    // },[]);
-
-    const [age, setAge] = React.useState('');
+  const SubmitDemographicsDetails = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+   let body = {};
+    for (let entry of data.entries()) {
+      body[entry[0]] = entry[1];
+    }
+    body = {...body,userId: ``,UpdatedDate:new Date()}
+    adddemographicsdata(body);
+   
+  };
   
-    const handleChange = (event) => {
-      setAge(event.target.value);
-    };
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+  const tableData = DemographicsData;
+  const [userTableData] = React.useState(tableData);
 
     const genders = ["Male", "Female","Others"];
+    const [value, setValue] = React.useState(0);
     const classes = useStyles();
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
     return (
         <>
-        <Container component="main" maxWidth="lg">
+        <Container component="main" maxWidth="lg" className="contain">
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
           <Grid container>
             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
@@ -76,18 +70,18 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
           </Grid>
         </Box>
       </Container>
-      <Container className='section-form' maxWidth='md' overflow="auto">
+      <Container className="section-form" maxWidth='md' overflow="auto">
       <Container className={classes.container} >
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="lg">
           <CssBaseline />
           <Box >
-        <Box component="form"  onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form"  onSubmit={SubmitDemographicsDetails}   sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="firstName" name="firstName" 
-                label="First Name"  placeholder='First Name'
+                label="First Name"  placeholder='First Name' 
                 autoComplete="off" 
                 InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -119,7 +113,7 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
                       }
                     }
                   }}
-                variant="outlined" select id="patientgender"  placeholder='Gender' name="patientgender"
+                variant="outlined" select id="gender"  placeholder='Gender' name="gender"
                 label="Gender" fullWidth   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}
@@ -133,21 +127,21 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
       </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientethSnicity"  placeholder='Ethnicity' name="patientethnicity"
+                required fullWidth id="ethnicity"  placeholder='Ethnicity' name="ethnicity"
                 label="Ethnicity / Race" autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} /> 
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patienteducation"  placeholder='Patient Education' name="patienteducation"
+                required fullWidth id="education"  placeholder='Patient Education' name="education"
                 label="Patient Education" autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientemployment" name="patientemployment" label="Employment"
+                required fullWidth id="occupation" name="occupation" label="Employment"
                 autoComplete="off"   placeholder='Employment'  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -157,7 +151,7 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
 
             <Grid item xs={12} sm={6}>
                 <TextField
-                required fullWidth id="patientphonenumber"  placeholder='Contact Number'  name="patientphonenumber"
+                required fullWidth id="contact"  placeholder='Contact Number'  name="contact"
                 label="Contact Number" type="tel"  autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -165,14 +159,14 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
            
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientmedicalhistory"  placeholder='Medical History' name="patientmedicalhistory"
+                required fullWidth id="medicalHistory"  placeholder='Medical History' name="medicalHistory"
                 label="Medical History" autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientfamilymedicalhistory"  placeholder='Family Medical History' name="patientfamilymedicalhistory"
+                required fullWidth id="familyMedicalHistory"  placeholder='Family Medical History' name="familyMedicalHistory"
                 label="Family Medical History" autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -180,14 +174,14 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
 
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientsurgery" name="patientsurgery"  placeholder='Surgery' label="Surgery"
+                required fullWidth id="surgeries" name="surgeries"  placeholder='Surgery' label="Surgery"
                 autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="patientinsuranceprovider"  placeholder='Insurance Provider' name="patientinsuranceprovider"
+                required fullWidth id="insuranceProvider"  placeholder='Insurance Provider' name="insuranceProvider"
                 label=" Insurance Provider"  autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -195,20 +189,16 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
 
             <Grid item xs={12}>
                 <TextField
-                required fullWidth id="patientaddress"  placeholder='Address' name="patientaddress" label="Address"
+                required fullWidth id="address"  placeholder='Address' name="address" label="Address"
                 autoComplete="off"  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} />
             </Grid>
               <Grid item xs={12} sm={6}>
-          {/* <Button onClick={handleOpen} */}
           <Button 
-          styles={{ padding: '0', margin: '30' }}
-          type="submit"
-          fullWidth
-          sx={{ mt: 3, mb: 2 }}>
-          <div className='solid-button'>Submit</div>
-          </Button>
+                                    styles={{ padding: '0', margin: '30' }} type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
+                                    <div className='solid-button'>Submit</div>
+                                    </Button>
           </Grid>
           <Grid item xs={12} sm={6}>
           <Button 
@@ -223,23 +213,6 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
         </Box>
       </Box>
     </Container>
-    
-    <Modal
-      keepMounted
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="keep-mounted-modal-title"
-      aria-describedby="keep-mounted-modal-description"
-    >
-      <Box sx={style}>
-        <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-          demography
-        </Typography>
-        <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-        Demography Data Added Successfully
-        </Typography>
-      </Box>
-    </Modal>
   </ThemeProvider>
      </Container>
      </Container>
@@ -247,16 +220,16 @@ function PatientDemographics({data, setdemographics,getdemographicdata}) {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (rootReducer,state) => {
   return {
-    data: state.demographicsdata,
+      DemographicsData: rootReducer.demographicsdata.DemographicsData,
   };
 };
-
 const mapdispatchToProps = (dispatch) => {
   return {
-    setdemographics: (demographicsdata) => dispatch(setdemographics(demographicsdata)),
-  };
+      getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+      adddemographicsdata: (data) => dispatch(adddemographicsdata(data)),
+    };
 };
 
 export default connect(mapStateToProps, mapdispatchToProps)(PatientDemographics);

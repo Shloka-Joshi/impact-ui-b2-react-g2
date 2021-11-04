@@ -1,9 +1,4 @@
-.demographics-left-col{
-    text-align: center;
-    color: var( --card-text-color);
-    /* background-color: var(--card-bg-color2); */
-    padding: 40px 50px;
-    height: 100%;
+.contain{
     font-family:'Nunito';
     
 }
@@ -13,9 +8,10 @@
     border-radius: 5px;
     margin: 10px 0;
     font-family:'Nunito';
+    box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
 }
 
-.title-registration{
+.title-demographics{
     background-color: white;
     color: var(--heading-solid-text-color);
 }

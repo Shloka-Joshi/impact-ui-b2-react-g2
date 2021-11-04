@@ -5,11 +5,11 @@ const DemographicsDataReducer = (state = initialState, action) => {
  if (action.type === ACTION_TYPE.GET_DEMOGRAPHICS_DATA) 
  {
       return {
-        DemographicsData:action.DemographicsData,
+        ...state,
+        demographicsData:action.demographicsData,
       };
     }
-
-      return state;
+     return state;
   }
 
 export default DemographicsDataReducer;

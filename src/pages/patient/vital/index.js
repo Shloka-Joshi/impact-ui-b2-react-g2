@@ -1,28 +1,3 @@
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-
-// export default function PatientVital() {
-//   return (
-//     <Box
-//       sx={{
-//         display: 'flex',
-//         flexWrap: 'wrap',
-//         '& > :not(style)': {
-//           m: 1,
-//           width: 160,
-//           height: 128,
-//         },
-//       }}
-//     >
-//       <Paper/>
-//       <Paper />
-//       <Paper elevation={3} />
-//     </Box>
-//   );
-// }
-
-
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -53,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     }
    
 }));
-export default function PatientVital() {
+export default function Patientvital() {
     const classes = useStyles();
   return (
       <>
-    <Container component="main" maxWidth="lg">
+    <Container component="main" maxWidth="lg" className="contain">
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
       <Grid container>
         <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
@@ -66,15 +41,16 @@ export default function PatientVital() {
       </Grid>
     </Box>
   </Container>
+  <Container component="main" maxWidth="lg" className="section-form-vital">
     <Box sx={{ flexGrow: 1,  flexWrap: 'wrap', overflow: 'hidden', px: 3  , display: 'flex',}}  className={classes.container} >
-       <Paper   className={classes.Paper} sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}style={{backgroundColor:'var(--card-bg-color1)',color: 'var(--button-text-color)'}}  >
+       <Paper   className={classes.Paper} sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}style={{backgroundColor:'var(--card-bg-color1)',color: 'var(--button-text-color)'}} className="section-form" >
         <Grid container wrap="nowrap" spacing={4} >
           <Grid item>
             <Avatar><DeviceThermostatIcon/></Avatar>
           </Grid>
           <Grid item xs>
                <Typography>Body Temperature  :- 
-The average normal body temperature is generally accepted as 98.6°F (37°C).</Typography> 
+                The average normal body temperature is generally accepted as 98.6°F (37°C).</Typography> 
             <Typography>{bodytemperature}</Typography>
           </Grid>
         </Grid>
@@ -117,6 +93,8 @@ The average normal body temperature is generally accepted as 98.6°F (37°C).</T
         </Grid>
       </Paper>
     </Box>
+    </Container>
+
     </>
   );
 }

@@ -3,10 +3,12 @@ export const initialState = {
   authToken: "",
   data: [],
   role: "",
-  errors: "",
+  errors: [],
+  users:[],
   message: "",
   DemographicsData : [],
   ImmunizationData : [],
   physicianData : [],
-  patientData: []
+  patientData: [],
+  appointmentData:[]
 };

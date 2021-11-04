@@ -1,8 +1,14 @@
-.section-form{
+.section-form-immunization{
     border: 2px solid var(--card-bg-color2);
     border-radius: 5px;
     margin: 10px 0;
     font-family:'Nunito';
+    text-align: center;
+    box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
+}
+.contain{
+    font-family:'Nunito';
+    
 }
 
 .title-immunization{

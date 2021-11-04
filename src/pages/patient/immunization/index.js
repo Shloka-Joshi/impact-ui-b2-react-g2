@@ -1,21 +1,21 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Header from '../header';
-import SideNav from '../sidenav';
 import {Grid ,Container, MenuItem , Button} from '../../../utils/mui';
-import Footer from '../../../components/footer';
 import './immunization.css';
 import '../../../styles/common-style.css';
 import TextField from '@mui/material/TextField';
 import { InputAdornment } from "@mui/material";
 import { makeStyles } from '@material-ui/core';
-
-import {patientimmunization} from "../../../redux/actions/immunization-action-creator";
-import { connect } from "react-redux";
+import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
+import { getrolespecificuserdata,PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/immunization-action-creator";
+import { connect,useDispatch, useSelector } from "react-redux";
+import BasicModal from "../../../components/modals";
+import * as Yup from 'yup';
+import {useFormik} from 'formik';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -56,80 +56,90 @@ function a11yProps(index) {
   };
 }
 
-function Immunization({patientimmunization ,data}) {
+function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificuserdata,addimmunizationdata,updateexistingphysicianrecord}) {
 
         const SubmitImmunization = (event) => {
-          event.preventDefault();
-          const immunizationdata = new FormData(event.currentTarget);
-          immunizationdata.append("patientId", "2");
-          let body = {};
-          for (let entry of immunizationdata.entries()) {
-            body[entry[0]] = entry[1];
-          }
-          patientimmunization(body);
-        };
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            let body = {};
+            for (let entry of data.entries()) {
+              body[entry[0]] = entry[1];
+            }
+            body = {...body,userId: ``,UpdatedDate:new Date()}
+            addimmunizationdata(body);
+          };
+  
+          const [open, setOpen] = React.useState(false);
+          const handleOpen = () => setOpen(true);
+          const handleClose = () => {
+          setOpen(false);
+          };
 
+          const SubmitVaccineDetails = (event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            let body = {};
+            for (let entry of data.entries()) {
+              body[entry[0]] = entry[1];
+            }
+            body = {...body,userId: ``,UpdatedDate:new Date()}
+            addimmunizationdata(body);
+          };
 
-
+  const Vaccine = ["Covid Vaccination Dose - 1 ", "Covid Vaccination Dose - 2"];
+  const VaccineName = ["Covishield", "Covaxin"];
   const [value, setValue] = React.useState(0);
   const classes = useStyles();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const Vaccine = ["Covid Vaccination Dose - 1 ", "Covid Vaccination Dose - 2"];
-  const VaccineName = ["Covishield", "Covaxin"];
+    const tableData = ImmunizationData;
+    const [userTableData,setUserTableData] = React.useState(tableData);
+
   return (
       <>
                 <div className="page-container">
                 <div className="page-wrapper">
-                <Header />
-                <Grid container>
-                    <Grid item sm={2} xs={2}>
-                        <SideNav role="Patient"/>
-                    </Grid>
-                    
-                    <Grid item sm={10} xs={10}>
-                    <Container component="main" maxWidth="lg">
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
-          <Grid container>
-            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-              <h1 className="title-immunization">Immunization Details</h1>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
-                         <Container component="main" maxWidth="lg">
+              
+                <Grid container >                 
+                    <Grid item sm={12} xs={12}>
+                    <Container component="main" maxWidth="lg" className="contain">
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
+                          <Grid container>
+                            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                              <h1 className="title-immunization">Immunization Details </h1>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                      </Container>
+                         <Container component="main" maxWidth="lg" className="section-form-immunization">
                     <Box  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
-                    <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                            {/* <Box sx={{ borderBottom: 1, borderColor: 'var(--card-bg-color1)' }}> */}
+                        <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
                             <Box>
                                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                                 <Tab label="Covid - 19 Vaccination Details" {...a11yProps(0)} />
                                 <Tab label="Other Vaccination Details" {...a11yProps(1)} />
-                                {/* <Tab label="Item Three" {...a11yProps(2)} /> */}
                                 </Tabs>
                             </Box>
-                            </Grid>
-                         
-                            <TabPanel value={value} index={0}>
+                        </Grid>
+                           
+                        <TabPanel value={value} index={0}>
                             <Box component="form" onSubmit={SubmitImmunization} sx={{ mt: 3 }}sm={12}>
                                 <Box  sx={{ mt: 3 }}sm={12}>
                                     <Grid container spacing={2}>
                                     <Grid item xs={12} sm={4}>
                                         <TextField
-                                            SelectProps={{
-                                                MenuProps: {
+                                            SelectProps={{ MenuProps: {
                                                     PopoverClasses: {
                                                     root: classes.customMenuPopover
                                                                     }
                                                             }
                                                         }}
-                                                    variant="outlined" select id="Vaccine" name="Vaccine" placeholder='Vaccine Dose' 
-                                                    label="Vaccine Dose" fullWidth   InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
-                                                    }}
-                                                >
+                                        variant="outlined" select id="Vaccine1" name="Vaccine1"label="Vaccine Dose" fullWidth   
+                                        InputProps={{
+                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
+                                                    }}>
                                                 {Vaccine.map((Vaccine, index) => (
                                                     <MenuItem key={index} value={Vaccine}>
                                                     {Vaccine}
@@ -146,8 +156,7 @@ function Immunization({patientimmunization ,data}) {
                                                                     }
                                                             }
                                                         }}
-                                                    variant="outlined" select id="VaccineName"  placeholder='Vaccine Name' name="VaccineName"
-                                                    label="Vaccine Name" fullWidth   InputProps={{
+                                                    variant="outlined" select id="VaccineName1" name="VaccineName1" label="Vaccine Name" fullWidth   InputProps={{
                                                         startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                                     }}
                                                 >
@@ -160,9 +169,7 @@ function Immunization({patientimmunization ,data}) {
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                         <TextField
-                                            fullWidth id="vaccinatedon" name="vaccinatedon" 
-                                            label="When to give"  placeholder='When to give'
-                                            autoComplete="off" 
+                                            fullWidth id="Vaccinatedon1" name="Vaccinatedon1" label="When to give" autoComplete="off"  
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                             }}
@@ -181,7 +188,7 @@ function Immunization({patientimmunization ,data}) {
                                                                     }
                                                             }
                                                         }}
-                                                    variant="outlined" select id="vaccine" name="vaccine" placeholder='Vaccine Dose'
+                                                    variant="outlined" select id="Vaccine2" name="Vaccine2" placeholder='Vaccine Dose'
                                                     label="Vaccine Dose" fullWidth   InputProps={{
                                                         startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                                     }}
@@ -202,9 +209,9 @@ function Immunization({patientimmunization ,data}) {
                                                                     }
                                                             }
                                                         }}
-                                                    variant="outlined" select id="vaccinename"  placeholder='Vaccine Name' name="vaccinename"
+                                                    variant="outlined" select id="VaccineName2"  placeholder='Vaccine Name' name="VaccineName2"
                                                     label="Vaccine Name" fullWidth   InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
                                                     }}
                                                 >
                                                 {VaccineName.map((vaccinename, index) => (
@@ -215,9 +222,125 @@ function Immunization({patientimmunization ,data}) {
                                                 </TextField>
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
+                                            <TextField
+                                          fullWidth id="VaccinatedOn2" name="VaccinatedOn2" 
+                                            label="When to give"  
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                              
+                                <Grid item sm={4}>
+                                    <Button 
+                                    styles={{ padding: '0', margin: '30' }} type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
+                                    <div className='solid-button'>Submit</div>
+                                    </Button>
+                                    </Grid>
+                          
+                            </Box>
+                          
+                            </TabPanel>
+                            
+                            <TabPanel value={value} index={1}>
+                            <Box component="form" onSubmit={SubmitVaccineDetails} sx={{ mt: 3 }}sm={12}>
+                                <Box  sx={{ mt: 3 }}sm={12}>
+                                    <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={4}>
+                                    <TextField
+                                            fullWidth id="VaccineName_1" name="VaccineName_1" 
+                                            label="Vaccine Name"  placeholder='Vaccine Name'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
                                         <TextField
-                                          fullWidth id="vaccinatedOn" name="vaccinatedOn" 
-                                            label="When to give"  placeholder='When to give'
+                                            fullWidth id="VaccineDate_1" name="VaccineDate_1" 
+                                            label="Vaccine Date"  placeholder='Vaccine Date'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth id="VaccineDescription_1" name="VaccineDescription_1" 
+                                            label="Vaccine Description"  placeholder='Vaccine Description'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                                <Box  sx={{ mt: 3 }}sm={12}>
+                                    <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={4}>
+                                    <TextField
+                                            fullWidth id="VaccineName_2" name="VaccineName_2" 
+                                            label="Vaccine Name"  placeholder='Vaccine Name'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth id="VaccineDate_2" name="VaccineDate_2" 
+                                            label="Vaccine Date"  placeholder='Vaccine Date'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth id="VaccineDescription_2" name="VaccineDescription_2" 
+                                            label="Vaccine Description"  placeholder='Vaccine Description'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                                <Box  sx={{ mt: 3 }}sm={12}>
+                                    <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={4}>
+                                    <TextField
+                                            fullWidth id="VaccineName_3" name="VaccineName_3" 
+                                            label="Vaccine Name"  placeholder='Vaccine Name'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth id="VaccineDate_3" name="VaccineDate_3" 
+                                            label="Vaccine Date"  placeholder='Vaccine Date'
+                                            autoComplete="off" 
+                                            InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                            }}
+                                        />
+                                        </Grid>
+                                        <Grid item xs={12} sm={4}>
+                                        <TextField
+                                            fullWidth id="VaccineDescription_3" name="VaccineDescription_3" 
+                                            label="Vaccine Description"  placeholder='Vaccine Description'
                                             autoComplete="off" 
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -227,7 +350,6 @@ function Immunization({patientimmunization ,data}) {
                                     </Grid>
                                 </Box>
                                 <Grid item sm={4}>
-                                    {/* <Button onClick={handleOpen} */}
                                     <Button 
                                     styles={{ padding: '0', margin: '30' }}
                                     type="submit"
@@ -236,14 +358,8 @@ function Immunization({patientimmunization ,data}) {
                                     <div className='solid-button'>Submit</div>
                                     </Button>
                                     </Grid>
-                            </Box>
+                                </Box>
                             </TabPanel>
-                            <TabPanel value={value} index={1}>
-                                Item Two
-                            </TabPanel>
-                            {/* <TabPanel value={value} index={2}>
-                                Item Three
-                            </TabPanel> */}
                             </Box>
                             </Container>
                     </Grid>
@@ -252,23 +368,24 @@ function Immunization({patientimmunization ,data}) {
                 </div>
             </div>
             <div >
-            <Footer/>
             </div>
             
                 </>
  );
+                        
 }
 
 const mapStateToProps = (state) => {
-  return {
-    immunizationdata: state.immunizationdata,
+    return {
+        ImmunizationData: state.immunization.ImmunizationData,
+        PatientImmunizationData: state.immunization.ImmunizationData,
+    };
   };
-};
-
-const mapdispatchToProps = (dispatch) => {
-  return {
-    patientimmunization: (immunizationdata) => dispatch(patientimmunization(immunizationdata)),
+  const mapdispatchToProps = (dispatch) => {
+    return {
+        getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+        addimmunizationdata: (data) => dispatch(addimmunizationdata(data)),
+    };
   };
-};
 
-export default connect(mapStateToProps, mapdispatchToProps)(Immunization);
+  export default connect(mapStateToProps, mapdispatchToProps)(Immunization);

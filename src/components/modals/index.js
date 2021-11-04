@@ -14,13 +14,17 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+   
+//Patient
+  borderRadius: 5,
+  textAlign: 'center',
+  boxShadow: '0 30px 60px 0 rgb(0 0 0 / 30%)'
 };
 
 export default function BasicModal(props) {
 
   return (
     <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={props.state}
         onClose={props.onClose}

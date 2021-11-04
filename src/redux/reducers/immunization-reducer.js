@@ -8,8 +8,8 @@ const ImmunizationDataReducer = (state = initialState, action) => {
         ImmunizationData:action.ImmunizationData,
       };
     }
-
-      return state;
-  }
-
+  
+     return state;
+    }
+   
 export default ImmunizationDataReducer;
