@@ -11,7 +11,7 @@ import { useDispatch,useSelector } from 'react-redux';
 
   function Card(props) {
     const dispatch = useDispatch;
-    const d= props.appointment ;
+    const d = props.appointment ;
 
     // React.useEffect(()=>{
         

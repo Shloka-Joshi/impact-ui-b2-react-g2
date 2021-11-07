@@ -12,6 +12,7 @@ import DemographicsDataReducer from "./redux/reducers/demographics-reducer";
 import ImmunizationDataReducer from "./redux/reducers/immunization-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import PatientDataReducer from "./redux/reducers/patient-reducer";
+import appointmentReducer from "./redux/reducers/appointments-reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   immunization :ImmunizationDataReducer,
   physiciandata: PhysicianDataReducer,
   patientdata:PatientDataReducer,
+  card:appointmentReducer,
 
 });
 

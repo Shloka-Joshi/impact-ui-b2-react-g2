@@ -13,6 +13,8 @@ const Manageappointment = lazy (() => import('../../pages/admin/manageappointmen
 const Patientdemographics = lazy (() => import('../../pages/patient/demographics'));
 const Patientvital = lazy (() => import('../../pages/patient/vital'));
 const Immunization = lazy (() => import('../../pages/patient/immunization'));
+const  Card  = lazy (() => import('../../pages/patient/patient-dashboard'));
+
 function ShellComponent(props) {
     let history = useHistory();
     let { path } = useRouteMatch();
@@ -52,7 +54,7 @@ function ShellComponent(props) {
                         <Route path={`/dashboard/${id}/${role}/demographics`} component={Patientdemographics} ></Route>
                         <Route path={`/dashboard/${id}/${role}/vital`} ><Patientvital/></Route>
                         <Route path={`/dashboard/${id}/${role}/immunization`} ><Immunization /></Route>
-                              <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/${id}/${role}/patient-dashboard`} component={Card}></Route>
                     </Switch>
                     </Suspense>
                     : 'Not found'}

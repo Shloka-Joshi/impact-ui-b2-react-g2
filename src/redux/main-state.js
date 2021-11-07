@@ -10,5 +10,5 @@ export const initialState = {
   ImmunizationData : [],
   physicianData : [],
   patientData: [],
-  appointmentData:[]
+  appointmentData:[],
 };
