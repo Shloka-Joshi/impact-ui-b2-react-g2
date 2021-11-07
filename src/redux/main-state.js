@@ -6,5 +6,6 @@ export const initialState = {
   errors: "",
   message: "",
   physicianData : [],
-  patientData: []
+  patientData: [],
+  schedulerData:[]
 };

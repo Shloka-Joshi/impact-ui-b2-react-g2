@@ -9,10 +9,12 @@ import { createStore, applyMiddleware ,combineReducers } from "redux";
 import thunk from "redux-thunk";
 import authReducer from "./redux/reducers/auth-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
+import ScheduleAppointmentReducer from "./redux/reducers/scheduler-reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  physiciandata: PhysicianDataReducer
+  physiciandata: PhysicianDataReducer,
+  Scheduleappointment: ScheduleAppointmentReducer
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk));

@@ -62,10 +62,10 @@ function SignUp({ registerUser, data }) {
         </Box>
       </Container>
 
-      <Container className='section-form' maxWidth='md'>
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <Grid container>
-            <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
+      <Container className='section-form' maxWidth='md' pl={0} style={{padding:'0'}}>
+        <Box pl={0} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Grid container p={0}>
+            <Grid item sm={12} lg={6} md={6} xs={12} xl={6} p={0}>
               <div className='reg-left-col'>
                 <center>
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
@@ -223,7 +223,8 @@ function SignUp({ registerUser, data }) {
                   </ThemeProvider>
 
                   <BasicModal state={open} onClose={handleClose}>
-                    {data?.message}
+                    {/* {data?.message} */}
+                    Registration successful
                   </BasicModal>
                 </div>
               </div>

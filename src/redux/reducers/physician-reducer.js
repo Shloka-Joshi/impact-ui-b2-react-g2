@@ -5,7 +5,7 @@ const PhysicianDataReducer = (state = initialState, action) =>{
     if(action.type === ACTION_TYPE.GET_PHYSICIAN_DATA)
     {
         return {
-            physicianData: action.physicianData,
+            physicianData: action.physicianData, //main-state array name
         };
     }
 

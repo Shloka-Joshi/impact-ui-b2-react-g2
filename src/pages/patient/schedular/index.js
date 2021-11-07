@@ -1,166 +1,172 @@
 import { Button, Container, Grid, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { InputAdornment } from "@mui/material";
-import React, { useState } from "react";
-import reactDom from "react-dom";
+import React from "react";
 import "../../../styles/common-style.css"
 import { makeStyles } from "@mui/styles";
 import { Select, MenuItem, InputLabel } from "@mui/material";
 import { FormControl } from "@mui/material";
 import axios from "axios";
-
-import EventCalendar from "../../../components/my-own-stuff/event-calendr";
-
-
+import { useEffect } from "react";
+import EventCalendar from "../../../components/view-appointments"
+import { getscheduledappointmentdata, addscheduledappointmentdata } from "../../../redux/actions/scheduler-action-creater";
+import { connect } from "react-redux";
+import PhyMain from "./physician-main-page";
+import { useParams } from "react-router-dom";
+import PhysicianList from "../../../utils/PhysiciansList.json";
+import { getrolespecificuserdata } from "../../../redux/actions/physician-action-creator";
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import FormHelperText from '@mui/material/FormHelperText';
 const useStyles = makeStyles(theme => ({
     formControl: {
         minWidth: 100,
     }
 }));
 
+function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrolespecificuserdata, getscheduledappointmentdata, addscheduledappointmentdata }) {
+        const [time, setTime] = React.useState('');
 
+        const handleChangetime = (event) => {
+            setTime(event.target.value);
+        };
 
+        let { id, role } = useParams();
 
-export default function ScheduleAppointment() {
-    const specialists = ["specialist-1", "specialist-2", "specialist-3", "specialist-4", "specialist-5"];
-    const phisicians = ["phisician-1", "phisician-2", "phisician-3", "phisician-4", "phisician-5"];
-    const selecttime = ["9-10", "10-11", "12-1", "1-2", "2-3"];
+        useEffect(() => {
+            getrolespecificuserdata("physician");
+            getscheduledappointmentdata();
+        }, []);
 
+        const [physicians, setPhysicianData] = React.useState(physiciandata);
+        const [selectedphysician, setPhysicianName] = React.useState({
+            physician: { physicianId: '', physicianName: '' }
+        });
 
-    const classes = useStyles();
+        const handleChange = e => {
+            setPhysicianName(prevState => ({
+                physician: { ...prevState.physician, physicianName: e.target.value.firstName }
 
-    const scheduleData = (event) => {
-        event.preventDefault();
-        console.log(event);
+            }))
+        }
+        const classes = useStyles();
 
-        axios.post('http://localhost:9999/schedulder').then((res) => {
-            console.log(res);
-        }).catch((err) => {
-            console.log(err);
-        })
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            let body = {};
+            for (let entry of data.entries()) {
+                body[entry[0]] = entry[1];
+            }
+            body = {
+                ...body,
+                patientId: id,
+                physicianId: selectedphysician.physician.physicianId,
+                patientname:patientname,
+                status: "Pending"
+            }
+            addscheduledappointmentdata(body);
+        };
+
+        const getSelectedPhysician = (p) => {
+            setPhysicianName(prevState => ({
+                physician: { ...prevState.physician, physicianId: p.id }
+
+            }))
+        }
+
+        return (
+            <>
+                <Container component="main" maxWidth="lg">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Grid container>
+                            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                                <h1 className="page-title">Schedule an Appointment</h1>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Container>
+
+                <Container component="main" maxWidth="sm">
+                    <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                        <form onSubmit={handleSubmit}>
+                            <div className='inside-page-cards'>
+                                <Grid container p={2} spacing={2}>
+                                    <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
+                                        <FormControl fullWidth required>
+                                            <TextField required style={{ padding: '0px' }} className={classes.textFeild} placeholder="Meeting Title" id="meetingTitle" name="meetingTitle"
+                                                InputProps={{ startAdornment: <InputAdornment position="start">Title : </InputAdornment>, }} />
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
+                                        <FormControl fullWidth>
+                                            <FormHelperText>Meeting Title</FormHelperText>
+                                            <TextareaAutosize required className={classes.textFieldStyle} placeholder="Meeting Description" id="reason" name="reason" minRows={8}
+                                                InputProps={{ startAdornment: <InputAdornment style={{ padding: '0' }} position="start">Description : </InputAdornment>, }} />
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                                    <FormControl fullWidth lg={{ m: 1, minWidth: 120 }}>
+                                        <FormHelperText>Select Time</FormHelperText>
+                                            <Select fullWidth value={time} onChange={handleChangetime} id="time" name="time">
+                                                <MenuItem  value={'10am - 11am'}>10am - 11am</MenuItem>
+                                                <MenuItem  value={'12pm - 1pm'}>12pm - 1pm</MenuItem>
+                                                <MenuItem  value={'2pm - 3pm'}>2pm - 3pm</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+
+                                    <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                                        <FormHelperText>Select Date</FormHelperText>
+                                        <TextField required fullWidth id="date" name="date" type="date" autoComplete="off"
+                                            InputProps={{ startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>, }} />
+                                    </Grid>
+                                    <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
+                                        <FormControl required fullWidth>
+                                            <FormHelperText>Select Physician</FormHelperText>
+                                            <Select fullWidth id="physicianName" name="physicianName" value={selectedphysician.physician?.physicianName} onChange={handleChange}>
+                                                {physicians.map((result) => (<MenuItem style={{ display: "block" }} key={result.id} value={result.firstName} onClick={() =>getSelectedPhysician(result)}>{result.firstName} </MenuItem>))}
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid> <br />
+                                <center>
+                                    <Grid>
+                                        <Grid maxWidth="sm" item xs={12} sm={12} lg={6} xl={6} md={6}>
+                                            <Button
+                                                type="submit"
+                                                variant="contained">Schedule Appointment</Button>
+                                        </Grid>
+                                    </Grid>
+                                    <br /><hr /><br />
+                                    <PhyMain data={schedulerdata} />
+                                    <br /><hr /><br />
+                                    <Grid item xs={12} sm={12} lg={9} xl={9} md={9} >
+                                        <EventCalendar />
+                                    </Grid></center>
+                            </div>
+                        </form>
+                    </Box>
+                </Container>
+
+            </>
+        );
     }
 
-    return (
-        <>
-            {/* <Calendar onChange={onChange} value={this.state.date}/> */}
-            <Container component="main" maxWidth="lg">
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Grid container>
-                        <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                            <h1 className="page-title">Schedule an Appointment</h1>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Container>
 
-            <Container component="main" maxWidth="md">
-                <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <form onSubmit={scheduleData}>
-                        <div className='inside-page-cards'>
+    const mapStateToProps = (state) => {
+        return {
+            schedulerdata: state.Scheduleappointment.schedulerData,
+            physiciandata: state.physiciandata.physicianData,
+            patientname: state.auth.data.firstName
+        };
+    };
 
-                            <Grid container p={2} spacing={2}>
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <FormControl fullWidth>
-                                        <TextField style={{ padding: '0px' }} className={classes.textFeild} placeholder="Meeting Title" id="meetingTitle"
-                                            InputProps={{ startAdornment: <InputAdornment position="start">Title : </InputAdornment>, }} />
-                                    </FormControl>
-                                </Grid>
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <FormControl fullWidth>
-                                        <TextField className={classes.textFieldStyle} placeholder="Meeting Description" id="meetingDescription" InputProps={{
-                                            startAdornment: <InputAdornment style={{ padding: '0' }} position="start">Description : </InputAdornment>,
-                                        }} />
-                                    </FormControl>
-                                </Grid>
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <TextField SelectProps={{
-                                        MenuProps: {
-                                            PopoverClasses: {
-                                                root: classes.customMenuPopover
-                                            }
-                                        }
-                                    }}
-                                        variant="outlined" select id="specialistOf" name="specialistOf" helperText="Select Specialist" fullWidth >
+    const mapdispatchToProps = (dispatch) => {
+        return {
+            getrolespecificuserdata: (data1) => dispatch(getrolespecificuserdata(data1)),
+            addscheduledappointmentdata: (data2) => dispatch(addscheduledappointmentdata(data2)),
+            getscheduledappointmentdata: (data3) => dispatch(getscheduledappointmentdata(data3))
+        };
+    };
 
-                                        {specialists.map((specialist, index) => (
-                                            <MenuItem key={index} value={specialist} style={{ zIndex: 1900 }}>
-                                                {specialist}
-                                            </MenuItem>
-                                        ))}
-
-                                    </TextField>
-                                </Grid>
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <TextField SelectProps={{
-                                        MenuProps: {
-                                            PopoverClasses: {
-                                                root: classes.customMenuPopover
-                                            }
-                                        }
-                                    }}
-                                        variant="outlined" select id="physicianName" name="physicianName" helperText="Select Physician" fullWidth >
-
-                                        {phisicians.map((physician, index) => (
-                                            <MenuItem key={index} value={physician} style={{ zIndex: 1900 }}>
-                                                {physician}
-                                            </MenuItem>
-                                        ))}
-
-                                    </TextField>
-                                </Grid>
-
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                <TextField
-                                required
-                                fullWidth
-                                id="dob"
-                                name="dob"
-                                type="date"
-                                helperText="Select Date"
-                                autoComplete="off"
-                                InputProps={{
-                                  startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
-                                }}
-                              />
-                                </Grid>
-                                <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <TextField SelectProps={{
-                                        MenuProps: {
-                                            PopoverClasses: {
-                                                root: classes.customMenuPopover
-                                            }
-                                        }
-                                    }}
-                                        variant="outlined" select id="time" name="select time" helperText="Select Time" fullWidth >
-
-                                        {selecttime.map((time, index) => (
-                                            <MenuItem key={index} value={selecttime} style={{ zIndex: 1900 }}>
-                                                {time}
-                                            </MenuItem>
-                                        ))}
-
-                                    </TextField>
-                                </Grid>
-                            </Grid> <center>
-                            <Grid>
-                               <Grid maxWidth="sm" item xs={12} sm={12} lg={4} xl={4} md={4}>
-                                    <Button
-                                        type="submit"
-                                        variant="contained">Submit</Button>
-                                </Grid>
-                            </Grid>
-                            <br/><hr/><br/>
-                            <Grid item xs={12} sm={12} lg={9} xl={9} md={9} >
-                                <EventCalendar/>
-                            </Grid></center>
-
-                        </div>
-                    </form>
-                </Box>
-            </Container>
-
-        </>
-    );
-}
-
-// export default ScheduleAppointment;
+    export default connect(mapStateToProps, mapdispatchToProps)(ScheduleAppointment);

@@ -18,7 +18,7 @@ export const registerUser = (params) => {
     axios
       .post("http://localhost:9999/register", params, config)
       .then((response) => {
-        payload.message = `Email Id: ${params.email} registered successfully`;
+        payload.message = `registered successfully`;
         payload.isRegistered = true;
         dispatch(SUCCESS(payload));
       })
@@ -37,17 +37,19 @@ export const userLogin = (params) => {
       authToken: "",
       role: "",
       id:"",
+      userName:""
     };
     dispatch(LOAD());
 
     axios
       .post("http://localhost:9999/login", params, config)
       .then((response) => {
-        payload.message = `Email Id: ${params.email} logged in successfully`;
+        payload.message = ` ${response.data.user.role} logged in successfully`;
         payload.isLoggedIn = true;
         payload.authToken = response.data.accessToken;
         payload.role = response.data.user.role;
         payload.id = response.data.user.id;
+        payload.firstName = response.data.user.firstName;
 
         dispatch(SUCCESS(payload));
       })

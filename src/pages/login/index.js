@@ -170,8 +170,8 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                         </Box>
                       </Container>
 
-                      <BasicModal state={open} onClose={handleClose}>
-                        {data?.message}
+                      <BasicModal  style={{border:'0', borderRadius:'20px' }} state={open} onClose={handleClose} >
+                      <span className="modal-style">  {data?.message}</span>
                       </BasicModal>
                     </div>
                   </ThemeProvider>

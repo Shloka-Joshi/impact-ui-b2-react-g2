@@ -12,3 +12,6 @@ export const DELETE = "DELETE";
 
 export const GET_PHYSICIAN_DATA = "GET_PHYSICIAN_DATA";
 export const GET_PATIENT_DATA = "GET_PATIENT_DATA";
+
+export const GET_SCHEDULER_DATA = "GET_SCHEDULER_DATA";
+

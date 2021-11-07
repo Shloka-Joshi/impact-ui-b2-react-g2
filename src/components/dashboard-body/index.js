@@ -9,6 +9,8 @@ import { Suspense, lazy } from 'react';
 const Managepatient = lazy (() => import('../../pages/admin/managepatient'));
 const Managephysician = lazy (() => import('../../pages/admin/managephysician'));
 const Manageappointment = lazy (() => import('../../pages/admin/manageappointments'));
+const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
+
 
 function ShellComponent(props) {
 
@@ -20,14 +22,14 @@ function ShellComponent(props) {
             {role == 'admin' ?
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
-                        <Route path={`/dashboard/${id}/${role}/Manageappointments`}>
+                        <Route path={`/dashboard/:id/:role/Manageappointments`}>
                             <Manageappointment />
                         </Route>
-                        <Route path={`/dashboard/${id}/${role}/Managephysician`} component={Managephysician} />
-                        <Route path={`/dashboard/${id}/${role}/ManagePatient`}>
+                        <Route path={`/dashboard/:id/:role/Managephysician`} component={Managephysician} />
+                        <Route path={`/dashboard/:id/:role/ManagePatient`}>
                             <Managepatient />
                         </Route>
-                        <Route exact path={`/dashboard/${id}/${role}`}>
+                        <Route exact path={`/dashboard/:id/:role`}>
                             {/* admin dashboard */}
                         </Route>
                     </Switch>
@@ -35,21 +37,25 @@ function ShellComponent(props) {
                 //_______________________________Physician Routes_______________________________________________________________________________ */}
                 : role == 'physician' ? 
                 <Switch>
-                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
                 </Switch> 
                 //________________________________Patient Routes_________________________________________________________________*/}
 
                 : role == 'patient' ?
+                <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/ScheduleNewAppointment`}>
+                            <ScheduleAppointment/>
+                        </Route>
+                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
                     </Switch>
+                    </Suspense>
                     : 'Not found'}
         </Container>
     )

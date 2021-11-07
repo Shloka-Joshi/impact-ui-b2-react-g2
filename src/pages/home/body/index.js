@@ -9,7 +9,9 @@ import AppRegistrationTwoToneIcon from '@mui/icons-material/AppRegistrationTwoTo
 import { makeStyles } from "@material-ui/core";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
-import '../../../styles/common-style.css'
+import '../../../styles/common-style.css';
+import { Modal } from "@mui/material";
+
 const buttonStyle = makeStyles({
     button: {
       backgroundColor: 'var(--solid-button-color)',

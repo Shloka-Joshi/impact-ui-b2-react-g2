@@ -91,7 +91,7 @@ function Sidenav(props) {
             </div>
             <div className='item' style={{ fontFamily: 'Nunito' }}>
                 <RecentActorsIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Schedule Appointment </Link></h6>
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/ScheduleNewAppointment`} className='link'>Schedule Appointment </Link></h6>
             </div>
             <div className='item'>
                 <LocalLibraryIcon className='icon' />
