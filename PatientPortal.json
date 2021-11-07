@@ -1,30 +1,18 @@
 {
   "users": [
     {
-      "id": "1",
-      "firstName": "Cyril",
-      "lastName": "Crome",
-      "dob": "02/05/1978",
-      "role": "patient",
-      "email": "Cyril.Crome@gmail.com",
-      "contact": "385-158-6580",
-      "password": "Cyril@1234",
-      "retypePassword": "Cyril@1234",
-      "approvedUser": "true",
-      "registrationDate": "10/25/2021"
-    },
-    {
-      "id": "2",
       "firstName": "Purcell",
       "lastName": "Glisane",
       "dob": "07/04/1978",
-      "role": "physician",
       "email": "Purcell.Glisane@gmail.com",
-      "contact": "385-158-6580",
-      "password": "Purcell@1234",
+      "contact": "1234567890",
+      "password": "$2a$10$nCw/IA1IVVKDcnn3zZdMTeC/PHI7kRNPG5ZA9oNBxdeOPQ0hVtn8K",
+      "retypepassword": "",
+      "id": "2",
+      "role": "physician",
       "retypePassword": "Purcell@1234",
       "approvedUser": "true",
-      "registrationDate": "10/25/2021"
+      "registrationDate": "2021-11-03T07:18:51.104Z"
     },
     {
       "email": "Shloka.Joshi@gmail.com",
@@ -39,43 +27,68 @@
       "id": "ewrwVbO"
     },
     {
-      "email": "ravi90@gmail.com",
-      "password": "$2a$10$uG6DMuFGVp0zGDVV/U2NaeBUiHNFdtDjsHglhryo0KUTaNL0BAnS2",
       "firstName": "rav",
       "lastName": "pandey",
       "dob": "2021-10-26",
+      "email": "ravi90@gmail.com",
       "contact": "6666",
+      "password": "$2a$10$45sW6USY9Yznnq1hJNlSyeDTw8/PsdDSJ6PCN7Iv5o1BFdb0MUiGy",
+      "retypePassword": "",
       "cnfPassword": "abcdefgh",
       "role": "patient",
       "approvedUser": "false",
-      "registrationDate": "2021-10-26T13:40:48.879Z",
+      "registrationDate": "2021-11-03T05:46:16.980Z",
       "id": "6lNPIu2"
     },
     {
-      "email": "abcdefgh@gmail.com",
-      "password": "$2a$10$s3FZocSpOkBY59sBLpMlA.CocE4990CCpWEspeODZ7XTX8IITE01W",
-      "firstName": "aa",
-      "lastName": "AAAA",
-      "dob": "2021-09-29",
-      "contact": "123456789",
-      "cnfPassword": "abcdefgh",
+      "email": "Anishjim@yopmail.com",
+      "password": "$2a$10$06T8NqcEzJ92yFEQ9p175ONyAZXG7fVXUt5qHzEGU1kppCTscZu1S",
+      "firstName": "Anish",
+      "lastName": "jim",
+      "dob": "1996-12-03",
+      "contact": "8574778",
+      "retypePassword": "Anish@1234",
       "role": "patient",
-      "approvedUser": "false",
-      "registrationDate": "2021-10-26T13:41:55.669Z",
-      "id": "Ff2y9-6"
+      "registrationDate": "2021-11-03T06:01:59.558Z",
+      "id": "STIUMdX"
     },
     {
-      "email": "abcdef@gmail.com",
-      "password": "$2a$10$0nYHyWk3bCa2ORCMUlgfOO/LfLWvXpALGrQAGiPvMGJ0WClt37fAG",
-      "firstName": "aaaa",
-      "lastName": "aa",
-      "dob": "2021-09-27",
-      "contact": "123456789",
-      "cnfPassword": "abcdefgh",
+      "email": "Peterjhon@yopmail.com",
+      "password": "$2a$10$SFNzriTQl95juxsinr0DmuNuKDSJ9TQjA/rzbCz1k0eus7OZ/oJfW",
+      "firstName": "Peter",
+      "lastName": "jhon",
+      "dob": "1996-12-09",
+      "contact": "32546534",
+      "retypepassword": "",
+      "retypePassword": "Peter@1234",
       "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-26T13:45:16.445Z",
-      "id": "L8GkhnH"
+      "registrationDate": "2021-11-03T06:04:16.227Z",
+      "id": "qAKGagw"
+    },
+    {
+      "email": "Reka@yopmail.com",
+      "password": "$2a$10$16LOsavfdbHx9NGsTewZ1uU9qfH/fKY8O0JK5bWGLO8Fjke3ooFIq",
+      "firstName": "Reka",
+      "lastName": "qwer",
+      "dob": "1996-12-09",
+      "contact": "0000888899",
+      "retypePassword": "Reka@1234",
+      "role": "physician",
+      "registrationDate": "2021-11-03T07:22:00.263Z",
+      "id": "eogWMj1"
+    },
+    {
+      "email": "Ishan@yopmail.com",
+      "password": "$2a$10$b/3xNGlyR0nwxIrSfMNe/OA1P6IfvbSn3vLtar6v5ZRxoH3CzzjUy",
+      "firstName": "Ishan",
+      "lastName": "Raparle",
+      "dob": "2021-12-08",
+      "contact": "99999999999",
+      "cnfPassword": "12345678",
+      "role": "patient",
+      "approvedUser": "true",
+      "registrationDate": "2021-11-03T09:31:56.941Z",
+      "id": "r4hbT4f"
     }
   ],
   "patientDemographics": [],
@@ -87,16 +100,17 @@
   "scheduleAppointment": [],
   "diagnosisReports": [
     {
-      "userId": "",
-      "patientVitals": {},
-      "diagnosisDescription": "",
-      "diagnosisCode": "",
-      "labReport": "",
-      "medicationAndAllergies": {
-        "medication": {},
-        "allergies": {}
-      }
-    }
+      "userId":"r4hbT4f",
+      "patientVitals":{
+      "bloodPressure": "120/80",
+      "pulseRate":"75",
+      "temperature":"98.6",
+      "respiration":"108",
+       "height":"159CM",
+       "weight":"75kg"
+     },
+     "id":"1"
+   }
   ],
   "allergies": [
     {

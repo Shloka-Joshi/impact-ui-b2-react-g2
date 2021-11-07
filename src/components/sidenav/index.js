@@ -5,13 +5,13 @@ import TodayIcon from '@mui/icons-material/Today';
 import HomeIcon from '@mui/icons-material/Home';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import AddModeratorIcon from '@mui/icons-material/AddModerator';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import Grid from '@material-ui/core/Grid';
 import '../../styles/common-style.css';
 import Profilecard from "./profile-card";
 const profilrcardDetails = {
-    fname: "Sam",
-    lname: "Kamal",
-    role: "Admin",
    Weight:"80KG",
    Height:"170CM",
    BloodPressure:"120/80"
@@ -21,15 +21,15 @@ function Sidenav(props) {
     let { id, role } = useParams();
 
     return (
-        <Container className='sidenav'>
+        <Container style={{padding:'10px 0 0'}} className='sidenav'>
             <div>
             <Grid>
-            <Profilecard cardData={profilrcardDetails} />
+            <Profilecard style={{margin:'0 10px'}} cardData={profilrcardDetails} />
             </Grid>
             </div>
             {/* For Admin___________________________________________________________________________________________ */}
             {role== 'admin'? 
-            <Container>
+            <Container p = {0}>
                 <div className='item'>
                     <HomeIcon className='icon' />
                     <h6 className='text'>
@@ -62,7 +62,7 @@ function Sidenav(props) {
                 </div>
                 <div className='item' style={{ fontFamily: 'Nunito' }}>
                     <RecentActorsIcon className='icon' />
-                    <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>View All Appointments </Link></h6>
+                    <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Appointments </Link></h6>
                 </div>
                 <div className='item'>
                     <LocalLibraryIcon className='icon' />
@@ -81,8 +81,8 @@ function Sidenav(props) {
                         Dashboard</Link></h6>
             </div>
             <div className='item' style={{ fontFamily: 'Nunito' }}>
-                <RecentActorsIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Schedule Appointment </Link></h6>
+                <ScheduleIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>New Appointment </Link></h6>
             </div>
             <div className='item'>
                 <LocalLibraryIcon className='icon' />
@@ -91,11 +91,11 @@ function Sidenav(props) {
                 </h6>
             </div>
             <div className='item'>
-                <TodayIcon className='icon' />
+                <DeviceThermostatIcon className='icon' />
                 <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Vitals</Link></h6>
             </div>
             <div className='item'>
-                <TodayIcon className='icon' />
+                <AddModeratorIcon className='icon' />
                 <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Immunization</Link></h6>
             </div>
         </Container>

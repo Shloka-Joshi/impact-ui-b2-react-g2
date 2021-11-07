@@ -10,10 +10,12 @@ import thunk from "redux-thunk";
 import authReducer from "./redux/reducers/auth-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import PatientDataReducer from "./redux/reducers/patient-reducer";
+import DiagnosisreportsDataReducer from "./redux/reducers/diagnosis-reports-reducer";
 const rootReducer = combineReducers({
   auth: authReducer,
   physiciandata: PhysicianDataReducer,
-  patientdata:PatientDataReducer
+  patientdata:PatientDataReducer,
+  diagnosisreportsdata:DiagnosisreportsDataReducer,
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk));

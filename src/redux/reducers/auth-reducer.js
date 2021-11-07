@@ -14,6 +14,8 @@ const authReducer = (state = initialState, actions) => {
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
+        currentUser:actions.data.currentUser,
+        
       };
 
     case ACTION_TYPE.FAILURE:
