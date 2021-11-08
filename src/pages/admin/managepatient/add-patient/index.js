@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { Container } from '@material-ui/core';
 
 
-export default function Addpatient({handleChange, handleSubmit, userData, }) {
+export default function Addpatient({ handleChange, handleSubmit, userData }) {
 
 
   return (
