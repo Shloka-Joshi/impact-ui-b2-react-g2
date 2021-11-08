@@ -190,7 +190,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {userTableData.map((row,rowIndex) => {
+                            {userTableData?.map((row,rowIndex) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                                         {columns.map((column) => {

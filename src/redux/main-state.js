@@ -7,5 +7,8 @@ export const initialState = {
   users:[],
   message: "",
   physicianData : [],
-  patientData: []
+  patientData: [],
+  currentUser:{},
+  diagnosisreportsData:[],
+  appointmentData:[],
 };

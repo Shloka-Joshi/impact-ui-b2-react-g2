@@ -11,6 +11,8 @@ const Managephysician = lazy (() => import('../../pages/admin/managephysician'))
 const Manageappointment = lazy (() => import('../../pages/admin/manageappointments'));
 const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
 
+const Card = lazy (() => import('../../pages/patient/patient-dashboard'));
+
 function ShellComponent(props) {
 
     let { id, role } = useParams();
@@ -43,13 +45,21 @@ function ShellComponent(props) {
                 //________________________________Patient Routes_________________________________________________________________*/}
 
                 : role == 'patient' ?
-                    <Switch>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
-                    </Switch>
+                <Suspense fallback={<div>Loading...</div>}>
+
+                <Switch>
+
+                <Route exact path={`/dashboard/${id}/${role}`}>
+                            <Card />
+                        </Route>
+
+                    {/* <Route path={`/dashboard/:id/:role/`} component={Card} ></Route> */}
+
+                 
+
+                </Switch>
+
+                </Suspense>
                     : 'Not found'}
         </Container>
     )
