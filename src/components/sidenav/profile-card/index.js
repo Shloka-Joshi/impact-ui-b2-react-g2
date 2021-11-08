@@ -20,20 +20,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 
- export default function Profilecard({ cardData, ...props }) {
+ export default function Profilecard({  ...props }) {
     const diagnosis = useSelector((state) => state.diagnosisreportsdata);
     const [vitals, setvitals] = React.useState()
     const dispatch = useDispatch()
     let {id} = useParams ();
     useEffect(()=>{
         dispatch(getdiagnosisreportsdata(id));
+       
+           },[]);
+
+    useEffect(()=>{
         if(diagnosis?.diagnosisreportsData?.length > 0 ){
             console.log(vitals)
             setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
         }
-        
-        
-    },[diagnosis]);
+    },[diagnosis])
     
     console.log ("vitals",vitals);
     const user = useSelector((state) => state.auth);

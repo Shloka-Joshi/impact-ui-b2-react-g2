@@ -16,9 +16,6 @@ axios.interceptors.request.use((req) => {
     return req;
   });
   export const getdiagnosisreportsdata = (id) => {
-    console.log(id);
-    debugger;
-
     const api = ()=>{
       return axios.get(`http://localhost:9999/diagnosisReports?userId=${id}`)
     }
@@ -27,7 +24,6 @@ axios.interceptors.request.use((req) => {
 
     return (dispatch,getState) => {
     
-debugger;
         // authToken = getState().auth.authToken;
 
          api().then(res => {
