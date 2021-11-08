@@ -3,9 +3,8 @@ import reactDom from "react-dom";
 import { AppBar, Button, Grid, Toolbar, makeStyles } from "@material-ui/core";
 import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import './header.css';
-import '../../../styles/common-style.css'
+import '../../home/header/header.css';
+import '../../../styles/common-style.css';
 import { Link } from "react-router-dom";
 
 const buttonStyle = makeStyles({
@@ -27,7 +26,7 @@ function Header() {
 
         <Toolbar>
           <Grid>
-            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Sign Up Yourself </h2>
+            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Patient Portal</h2>
           </Grid>
           <Grid item xs sm xl lg md></Grid>
           <Grid>

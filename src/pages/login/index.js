@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as Yup from 'yup';
+import {useFormik} from 'formik';
 import { Button } from "../../utils/mui";
 import { CssBaseline } from "../../utils/mui";
 import { TextField } from "../../utils/mui";
@@ -8,8 +10,8 @@ import { Box } from "../../utils/mui";
 import { Container } from "../../utils/mui";
 import { userLogin } from "../../redux/actions/auth-action-creator";
 import { connect } from "react-redux";
-import "../../styles/common-style.css";
-import './login.css'
+import "../../styles/common-style.css"
+import "../login/login.css"
 import { makeStyles } from "@material-ui/core";
 import Footer from '../../components/footer'
 import BasicModal from "../../components/modals";
@@ -30,25 +32,28 @@ const textBoxStyle = makeStyles({
 })
 const theme = createTheme();
 
+const initialValues = {
+  email: '',
+  password:'',
+  }
 
-function SignIn({ data, userLogin ,isLoggedIn}) {
+const validationSchema= Yup.object({
+  email: Yup.string().email('Invalid Email Format').required('Required'),
+  password: Yup.string().required('Required')
+})
+
+function SignIn({ data, userLogin ,isLoggedIn, errors}) {
   let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
   setOpen(false);
-    if (isLoggedIn) {
-      history.push(`/dashboard/${data.id}/${data.role}`) 
-    }
+     if (isLoggedIn) {
+      history.push(`/dashboard/${data.id}/${data.role}`)
+    } 
   };
 
-  const [email, setemail] = useState('');
-  const validateEmail = (emailId) => {
 
-    const ch = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const isValid = ch.test(String(emailId).toLowerCase());
-    return isValid;
-  }
 
   const classes = textBoxStyle()
   const handleSubmit = (event) => {
@@ -61,6 +66,11 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
     userLogin(body);
     handleOpen();
   };
+  const formik= useFormik({
+    initialValues,
+    validationSchema,
+    handleSubmit
+  })
   return (
     <>
       <Header />
@@ -73,7 +83,7 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
           </Grid>
         </Box>
       </Container>
-      <Container className='section-form' maxWidth='md'>
+      <Container className='section-form' maxWidth='md' style={{padding:'0', marginBottom:'35px'}} >
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid container>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -81,14 +91,12 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                 <center>
                   <AccountCircleIcon style={{ color: '#fff', fontSize: '50px' }} />
                 </center>
-                <h3>Heading Comes Here</h3>
-                <p>
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
-                  Some text comes here  Some text comes here Some text comes here Some text comes here
+                <h3>To Continue, Sign In</h3>
+                  <div className="register-image"></div>
+                <p> 
+                  Changing the way you recieve healthcare with "Medical Excellence"
+                
                 </p>
-
               </div>
             </Grid>
             <Grid item sm={12} lg={6} md={6} xs={12} xl={6}>
@@ -116,8 +124,6 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                               margin="normal"
                               required
                               fullWidth
-                              value={email}
-                              onChange={(e) => setemail(e.target.value)}
                               id="email"
                               name="email"
                               label="Email Address"
@@ -126,10 +132,9 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                               InputProps={{
                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                               }}
-
+                              {...formik.getFieldProps('email')}
                             />
-                            {!validateEmail(email) && email != '' && (
-                              <span>Invalid Email</span>)}
+                            {formik.touched.email && formik.errors.email? <div className='error'>{formik.errors.email}</div> : null}
                             <TextField
                               margin="normal"
                               required
@@ -142,10 +147,13 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                               InputProps={{
                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                               }}
+                               {...formik.getFieldProps('password')}
                             />
+                            {formik.touched.password && formik.errors.password? <div className='error'>{formik.errors.password}</div> : null}
 
-                            <Button style={{ margin: '0', padding: '0' }}
+                            <Button style={{ margin: '10px 0' , padding: '0' }}
                               type="submit"
+                              disabled={!formik.isValid}
                               fullWidth
                               variant="text"
                               sx={{ mt: 3, mb: 2 }}
@@ -157,12 +165,15 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                             <Grid container>
                               <Grid item xs>
                                 <Link to="#" variant="body2" style={{textDecoration:'none'}}>
+                                  <span className='color-link'>
                                   Forgot password?
+                                  </span>
                                 </Link>
                               </Grid>
                               <Grid item>
                                 <Link to="/register" variant="body2" style={{textDecoration:'none'}}>
-                                  {"Don't have an account? Sign Up"}
+                                  <span className='color-link'>{"Don't have an account? Sign Up"}</span>
+                                  
                                 </Link>
                               </Grid>
                             </Grid>
@@ -170,8 +181,10 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
                         </Box>
                       </Container>
 
-                      <BasicModal  style={{border:'0', borderRadius:'20px' }} state={open} onClose={handleClose} >
-                      <span className="modal-style">  {data?.message}</span>
+                      <BasicModal state={open} onClose={handleClose}>
+                        {/* Null check */}
+                        {data? data.message: errors?.message}
+                        {/* {data?.message} */}
                       </BasicModal>
                     </div>
                   </ThemeProvider>
@@ -189,7 +202,8 @@ function SignIn({ data, userLogin ,isLoggedIn}) {
 const mapStateToProps = (state) => {
   return {
     data: state.auth.data,
-    isLoggedIn: state.auth.isLoggedIn
+    isLoggedIn: state.auth.isLoggedIn,
+    errors: state.auth.errors
   };
 };
 const mapdispatchToProps = (dispatch) => {

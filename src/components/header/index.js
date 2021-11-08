@@ -4,7 +4,11 @@ import HealthAndSafetyIcon from '@mui/icons-material/HealthAndSafety';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link ,Router} from "react-router-dom";
 import  './header.css';
+import BasicModal from "../../components/modals";
 import '../../styles/common-style.css';
+import { connect } from "react-redux";
+import { useHistory } from "react-router";
+import {Logout }from '../../redux/actions/auth-action-creator';
 
 const buttonStyle = makeStyles({
     button: {
@@ -16,8 +20,21 @@ const buttonStyle = makeStyles({
     },
   }})
 
-function Header(){
+function Header({data, logOut, authToken, isLoggedIn}){
     const classes = buttonStyle()
+     let history = useHistory();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+        if (!isLoggedIn) {
+            history.push(`/`)
+        }
+    };
+    const Logout=()=>{
+        logOut();
+        handleOpen();
+    }
     return(
         <>
             <AppBar elevation={0} position="sticky" style={{backgroundColor:'var(--appbar-bg-color)',boxShadow:'0' }} >
@@ -29,16 +46,35 @@ function Header(){
                     <Grid item xs sm xl lg md></Grid>
                     <Grid>
                         
-                        <Button className={classes.button} style={{marginRight:'5px'}}  color='primary'  variant="text">
+                        <Button className={classes.button} style={{marginRight:'5px'}}  color='primary'  variant="text" onClick={Logout}>
                           <AccountCircleIcon style={{marginRight:'5px'}}/>Logout
                         </Button>
                         
                     </Grid>
-                </Toolbar>            
+                </Toolbar> 
+                <BasicModal state={open} onClose={handleClose}>
+                    {/* Null check */}
+                    { data.message }
+                    {/* {data?.message} */}
+                </BasicModal>
             </AppBar>
             
         </>
     );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    data: state.auth.data,
+    authToken:state.auth.authToken,
+    isLoggedIn:state.auth.isLoggedIn,
+  };
+};
+
+const mapdispatchToProps = (dispatch) => {
+  return {
+    logOut: (data) => dispatch(Logout(data)),
+  };
+};
+
+export default  connect(mapStateToProps, mapdispatchToProps)(Header);

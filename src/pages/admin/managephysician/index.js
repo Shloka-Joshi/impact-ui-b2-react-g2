@@ -188,9 +188,10 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {userTableData.map((row,rowIndex) => {
+                            
+                            { userTableData.length > 0 ? userTableData.map((row,rowIndex) => {
                                 return (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                                    <TableRow hover  tabIndex={-1} key={row.id}>
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
@@ -215,7 +216,9 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
                                         })}
                                     </TableRow>
                                 );
-                            })}
+                            }) 
+                            : <TableRow>No Data Available</TableRow>
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>

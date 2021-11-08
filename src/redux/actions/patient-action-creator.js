@@ -13,39 +13,35 @@ axios.interceptors.request.use((req) => {
       req.headers.authorization = `Bearer ${authToken}`;
     return req;
   });
+  
 
-export const getrolespecificuserdata = (role) => {
+  export const getpatientdata = (role) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
 
         axios.get(`http://localhost:9999/users?role=${role}`)
             .then(res => {
-                if(role == "physician")
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});
-                else if(role == "patient")
                     dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});
 
             })
             .catch(err => {
-                if(role == "physician")
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:err.response.data})
-                else if(role == "patient")
                     dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
             })
     };
 }
 
-export const addnewphysicianrecord = (physicianData) => {
+
+export const addnewpatientrecord = (patientData) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
 
-        axios.post(`http://localhost:9999/users?role=physician`,physicianData,config)
+        axios.post(`http://localhost:9999/users?role=patient`,patientData,config)
             .then(res => {
-                axios.get(`http://localhost:9999/users?role=physician`)
+                axios.get(`http://localhost:9999/users?role=patient`)
                 .then(res => {
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
+                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});  
                 })
                 .catch(err => {
                     dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
@@ -58,16 +54,16 @@ export const addnewphysicianrecord = (physicianData) => {
 }
 
 
-export const updateexistingphysicianrecord = (id,updatedphysicianData) => {
+export const updateexistingpatientrecord = (id,updatedpatientData) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
 
-        axios.put(`http://localhost:9999/users/${id}`,updatedphysicianData,config)
+        axios.put(`http://localhost:9999/users/${id}`,updatedpatientData,config)
             .then(res => {
-                axios.get(`http://localhost:9999/users?role=physician`)
+                axios.get(`http://localhost:9999/users?role=patient`)
                 .then(res => {
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
+                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});  
                 })
                 .catch(err => {
                     dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
@@ -79,16 +75,16 @@ export const updateexistingphysicianrecord = (id,updatedphysicianData) => {
     };
 }
 
-export const deletephysicianrecord = (id) => {
+export const deletepatientrecord = (id) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
 
         axios.delete(`http://localhost:9999/users/${id}`)
             .then(res => {
-                axios.get(`http://localhost:9999/users?role=physician`)
+                axios.get(`http://localhost:9999/users?role=patient`)
                 .then(res => {
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
+                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});  
                 })
                 .catch(err => {
                     dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});

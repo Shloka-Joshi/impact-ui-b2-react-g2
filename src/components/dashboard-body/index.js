@@ -11,10 +11,10 @@ const Managephysician = lazy (() => import('../../pages/admin/managephysician'))
 const Manageappointment = lazy (() => import('../../pages/admin/manageappointments'));
 const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
 
+const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
 
 function ShellComponent(props) {
 
-    let { path } = useRouteMatch();
     let { id, role } = useParams();
     return (
         <Container className='container'>
@@ -30,7 +30,7 @@ function ShellComponent(props) {
                             <Managepatient />
                         </Route>
                         <Route exact path={`/dashboard/:id/:role`}>
-                            {/* admin dashboard */}
+                            <AdminDashboard />
                         </Route>
                     </Switch>
                 </Suspense>
