@@ -3,18 +3,24 @@
         height: 100vh;
         color: black;
         /* paddingTop: theme.spacing(10), */
-        background-color: silver;
+        background-color: #d9edf3;
         position: sticky;
         top: 0;
+        margin:0;
+        display :flex;
+        padding-top: 14px;
+        
+        
 
     }
     .link {
         text-decoration: None;
         border-radius: 10px; 
         font-family:'Nunito';
-        color:#fff;
+        color:var(--side-nav-link-color);
         font-size: 15px;
         font-weight:700;
+        padding-right: 10px;
     }
     .item {
         
@@ -22,12 +28,16 @@
         align-items: center;
         /* background-color: var(--solid-button-color);
         color:  var(--button-text-color); */
-        padding:0  10px; 
-        margin: 7px 0;
+        padding:0 ; 
+        margin: 0;
+        line-height: 10px;
     }
     .icon {
+        position: relative ;
+        left: -10px;
+        top: -2px;
        
-      color: white;  
+ color: var(--side-nav-icon-color);
     }
     .text {
         font-weight: 500;

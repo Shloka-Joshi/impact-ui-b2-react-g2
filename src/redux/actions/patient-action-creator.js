@@ -55,6 +55,7 @@ export const addnewpatientrecord = (patientData) => {
 
 
 export const updateexistingpatientrecord = (id,updatedpatientData) => {
+    console.log(updatedpatientData)
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;

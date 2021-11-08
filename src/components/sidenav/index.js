@@ -1,44 +1,29 @@
-import { Link ,useRouteMatch,useParams} from "react-router-dom";
+import { Link ,useRouteMatch,useParams, useHistory} from "react-router-dom";
 import './sidenav.css';
 import Container from '@mui/material/Container';
 import TodayIcon from '@mui/icons-material/Today';
 import HomeIcon from '@mui/icons-material/Home';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import AddModeratorIcon from '@mui/icons-material/AddModerator';
+import ScheduleIcon from '@mui/icons-material/Schedule';
 import Grid from '@material-ui/core/Grid';
 import '../../styles/common-style.css';
-
+import Profilecard from "./profile-card";
 function Sidenav(props) {
+    let history = useHistory();
     let { id, role } = useParams();
-
     return (
-        <Container className='sidenav'>
+        <Container style={{padding:'10px 0 0'}} className='sidenav'>
+            <div>
             <Grid>
-                <Card className='root'>
-                    <CardActionArea>
-                        <CardMedia
-                            className='media'
-                            image="/images/user.png"
-                            title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                sam
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+            <Profilecard style={{margin:'0 10px'}}  />
             </Grid>
+            </div>
             {/* For Admin___________________________________________________________________________________________ */}
             {role== 'admin'? 
-            <Container>
+            <Container p = {0}>
                 <div className='item'>
                     <HomeIcon className='icon' />
                     <h6 className='text'>
@@ -86,26 +71,26 @@ function Sidenav(props) {
             <div className='item'>
                 <HomeIcon className='icon' />
                 <h6 className='text'>
-                    <Link to={`/dashboard/${id}/${role}`} className='link'>
+                    <Link to={`/dashboard/${id}/${role}/#`} className='link'>
                         Dashboard</Link></h6>
             </div>
             <div className='item' style={{ fontFamily: 'Nunito' }}>
-                <RecentActorsIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/ScheduleNewAppointment`} className='link'>Schedule Appointment </Link></h6>
+                <ScheduleIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/ScheduleNewAppointment`} className='link'>New Appointment </Link></h6>
             </div>
             <div className='item'>
                 <LocalLibraryIcon className='icon' />
                 <h6 className='text'>
-                    <Link to={`/dashboard/${id}/${role}/#`} className='link'>Demographics </Link>
+                    <Link to={`/dashboard/${id}/${role}/demographics`} className='link'>Demographics </Link>
                 </h6>
             </div>
             <div className='item'>
                 <TodayIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Vitals</Link></h6>
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/vital`} className='link'>Vitals</Link></h6>
             </div>
             <div className='item'>
                 <TodayIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Immunization</Link></h6>
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/immunization`} className='link'>Immunization</Link></h6>
             </div>
         </Container>
         // Invlid user_________________________________________________________________________________________________

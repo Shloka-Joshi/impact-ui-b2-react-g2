@@ -70,7 +70,7 @@ function HomeBody(){
               <Container component="main" maxWidth="lg">
               <Box sx={{ display: "flex", flexDirection: "column",alignItems: "center",}}> 
                   <Grid item lg={12} sm={12} xs={12} container spacing={0} style={{margin:'0 auto'}}>
-                    <Grid item xs={12} sm={6} lg={4}>
+                    <Grid item xs={12} sm={6} lg={4} md={4} xl={4}>
                 <div  className="card-data">
                     <Card style={{borderRadius:'0',boxShadow:'0',backgroundColor:'var(--card-bg-color1)'}} >
                         <CardContent className="card">
@@ -83,7 +83,7 @@ function HomeBody(){
                     </Card>
                 </div>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={4}>
+                <Grid item xs={12} sm={6} lg={4} md={4} xl={4}>
                 <div  className="card-data">
                     <Card style={{borderRadius:'0',boxShadow:'0',backgroundColor:'var(--card-bg-color2)'}}>
                         <CardContent className="card">
@@ -98,7 +98,7 @@ function HomeBody(){
                     </Card>
                 </div>
                 </Grid>
-                <Grid item xs={12} sm={6} lg={4}>
+                <Grid item xs={12} sm={6} lg={4} md={4} xl={4}>
                     <div  className="card-data">
                         <Card style={{borderRadius:'0',boxShadow:'0',backgroundColor:'var(--card-bg-color1)'}}>
                         <CardContent className="card">

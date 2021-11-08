@@ -4,9 +4,8 @@ import { initialState } from "../main-state";
 const authReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case ACTION_TYPE.LOAD:
-      return {
-        ...state,
-      };
+      return state;
+
 
     case ACTION_TYPE.SUCCESS:
       return {
@@ -14,6 +13,8 @@ const authReducer = (state = initialState, actions) => {
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
+        currentUser:actions.data.currentUser,
+        
       };
 
     case ACTION_TYPE.FAILURE:

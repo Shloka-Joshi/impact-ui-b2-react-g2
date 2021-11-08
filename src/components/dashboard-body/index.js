@@ -2,7 +2,7 @@ import React from "react";
 import Container from '@mui/material/Container';
 import CardComponent from '../sidenav/profile-card';
 import Button from '@mui/material/Button';
-import { Switch, Route, useRouteMatch ,useParams} from "react-router";
+import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
 import './dashboard-body.css';
 import { Suspense, lazy } from 'react';
 
@@ -15,8 +15,12 @@ const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
 const ViewAppointment = lazy(() => import('../../pages/physician/view-appointments'));
 const ViewCalender = lazy(()=> import('../../pages/physician/dashboard'))
 
-function ShellComponent(props) {
+const Patientdemographics = lazy (() => import('../../pages/patient/demographics'));
+const Patientvital = lazy (() => import('../../pages/patient/vital'));
+const Immunization = lazy (() => import('../../pages/patient/immunization'));
+// const  Card  = lazy (() => import('../../pages/patient/patient-dashboard'));
 
+function ShellComponent(props) {
     let { id, role } = useParams();
     return (
         <Container className='container'>
@@ -55,13 +59,11 @@ function ShellComponent(props) {
                 : role == 'patient' ?
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
-                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/:id/:role/ScheduleNewAppointment`}>
-                            <ScheduleAppointment/>
-                        </Route>
-                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
-                        <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                   
+                        <Route path={`/dashboard/:id/:role/demographics`} component={Patientdemographics} ></Route>
+                        <Route path={`/dashboard/:id/:role/vital`} ><Patientvital/></Route>
+                        <Route path={`/dashboard/:id/:role/immunization`} ><Immunization /></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
                     </Switch>
                     </Suspense>
                     : 'Not found'}

@@ -37,9 +37,9 @@ export const userLogin = (params) => {
       authToken: "",
       role: "",
       id:"",
-      userName:""
+      currentUser:"",
     };
-    dispatch(LOAD());
+    dispatch(LOAD(params));
 
     axios
       .post("http://localhost:9999/login", params, config)
@@ -50,12 +50,12 @@ export const userLogin = (params) => {
           payload.authToken = response.data.accessToken;
           payload.role = response.data.user.role;
           payload.id = response.data.user.id;
-        payload.firstName = response.data.user.firstName;
-
-
+          payload.currentUser = response.data.user;
+          payload.firstName = response.data.user.firstName;
           dispatch(SUCCESS(payload));
 
         } else {
+
           payload.message = `${params.email} Not an approved user!`;
           dispatch(FAILURE(payload));
 
@@ -83,9 +83,10 @@ export  function Logout()
     };
 }
 
-export const LOAD = () => {
+export const LOAD = (params) => {
   return {
     type: ACTION_TYPE.LOAD,
+    payload:params
   };
 };
 
