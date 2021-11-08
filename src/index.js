@@ -8,6 +8,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware ,combineReducers } from "redux";
 import thunk from "redux-thunk";
 import authReducer from "./redux/reducers/auth-reducer";
+import DemographicsDataReducer from "./redux/reducers/demographics-reducer";
+import ImmunizationDataReducer from "./redux/reducers/immunization-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import PatientDataReducer from "./redux/reducers/patient-reducer";
 import DiagnosisreportsDataReducer from "./redux/reducers/diagnosis-reports-reducer";
@@ -15,6 +17,8 @@ const rootReducer = combineReducers({
   auth: authReducer,
   physiciandata: PhysicianDataReducer,
   patientdata:PatientDataReducer,
+  demographicsdata : DemographicsDataReducer,
+  immunization :ImmunizationDataReducer,
   diagnosisreportsdata:DiagnosisreportsDataReducer,
 });
 

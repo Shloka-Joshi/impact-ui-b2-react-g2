@@ -1,4 +1,4 @@
-import { Link ,useRouteMatch,useParams} from "react-router-dom";
+import { Link ,useRouteMatch,useParams, useHistory} from "react-router-dom";
 import './sidenav.css';
 import Container from '@mui/material/Container';
 import TodayIcon from '@mui/icons-material/Today';
@@ -12,8 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import '../../styles/common-style.css';
 import Profilecard from "./profile-card";
 function Sidenav(props) {
+    let history = useHistory();
     let { id, role } = useParams();
-
     return (
         <Container style={{padding:'10px 0 0'}} className='sidenav'>
             <div>
@@ -71,7 +71,7 @@ function Sidenav(props) {
             <div className='item'>
                 <HomeIcon className='icon' />
                 <h6 className='text'>
-                    <Link to={`/dashboard/${id}/${role}`} className='link'>
+                    <Link to={`/dashboard/${id}/${role}/#`} className='link'>
                         Dashboard</Link></h6>
             </div>
             <div className='item' style={{ fontFamily: 'Nunito' }}>
@@ -81,16 +81,16 @@ function Sidenav(props) {
             <div className='item'>
                 <LocalLibraryIcon className='icon' />
                 <h6 className='text'>
-                    <Link to={`/dashboard/${id}/${role}/#`} className='link'>Demographics </Link>
+                    <Link to={`/dashboard/${id}/${role}/demographics`} className='link'>Demographics </Link>
                 </h6>
             </div>
             <div className='item'>
-                <DeviceThermostatIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Vitals</Link></h6>
+                <TodayIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/vital`} className='link'>Vitals</Link></h6>
             </div>
             <div className='item'>
-                <AddModeratorIcon className='icon' />
-                <h6 className='text'><Link to={`/dashboard/${id}/${role}/#`} className='link'>Immunization</Link></h6>
+                <TodayIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/immunization`} className='link'>Immunization</Link></h6>
             </div>
         </Container>
         // Invlid user_________________________________________________________________________________________________

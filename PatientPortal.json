@@ -202,7 +202,15 @@
     "allergies": []
   },
   "immunization": [],
-  "scheduleAppointment": [],
+  "scheduleAppointment": [
+    {
+      "date":"10-11-2021",
+      "time":"11.30 AM",
+      "physition":"john",
+      "diseaseDescription":"Infectious diseases are disorders caused by organisms such as bacteria, viruses, fungi or parasites. Many organisms live in and on our bodies. They're normally harmless or even helpful. But under certain conditions, some organisms may cause disease. Some infectious diseases can be passed from person to person. Some are transmitted by insects or other animals.",
+      "reports":"prescription"
+    }
+  ],
   "diagnosisReports": [
     {
       "userId":"r4hbT4f",
