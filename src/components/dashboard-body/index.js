@@ -51,9 +51,9 @@ function ShellComponent(props) {
                 <Suspense fallback={<div>Loading...</div>}>
                     <Switch>
                    
-                        <Route path={`/dashboard/${id}/${role}/demographics`} component={Patientdemographics} ></Route>
-                        <Route path={`/dashboard/${id}/${role}/vital`} ><Patientvital/></Route>
-                        <Route path={`/dashboard/${id}/${role}/immunization`} ><Immunization /></Route>
+                        <Route path={`/dashboard/:id/:role/demographics`} component={Patientdemographics} ></Route>
+                        <Route path={`/dashboard/:id/:role/vital`} ><Patientvital/></Route>
+                        <Route path={`/dashboard/:id/:role/immunization`} ><Immunization /></Route>
                         <Route path={`/dashboard/${id}/${role}/patient-dashboard`} component={Card}></Route>
                     </Switch>
                     </Suspense>

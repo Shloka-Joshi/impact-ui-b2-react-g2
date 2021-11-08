@@ -58,6 +58,9 @@ function a11yProps(index) {
 
 function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificuserdata,addimmunizationdata,updateexistingphysicianrecord}) {
 
+    let { id, role } = useParams();
+    console.log(id);
+
         const SubmitImmunization = (event) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
@@ -65,8 +68,9 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
             for (let entry of data.entries()) {
               body[entry[0]] = entry[1];
             }
-            body = {...body,userId: ``,UpdatedDate:new Date()}
+            body = {...body,userId:id,UpdatedDate:new Date()}
             addimmunizationdata(body);
+            handleOpen();
           };
   
           const [open, setOpen] = React.useState(false);
@@ -82,8 +86,9 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
             for (let entry of data.entries()) {
               body[entry[0]] = entry[1];
             }
-            body = {...body,userId: ``,UpdatedDate:new Date()}
+            body = {...body,userId: id,UpdatedDate:new Date()}
             addimmunizationdata(body);
+            handleOpen();
           };
 
   const Vaccine = ["Covid Vaccination Dose - 1 ", "Covid Vaccination Dose - 2"];
@@ -362,6 +367,9 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
                             </TabPanel>
                             </Box>
                             </Container>
+                            <BasicModal state={open} onClose={handleClose}>
+  <h3>Vaccination Data Added Successfully</h3>
+                  </BasicModal>
                     </Grid>
                     
                     </Grid>

@@ -10,7 +10,7 @@ import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { connect,useSelector ,useDispatch} from "react-redux";
-import {adddemographicsdata, getrolespecificuserdata} from "../../../redux/actions/demographics-action-creator";
+import {adddemographicsdata,getdemographicsdata} from "../../../redux/actions/demographics-action-creator";
 import { FormControl } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
 import './demographics.css';
 import Select from '@mui/material/Select';
+import BasicModal from "../../../components/modals";
 
 const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
@@ -30,12 +31,9 @@ const style = {position: 'absolute',top: '50%',left: '50%',transform: 'translate
   width: 400,bgcolor: 'background.paper',border: '2px solid #000',boxShadow: 24,p: 4,
 };
 
-function PatientDemographics({DemographicsData,adddemographicsdata, getrolespecificuserdata}) 
+function PatientDemographics({DemographicsData,adddemographicsdata,getdemographicsdata,...props}) 
 {
   let { id, role } = useParams();
-console.log(id);
-
-
 
   const SubmitDemographicsDetails = (event) => {
     event.preventDefault();
@@ -44,11 +42,25 @@ console.log(id);
     for (let entry of data.entries()) {
       body[entry[0]] = entry[1];
     }
-    body = {...body,userId: ``,UpdatedDate:new Date()}
+    body = {...body,userId: id,UpdatedDate:new Date()}
     adddemographicsdata(body);
-   
+    handleOpen();
   };
-  
+
+  let history = useHistory();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false)
+  };
+
+  const dispatch  =useDispatch()
+
+  useEffect(()=>{
+    getdemographicsdata();
+  },[DemographicsData])
+  const d = props.getdemographicsdata ;
+
   const tableData = DemographicsData;
   const [userTableData] = React.useState(tableData);
 
@@ -65,7 +77,7 @@ console.log(id);
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
           <Grid container>
             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-              <h1 className="title-demographics">Demographics</h1>
+              <h1 className="title-demographics">Demographics </h1>
             </Grid>
           </Grid>
         </Box>
@@ -76,12 +88,12 @@ console.log(id);
         <Container component="main" maxWidth="lg">
           <CssBaseline />
           <Box >
-        <Box component="form"  onSubmit={SubmitDemographicsDetails}   sx={{ mt: 3 }}>
+        <Box component="form" name="demographics" onSubmit={SubmitDemographicsDetails}   sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="firstName" name="firstName" 
-                label="First Name"  placeholder='First Name' 
+                label="First Name"  value={d?.firstName}  placeholder='First Name'
                 autoComplete="off" 
                 InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -214,20 +226,23 @@ console.log(id);
       </Box>
     </Container>
   </ThemeProvider>
+  <BasicModal state={open} onClose={handleClose}>
+  <h3>Demographics Data Added Successfully</h3>
+                  </BasicModal>
      </Container>
      </Container>
      </>
   )
 }
 
-const mapStateToProps = (rootReducer,state) => {
+const mapStateToProps = (state) => {
   return {
-      DemographicsData: rootReducer.demographicsdata.DemographicsData,
+      DemographicsData: state.demographicsdata.DemographicsData,
   };
 };
 const mapdispatchToProps = (dispatch) => {
   return {
-      getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+      getdemographicsdata: (id) => dispatch(getdemographicsdata(id)),
       adddemographicsdata: (data) => dispatch(adddemographicsdata(data)),
     };
 };

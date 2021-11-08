@@ -16,36 +16,41 @@ axios.interceptors.request.use((req) => {
     return req;
   });
 
-export const getrolespecificuserdata = (role) => {
-  return (dispatch,getState) => {
-
-    authToken = getState().auth.authToken;
-
-        axios.get(`http://localhost:9999/users?role=${role}`)
-        .then(res => {
-          if(role == "patient")
-              dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});
-
-      })
-      .catch(err => {
-        if(role == "patient")
-              dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
-      })
-    };
-}
-
 export const adddemographicsdata = (DemographicsData) => {
+ 
   return (dispatch,getState) => {
 
-    authToken = getState().auth.authToken;
+      authToken = getState().auth.authToken;
 
-        axios.post(`http://localhost:9999/patientDemographics`,DemographicsData,config)
-            .then(res => {
-              console.log(res);
-                dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
-            })
-            .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:err.res.data});
-            })
-    };
+      axios.post(`http://localhost:9999/patientDemographics`,DemographicsData,config)
+          .then(res => {
+            console.log(res);
+              axios.get(`http://localhost:9999/patientDemographics`)
+              .then(res => {
+                console.log(res);
+                  dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
+              })
+              .catch(err => {
+                  dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:err.res.data});
+              })
+          })
+          .catch(err => {
+                  dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:err.res.data});
+          })
+  };
 }
+export const getdemographicsdata = (id) => {
+  return (dispatch,getState) => {
+
+      authToken = getState().auth.authToken;
+              axios.get(`http://localhost:9999/patientDemographics?id=38`)
+              .then(res => {
+                console.log(res);
+                  dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
+              })
+              .catch(err => {
+                  dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:err.res.data});
+              })
+  };
+}
+
