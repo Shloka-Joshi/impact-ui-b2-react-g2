@@ -14,7 +14,7 @@ const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
 const Patientdemographics = lazy (() => import('../../pages/patient/demographics'));
 const Patientvital = lazy (() => import('../../pages/patient/vital'));
 const Immunization = lazy (() => import('../../pages/patient/immunization'));
-const  Card  = lazy (() => import('../../pages/patient/patient-dashboard'));
+// const  Card  = lazy (() => import('../../pages/patient/patient-dashboard'));
 
 function ShellComponent(props) {
     let { id, role } = useParams();
@@ -53,7 +53,7 @@ function ShellComponent(props) {
                         <Route path={`/dashboard/:id/:role/demographics`} component={Patientdemographics} ></Route>
                         <Route path={`/dashboard/:id/:role/vital`} ><Patientvital/></Route>
                         <Route path={`/dashboard/:id/:role/immunization`} ><Immunization /></Route>
-                        <Route path={`/dashboard/${id}/${role}/patient-dashboard`} component={Card}></Route>
+                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
                     </Switch>
                     </Suspense>
                     : 'Not found'}
