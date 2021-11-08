@@ -8,22 +8,13 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import './managepatient.css';
 import { connect } from "react-redux";
-import {getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord} from '../../../redux/actions/patient-action-creator';
-import Addpatient from './add-patient';
-import { Link } from 'react-router-dom';
+import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/patient-action-creator";
 import SearchBar from "material-ui-search-bar";
-import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import '../../../styles/common-style.css';
 
 const columns = [
@@ -36,29 +27,24 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
 ];
 
-function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord}) {
-    
-    // const tableData = data;
-    const [userTableData,setUserTableData] = React.useState(data);
+function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletepatientrecord}) {
+
+    let user = data?.filter((item) => !item.approvedUser);
+
+    const [userTableData,setUserTableData] = React.useState(user);
 
 
     useEffect(()=>{
         getpatientdata("patient");
-        
     },[]);
 
     
-
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypepassword:""}});
-    const [open, setOpen] = React.useState(false);
-    const [selectedActionState, getSelectedAction] = React.useState({action:"",id:''});
     
     const [searched, setSearched] = React.useState("");
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (newPage) => {
         setPage(newPage);
     };
 
@@ -67,54 +53,13 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
         setPage(0);
     };
 
-    const handleOpen = () => {
-        setOpen(true);
-        getSelectedAction({action:'add',id:''});
-    };
-
-    const handleClose = () => {
-        setOpen(false)
-        setFormValue({
-            formData: {firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypePassword:""}
-        });
-    };
-
-    const edituser = (id) => {
-        getSelectedAction({action:"edit",id:id});
-        let user = userTableData.filter((item) => item.id == id);
-        setFormValue(prevState => ({
-            formData: { ...prevState.formData, ...user[0]}
-        }))
-        setOpen(true);
-
+    const accept = (user) => {
+        let approvedUser = {...user,approvedUser:true};
+        updateexistingpatientrecord(user.id,approvedUser)
     }
-
-    const viewuser = (id) => {
-
-    }
-    const deleteuser = (id) => {
+    const reject = (id) => {
         deletepatientrecord(id);
     }
-
-    const adduserformvaluechange = (e) => {
-        const { id, value } = e.target;
-        setFormValue(prevState => ({
-            formData: { ...prevState.formData, [id]: value }
-        }));
-      };
-
-    const adduserformvaluesubmit = e => {
-        e.preventDefault();
-        setFormValue(prevState => ({
-            formData: {...prevState.formData},
-        }));
-        let body = {...addFormValue.formData,role:'patient',registrationDate:new Date()}
-        if(selectedActionState.action == "add")
-            addnewpatientrecord(body);
-        if(selectedActionState.action == "edit")
-            updateexistingpatientrecord(selectedActionState.id,body)
-        handleClose();
-    };
 
     const requestSearch = (searchedVal) => {
         let filteredRows = data.filter((row) => {
@@ -131,7 +76,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
     return (
         <Grid>
             <div className='title'>
-                <h2 style={{ margin: '0' }}>Patient Records</h2>
+                <h2 style={{ margin: '0' }}>New User Requests</h2>
             </div>
 
             <div className="top-toolbar">
@@ -141,37 +86,6 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                     onChange={(searchVal) => requestSearch(searchVal)}
                     onCancelSearch={() => cancelSearch()}
                 />
-                <Fab aria-label="add" onClick={handleOpen} style={{ float: 'right', backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                    <AddIcon />
-                </Fab>
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                    }}
-                >
-                    <Fade in={open}>
-                        <Box className='model'>
-                            <Typography id="transition-modal-title" variant="h6" component="h2">
-                                Add Patient
-                            </Typography>
-                            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                               
-                               <Addpatient
-                               handleChange={adduserformvaluechange}
-                               userData={addFormValue.formData}
-                               handleSubmit={adduserformvaluesubmit}
-                               
-                               />
-                            </Typography>
-                        </Box>
-                    </Fade>
-                </Modal>
             </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
@@ -202,14 +116,11 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                                                 </TableCell> 
                                                 : <TableCell key={column.id} align={column.align}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <EditIcon />
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>accept(row)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                        <CheckIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <DeleteIcon />
-                                                    </Fab>
-                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <VisibilityIcon />
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>reject(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                        <ClearIcon />
                                                     </Fab>
                                                     </Box>
                                                 </TableCell>
@@ -238,16 +149,15 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
 
 const mapStateToProps = (state) => {
     return {
-      data: state.patientdata.patientData,
+        data: state.patientdata.patientData
     };
   };
   const mapdispatchToProps = (dispatch) => {
     return {
         getpatientdata: (data) => dispatch(getpatientdata(data)),
-        deletepatientrecord: (id) => dispatch(deletepatientrecord(id)),
-        addnewpatientrecord: (data) => dispatch(addnewpatientrecord(data)),
-        updateexistingpatientrecord: (id,data) => dispatch(updateexistingpatientrecord(id,data))
+        updateexistingpatientrecord: (id,data) => dispatch(updateexistingpatientrecord(id,data)),
+        deletepatientrecord: (id) => dispatch(deletepatientrecord(id))
     };
   };
 
-  export default connect(mapStateToProps, mapdispatchToProps)(Managepatient);
+  export default connect(mapStateToProps, mapdispatchToProps)(AdminDashboard);

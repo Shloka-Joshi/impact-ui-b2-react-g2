@@ -27,7 +27,7 @@ function Header() {
 
         <Toolbar>
           <Grid>
-            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Sign In Yourself </h2>
+            <h2 className='logo-title'><HealthAndSafetyIcon style={{ backgroundColor: 'var(--logo-icon-bg-color)', color: 'var(--logo-icon-color)', position: 'relative', top: '3px', marginRight: '5px', borderRadius: '4px' }} />Patient Portal </h2>
           </Grid>
           <Grid item xs sm xl lg md></Grid>
           <Grid>

@@ -11,7 +11,7 @@ export const registerUser = (params) => {
   return (dispatch) => {
     let payload = {
       message: "",
-      isRegistered:'false'
+      isRegistered:false
     };
     dispatch(LOAD());
     
@@ -23,7 +23,7 @@ export const registerUser = (params) => {
         dispatch(SUCCESS(payload));
       })
       .catch((err) => {
-        payload.message = `REGISTRATION ERROR: ${err.message} `;
+        payload.message = ` ERROR: ${err.message} `;
         dispatch(FAILURE(payload));
       });
   };
@@ -37,30 +37,54 @@ export const userLogin = (params) => {
       authToken: "",
       role: "",
       id:"",
+      currentUser:"",
     };
-    dispatch(LOAD());
+    dispatch(LOAD(params));
 
     axios
       .post("http://localhost:9999/login", params, config)
       .then((response) => {
-        payload.message = `Email Id: ${params.email} logged in successfully`;
-        payload.isLoggedIn = true;
-        payload.authToken = response.data.accessToken;
-        payload.role = response.data.user.role;
-        payload.id = response.data.user.id;
+        if (response.data.user.approvedUser) {
+          payload.message = `Email Id: ${params.email} logged in successfully`;
+          payload.isLoggedIn = true;
+          payload.authToken = response.data.accessToken;
+          payload.role = response.data.user.role;
+          payload.id = response.data.user.id;
+          payload.currentUser = response.data.user;
+          dispatch(SUCCESS(payload));
 
-        dispatch(SUCCESS(payload));
+        } else {
+          payload.message = `${params.email} Not an approved user!`;
+          dispatch(FAILURE(payload));
+
+        }
       })
       .catch((err) => {
-        payload.message = `LOGIN ERROR: ${err.message} `;
+        payload.message = `LOGIN ERROR: ${err.response?err.response.data:'Internal Server Error'} `;
         dispatch(FAILURE(payload));
       });
     };
 };
+export  function Logout()
+{
+    let payload = {
+      message: "Logged Out Successfully",
+      isLoggedIn: false,
+      authToken: "",
+      role: "",
+      id:"",
+    };
 
-export const LOAD = () => {
+
+    return (dispatch) => {
+        return dispatch({type:  ACTION_TYPE.LOGOUT, data: payload});
+    };
+}
+
+export const LOAD = (params) => {
   return {
     type: ACTION_TYPE.LOAD,
+    payload:params
   };
 };
 

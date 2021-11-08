@@ -4,6 +4,7 @@ export const LOAD = "LOAD";
 
 export const LOGIN = "LOGIN";
 export const REGISTER = "REGISTER";
+export const LOGOUT = "LOGOUT";
 
 export const GET_ALL_USERS = "GET_ALL_USER";
 export const ADD = "ADD";
@@ -16,4 +17,4 @@ export const GET_IMMUNIZATION_DATA = "GET_IMMUNIZATION_DATA";
 export const GET_PHYSICIAN_DATA = "GET_PHYSICIAN_DATA";
 export const GET_PATIENT_DATA = "GET_PATIENT_DATA";
 
-export const GET_ALL_APPOINTMENT = "GET_ALL_APPOINTMENT";
+export const GET_DIAGNOSISREPORTS_DATA = "GET_DIAGNOSISREPORTS_DATA";

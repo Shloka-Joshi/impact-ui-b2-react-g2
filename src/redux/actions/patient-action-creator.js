@@ -10,14 +10,12 @@ let config = {
 
 let authToken = ''
 axios.interceptors.request.use((req) => {
-    if (req.method === "get") {
       req.headers.authorization = `Bearer ${authToken}`;
-    }
     return req;
   });
   
 
-export const getpatientdata = (role) => {
+  export const getpatientdata = (role) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
@@ -57,6 +55,7 @@ export const addnewpatientrecord = (patientData) => {
 
 
 export const updateexistingpatientrecord = (id,updatedpatientData) => {
+    console.log(updatedpatientData)
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;

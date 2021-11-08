@@ -12,16 +12,14 @@ import DemographicsDataReducer from "./redux/reducers/demographics-reducer";
 import ImmunizationDataReducer from "./redux/reducers/immunization-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import PatientDataReducer from "./redux/reducers/patient-reducer";
-import appointmentReducer from "./redux/reducers/appointments-reducer";
-
+import DiagnosisreportsDataReducer from "./redux/reducers/diagnosis-reports-reducer";
 const rootReducer = combineReducers({
   auth: authReducer,
-  demographicsdata : DemographicsDataReducer,
-  immunization :ImmunizationDataReducer,
   physiciandata: PhysicianDataReducer,
   patientdata:PatientDataReducer,
-  card:appointmentReducer,
-
+  demographicsdata : DemographicsDataReducer,
+  immunization :ImmunizationDataReducer,
+  diagnosisreportsdata:DiagnosisreportsDataReducer,
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk));

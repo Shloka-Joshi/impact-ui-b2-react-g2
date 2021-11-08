@@ -6,9 +6,19 @@
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 10px;
   margin: 4px 2px;
   cursor: pointer;
   transition-duration: 0.4s;
+}
+form {
+  width:  400px;
+  margin-top: auto;
+}
+.text-fields{
+  margin-bottom: 20px;
+}
+.error{
+  color: rgb(141, 15, 15);
+  text-align: center;
 }

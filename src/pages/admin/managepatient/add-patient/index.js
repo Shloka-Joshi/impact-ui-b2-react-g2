@@ -3,68 +3,97 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './add-patient.css';
 import Button from '@mui/material/Button';
-// import AdapterDateFns from '@mui/lab/AdapterDateFns';
-// import LocalizationProvider from '@mui/lab/LocalizationProvider';
-// import DatePicker from '@mui/lab/DatePicker';
+import { Container } from '@material-ui/core';
 
-export default function Addpatient() {
-  const [value, setValue] = React.useState(null);
+
+export default function Addpatient({ handleChange, handleSubmit, userData }) {
+
+
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-     <div>
-        <TextField
-          label="Firstname*"
-          id="outlined-size-small"
-          size="small"
-        />
-        <TextField
-          label="Lastname*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-
-        <TextField
-          type="date"
-          id="outlined-size-small"
-          size="small"
-        />
-
-        <TextField
-          label="Email Address*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-        <TextField
-          label="Password*"
-          id="outlined-size-small"
-          size="small"
-        />
-        <TextField
-          label="Re-Type Password*"
-          id="outlined-size-small"
-          size="small"
-        />
-      </div>
-      <div>
-        <TextField
-          label="Contact*"
-          id="outlined-size-small"
-          size="small"
-        />
-
-<Button  variant="text" style={{margin:'0', Padding:'0'}}><span className="button1">Submit</span></Button>
-      </div>
-    </Box>
+    <form onSubmit={handleSubmit} >
+      <Container >
+        <div className="text-fields">
+          <TextField
+            label="First Name"
+            id="firstName"
+            name="firstName"
+            size="small"
+            onChange={handleChange}
+            value={userData.firstName}
+            required
+            
+          />
+        </div>
+        <div className="text-fields">
+          <TextField
+            id="lastName"
+            name="lastName"
+            label="Last Name"
+            size="small"
+            onChange={handleChange}
+            value={userData.lastName}
+            required
+          />
+        </div>
+        <div className="text-fields">
+          <TextField
+            label=""
+            type="date"
+            id="dob"
+            size="small"
+            onChange={handleChange}
+            value={userData.dob}
+          >Date of Birth</TextField>
+        </div>
+        <div className="text-fields">
+          <TextField
+            label="Email Address"
+            id="email"
+            name="email"
+            size="small"
+            onChange={handleChange}
+            value={userData.email}
+            required
+          />
+        </div>
+        <div className="text-fields">
+          <TextField
+            label="Password"
+            id="password"
+            name="password"
+            size="small"
+            type="password"
+            onChange={handleChange}
+            value={userData.password}
+            required
+          />         
+        </div>
+        <div className="text-fields">
+          <TextField
+            label="Re-Type Password"
+            id="retypePassword"
+            name="retypePassword"
+            size="small"
+            type="password"
+            onChange={handleChange}
+            value={userData.retypePassword}
+           required
+          />
+        </div>
+        <div className="text-fields">
+          <TextField
+            label="Contact"
+            id="contact"
+            name="contact"
+            size="small"
+            onChange={handleChange}
+            value={userData.contact}
+            required
+          />
+        </div>        
+      </Container>
+      <Button type="submit" variant="text" style={{ margin: '0', Padding: '0' }}><span className="button1">Submit</span></Button>
+    </form>
   );
+
 }

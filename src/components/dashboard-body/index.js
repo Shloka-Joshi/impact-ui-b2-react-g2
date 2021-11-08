@@ -9,6 +9,7 @@ import { Suspense, lazy } from 'react';
 const Managepatient = lazy (() => import('../../pages/admin/managepatient'));
 const Managephysician = lazy (() => import('../../pages/admin/managephysician'));
 const Manageappointment = lazy (() => import('../../pages/admin/manageappointments'));
+const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
 
 const Patientdemographics = lazy (() => import('../../pages/patient/demographics'));
 const Patientvital = lazy (() => import('../../pages/patient/vital'));
@@ -16,8 +17,6 @@ const Immunization = lazy (() => import('../../pages/patient/immunization'));
 const  Card  = lazy (() => import('../../pages/patient/patient-dashboard'));
 
 function ShellComponent(props) {
-    let history = useHistory();
-    let { path } = useRouteMatch();
     let { id, role } = useParams();
     return (
         <Container className='container'>
@@ -33,7 +32,7 @@ function ShellComponent(props) {
                             <Managepatient />
                         </Route>
                         <Route exact path={`/dashboard/${id}/${role}`}>
-                            {/* admin dashboard */}
+                            <AdminDashboard />
                         </Route>
                     </Switch>
                 </Suspense>
