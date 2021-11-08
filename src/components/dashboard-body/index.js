@@ -12,6 +12,8 @@ const Manageappointment = lazy (() => import('../../pages/admin/manageappointmen
 const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
 
 const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
+const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
+const ViewAppointment = lazy(() => import('../../pages/physician/view-appointments'));
 
 function ShellComponent(props) {
 
@@ -36,12 +38,16 @@ function ShellComponent(props) {
                 </Suspense>
                 //_______________________________Physician Routes_______________________________________________________________________________ */}
                 : role == 'physician' ? 
+                <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
-                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
-                    <Route path={`/dashboard/:id}/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/ViewAppointment`}>
+                        <ViewAppointment />
+                    </Route>
+                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
                 </Switch> 
+                </Suspense>
                 //________________________________Patient Routes_________________________________________________________________*/}
 
                 : role == 'patient' ?

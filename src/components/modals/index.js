@@ -12,7 +12,7 @@ const style = {
   width: 400,
   bgcolor: 'background.paper',
   border: '1px solid #19a3c6',
-  borderRadius:10,
+  borderRadius:5,
   p: 4,
 };
 

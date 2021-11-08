@@ -8,12 +8,11 @@ import { Select, MenuItem, InputLabel } from "@mui/material";
 import { FormControl } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
-import EventCalendar from "../../../components/view-appointments"
+// import EventCalendar from "../../../components/view-appointments"
 import { getscheduledappointmentdata, addscheduledappointmentdata } from "../../../redux/actions/scheduler-action-creater";
 import { connect } from "react-redux";
 import PhyMain from "./physician-main-page";
 import { useParams } from "react-router-dom";
-import PhysicianList from "../../../utils/PhysiciansList.json";
 import { getrolespecificuserdata } from "../../../redux/actions/physician-action-creator";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -141,7 +140,7 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
                                     <PhyMain data={schedulerdata} />
                                     <br /><hr /><br />
                                     <Grid item xs={12} sm={12} lg={9} xl={9} md={9} >
-                                        <EventCalendar />
+                                        {/* <EventCalendar /> */}
                                     </Grid></center>
                             </div>
                         </form>
