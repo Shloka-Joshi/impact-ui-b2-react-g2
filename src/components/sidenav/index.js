@@ -11,12 +11,6 @@ import ScheduleIcon from '@mui/icons-material/Schedule';
 import Grid from '@material-ui/core/Grid';
 import '../../styles/common-style.css';
 import Profilecard from "./profile-card";
-const profilrcardDetails = {
-   Weight:"80KG",
-   Height:"170CM",
-   BloodPressure:"120/80"
-};
-
 function Sidenav(props) {
     let { id, role } = useParams();
 
@@ -24,7 +18,7 @@ function Sidenav(props) {
         <Container style={{padding:'10px 0 0'}} className='sidenav'>
             <div>
             <Grid>
-            <Profilecard style={{margin:'0 10px'}} cardData={profilrcardDetails} />
+            <Profilecard style={{margin:'0 10px'}}  />
             </Grid>
             </div>
             {/* For Admin___________________________________________________________________________________________ */}

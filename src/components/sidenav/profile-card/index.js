@@ -28,16 +28,18 @@ const useStyles = makeStyles((theme) => ({
     useEffect(()=>{
         dispatch(getdiagnosisreportsdata(id));
         if(diagnosis?.diagnosisreportsData?.length > 0 ){
+            console.log(vitals)
             setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
         }
         
         
-    },[]);
+    },[diagnosis]);
     
     console.log ("vitals",vitals);
     const user = useSelector((state) => state.auth);
+    console.log(user);
     const classes = useStyles()
-    let fullName = user.currentUser.firstName + ' ' + user.currentUser.lastName;
+    let fullName = user?.currentUser?.firstName + ' ' + user?.currentUser?.lastName;
     const intials = fullName.split(' ').map(name => name[0]).join('').toUpperCase();
 
     return (
