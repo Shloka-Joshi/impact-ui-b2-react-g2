@@ -10,7 +10,7 @@ export const initialState = {
   ImmunizationData : [],
   physicianData : [],
   patientData: [],
-  schedulerData:[]
+  schedulerData:[],
   currentUser:{},
   diagnosisreportsData:[],
 };
