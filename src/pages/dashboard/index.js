@@ -14,11 +14,11 @@ function Dashboard() {
       <Header />
       
       <Grid container>
-        <Grid item sm={2} xs={2} lg={2} md={2} xl={2}>
+        <Grid item sm={12} xs={12} lg={2} md={2} xl={2}>
             <Sidenav />
         </Grid>
 
-        <Grid item sm={10} xs={10} xl={10} lg={10} md={10}>
+        <Grid item sm={12} xs={12} xl={10} lg={10} md={10}>
             <ShellComponent />
         </Grid>
       </Grid>

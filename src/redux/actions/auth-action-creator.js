@@ -37,8 +37,9 @@ export const userLogin = (params) => {
       authToken: "",
       role: "",
       id:"",
+      currentUser:"",
     };
-    dispatch(LOAD());
+    dispatch(LOAD(params));
 
     axios
       .post("http://localhost:9999/login", params, config)
@@ -49,7 +50,7 @@ export const userLogin = (params) => {
           payload.authToken = response.data.accessToken;
           payload.role = response.data.user.role;
           payload.id = response.data.user.id;
-
+          payload.currentUser = response.data.user;
           dispatch(SUCCESS(payload));
 
         } else {
@@ -80,9 +81,10 @@ export  function Logout()
     };
 }
 
-export const LOAD = () => {
+export const LOAD = (params) => {
   return {
     type: ACTION_TYPE.LOAD,
+    payload:params
   };
 };
 

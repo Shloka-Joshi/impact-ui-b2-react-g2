@@ -205,16 +205,17 @@
   "scheduleAppointment": [],
   "diagnosisReports": [
     {
-      "userId": "",
-      "patientVitals": {},
-      "diagnosisDescription": "",
-      "diagnosisCode": "",
-      "labReport": "",
-      "medicationAndAllergies": {
-        "medication": {},
-        "allergies": {}
-      }
-    }
+      "userId":"r4hbT4f",
+      "patientVitals":{
+      "bloodPressure": "120/80",
+      "pulseRate":"75",
+      "temperature":"98.6",
+      "respiration":"108",
+       "height":"159CM",
+       "weight":"75kg"
+     },
+     "id":"1"
+   }
   ],
   "allergies": [
     {

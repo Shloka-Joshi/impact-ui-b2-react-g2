@@ -18,3 +18,7 @@ form {
 .text-fields{
   margin-bottom: 20px;
 }
+.error{
+  color: rgb(141, 15, 15);
+  text-align: center;
+}
