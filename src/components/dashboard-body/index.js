@@ -12,8 +12,8 @@ const Manageappointment = lazy (() => import('../../pages/admin/manageappointmen
 const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
 
 const AdminDashboard = lazy (()=> import('../../pages/admin/dashboard'));
-const ScheduleAppointment = lazy (() => import('../../pages/patient/schedular'));
 const ViewAppointment = lazy(() => import('../../pages/physician/view-appointments'));
+const ViewCalender = lazy(()=> import('../../pages/physician/dashboard'))
 
 function ShellComponent(props) {
 
@@ -44,7 +44,9 @@ function ShellComponent(props) {
                     <Route path={`/dashboard/:id/:role/ViewAppointment`}>
                         <ViewAppointment />
                     </Route>
-                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/calender`}>
+                        <ViewCalender />
+                    </Route>
                     <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
                 </Switch> 
                 </Suspense>

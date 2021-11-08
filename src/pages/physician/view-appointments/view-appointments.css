@@ -1,2 +1,7 @@
 /* @import "/node_modules/@fullcalendar/core/main.js"; */
 @import "/node_modules/@fullcalendar/daygrid/main.css";
+
+.fc-h-event{background-color: #19a3c6 !important;}
+  
+.fc .fc-toolbar.fc-header-toolbar{font-family:'Nunito';}
+.fc .fc-scrollgrid-liquid {font-family:'Nunito';}

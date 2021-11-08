@@ -8,38 +8,42 @@ import { Select, MenuItem, InputLabel } from "@mui/material";
 import { FormControl } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
-// import EventCalendar from "../../../components/view-appointments"
 import { getscheduledappointmentdata, addscheduledappointmentdata } from "../../../redux/actions/scheduler-action-creater";
 import { connect } from "react-redux";
-import PhyMain from "./physician-main-page";
 import { useParams } from "react-router-dom";
 import { getrolespecificuserdata } from "../../../redux/actions/physician-action-creator";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import FormHelperText from '@mui/material/FormHelperText';
+import BasicModal from "../../../components/modals";
+import "../../../styles/common-style.css"
 const useStyles = makeStyles(theme => ({
     formControl: {
         minWidth: 100,
     }
 }));
 
-function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrolespecificuserdata, getscheduledappointmentdata, addscheduledappointmentdata }) {
-        const [time, setTime] = React.useState('');
+function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, getrolespecificuserdata, getscheduledappointmentdata, addscheduledappointmentdata }) {
+    
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+      setOpen(false);
+    };
+    
+    const [time, setTime] = React.useState('');
 
         const handleChangetime = (event) => {
             setTime(event.target.value);
         };
 
         let { id, role } = useParams();
+        const [physicians, setPhysicianData] = React.useState(physiciandata);
+        const [selectedphysician, setPhysicianName] = React.useState('');
 
         useEffect(() => {
             getrolespecificuserdata("physician");
             getscheduledappointmentdata();
-        }, []);
-
-        const [physicians, setPhysicianData] = React.useState(physiciandata);
-        const [selectedphysician, setPhysicianName] = React.useState({
-            physician: { physicianId: '', physicianName: '' }
-        });
+        }, [physicians]);
 
         const handleChange = e => {
             setPhysicianName(prevState => ({
@@ -64,6 +68,7 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
                 status: "Pending"
             }
             addscheduledappointmentdata(body);
+            handleOpen();
         };
 
         const getSelectedPhysician = (p) => {
@@ -79,7 +84,7 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Grid container>
                             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                                <h1 className="page-title">Schedule an Appointment</h1>
+                                <h1 className="title" style={{margin:'0'}}> Schedule an Appointment</h1>
                             </Grid>
                         </Grid>
                     </Box>
@@ -107,9 +112,9 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
                                     <FormControl fullWidth lg={{ m: 1, minWidth: 120 }}>
                                         <FormHelperText>Select Time</FormHelperText>
                                             <Select fullWidth value={time} onChange={handleChangetime} id="time" name="time">
-                                                <MenuItem  value={'10am - 11am'}>10am - 11am</MenuItem>
-                                                <MenuItem  value={'12pm - 1pm'}>12pm - 1pm</MenuItem>
-                                                <MenuItem  value={'2pm - 3pm'}>2pm - 3pm</MenuItem>
+                                                <MenuItem key={"10"} value={'10am - 11am'}>10am - 11am</MenuItem>
+                                                <MenuItem key={"12"} value={'12pm - 1pm'}>12pm - 1pm</MenuItem>
+                                                <MenuItem key={"2"} value={'2pm - 3pm'}>2pm - 3pm</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </Grid>
@@ -131,21 +136,23 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
                                 <center>
                                     <Grid>
                                         <Grid maxWidth="sm" item xs={12} sm={12} lg={6} xl={6} md={6}>
+                                            
                                             <Button
                                                 type="submit"
                                                 variant="contained">Schedule Appointment</Button>
                                         </Grid>
                                     </Grid>
-                                    <br /><hr /><br />
-                                    <PhyMain data={schedulerdata} />
-                                    <br /><hr /><br />
-                                    <Grid item xs={12} sm={12} lg={9} xl={9} md={9} >
+                                    {/* <PhyMain data={schedulerdata} /> */}
                                         {/* <EventCalendar /> */}
-                                    </Grid></center>
+                                    </center>
                             </div>
                         </form>
                     </Box>
                 </Container>
+
+                <BasicModal state={open} onClose={handleClose}>
+                    Your appointment request has been sent
+                </BasicModal>
 
             </>
         );
@@ -156,7 +163,8 @@ function ScheduleAppointment({patientname, schedulerdata, physiciandata, getrole
         return {
             schedulerdata: state.Scheduleappointment.schedulerData,
             physiciandata: state.physiciandata.physicianData,
-            patientname: state.auth.data.firstName
+            patientname: state.auth.data.firstName,
+            errors: state.Scheduleappointment.errors
         };
     };
 

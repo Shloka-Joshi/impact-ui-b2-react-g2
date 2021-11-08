@@ -19,7 +19,7 @@ function Dashboard() {
         </Grid>
 
         <Grid item sm={10} xs={10} xl={10} lg={10} md={10}>
-            <ShellComponent />
+            <div className='shellComponent'><ShellComponent /></div>
         </Grid>
       </Grid>
 

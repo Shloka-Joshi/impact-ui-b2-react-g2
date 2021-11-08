@@ -17,12 +17,13 @@ axios.interceptors.request.use((req) => {
 export const getscheduledappointmentdata = (id=null) => {
   return (dispatch, getState) => {
     authToken = getState().auth.authToken;
+    dispatch(LOAD());
     axios.get(`http://localhost:9999/scheduleAppointment`)
       .then(res => {
         dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: res.data });
       })
       .catch(err => {
-        dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: err.response.data })
+        dispatch({ type: ACTION_TYPE.FAILURE, errors: err.response.data })
       })
   };
 }
@@ -38,12 +39,12 @@ export const addscheduledappointmentdata = (schedulerData) => {
             dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: res.data })
           })
           .catch(err => {
-            dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: err.response.data });
+            dispatch({ type: ACTION_TYPE.FAILURE, errors: err.response.data });
           })
       })
 
       .catch(err => {
-        dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: err.response.data });
+        dispatch({ type: ACTION_TYPE.FAILURE, errors: err.response.data });
       })
   }
 }
@@ -60,11 +61,11 @@ export const updateexistingschedulerrecord = (id,updatedschdulerData) => {
                   dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:res.data});  
               })
               .catch(err => {
-                  dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:err.response.data});
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
               })
           })
           .catch(err => {
-                  dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:err.response.data});
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
           })
   };
 }
@@ -81,11 +82,17 @@ export const deleteschedulerrecord = (id) => {
                   dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:res.data});  
               })
               .catch(err => {
-                  dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:err.response.data});
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
               })
           })
           .catch(err => {
-                  dispatch({type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData:err.response.data});
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
           })
   };
 }
+
+export const LOAD = () => {
+  return {
+    type: ACTION_TYPE.LOAD,
+  };
+};
