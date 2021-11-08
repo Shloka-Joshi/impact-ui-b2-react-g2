@@ -18,7 +18,7 @@ export const getrolespecificuserdata = (role) => {
     return (dispatch,getState) => {
 
         authToken = getState().auth.authToken;
-
+    dispatch(LOAD());
         axios.get(`http://localhost:9999/users?role=${role}`)
             .then(res => {
                 if(role == "physician")
@@ -29,9 +29,9 @@ export const getrolespecificuserdata = (role) => {
             })
             .catch(err => {
                 if(role == "physician")
-                    dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:err.response.data})
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data})
                 else if(role == "patient")
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
             })
     };
 }
@@ -48,11 +48,11 @@ export const addnewphysicianrecord = (physicianData) => {
                     dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
                 })
                 .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
                 })
             })
             .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
             })
     };
 }
@@ -70,11 +70,11 @@ export const updateexistingphysicianrecord = (id,updatedphysicianData) => {
                     dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
                 })
                 .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
                 })
             })
             .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
             })
     };
 }
@@ -91,11 +91,16 @@ export const deletephysicianrecord = (id) => {
                     dispatch({type: ACTION_TYPE.GET_PHYSICIAN_DATA, physicianData:res.data});  
                 })
                 .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
                 })
             })
             .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:err.response.data});
+                    dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
             })
     };
 }
+export const LOAD = () => {
+    return {
+      type: ACTION_TYPE.LOAD,
+    };
+  };

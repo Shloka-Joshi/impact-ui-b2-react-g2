@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import {Link} from 'react-router-dom';
+import { Modal } from "@mui/material";
 import '../../../styles/common-style.css'
 const buttonStyle = makeStyles({
     button: {

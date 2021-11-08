@@ -18,8 +18,8 @@ function Dashboard() {
             <Sidenav />
         </Grid>
 
-        <Grid item sm={12} xs={12} xl={10} lg={10} md={10}>
-            <ShellComponent />
+        <Grid item sm={10} xs={10} xl={10} lg={10} md={10}>
+            <div className='shellComponent'><ShellComponent /></div>
         </Grid>
       </Grid>
 

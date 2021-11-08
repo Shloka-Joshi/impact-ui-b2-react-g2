@@ -22,7 +22,7 @@ import { useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { createTheme , ThemeProvider } from "@mui/material/styles";
 
-
+import InitState from "../../components/initialize-redux-state"
 
 const textBoxStyle = makeStyles({
   textBox: {
@@ -182,9 +182,7 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
                       </Container>
 
                       <BasicModal state={open} onClose={handleClose}>
-                        {/* Null check */}
                         {data? data.message: errors?.message}
-                        {/* {data?.message} */}
                       </BasicModal>
                     </div>
                   </ThemeProvider>
@@ -195,6 +193,8 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
         </Box>
       </Container>
       <Footer />
+
+      <InitState/>
 
     </>
   );

@@ -18,7 +18,7 @@ export const registerUser = (params) => {
     axios
       .post("http://localhost:9999/register", params, config)
       .then((response) => {
-        payload.message = `Email Id: ${params.email} registered successfully`;
+        payload.message = `registered successfully`;
         payload.isRegistered = true;
         dispatch(SUCCESS(payload));
       })
@@ -51,9 +51,11 @@ export const userLogin = (params) => {
           payload.role = response.data.user.role;
           payload.id = response.data.user.id;
           payload.currentUser = response.data.user;
+          payload.firstName = response.data.user.firstName;
           dispatch(SUCCESS(payload));
 
         } else {
+
           payload.message = `${params.email} Not an approved user!`;
           dispatch(FAILURE(payload));
 

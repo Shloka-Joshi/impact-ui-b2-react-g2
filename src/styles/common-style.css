@@ -44,9 +44,18 @@
   /* --------paragraph text color---- */
   --para-text-color:#797d7d;
 
-  /* card colors */
+  /* outline colors */
+--out-line-color:#19a3c6;
+
+/* ---half white--- */
+--card-bg-white-color:#fefefe;
+
+/* ---form--feild--border-color------ */
+--text-feild-border:#0297b9;
 
 
+/* ------icon-colors----- */
+--solid-icon-color:#19a3c6;
 }
 .row-inner{
   width: 1200px;
@@ -57,7 +66,51 @@
 .remove-text-decoration{
  text-decoration: none;
 }
+.table-style{
+  margin-top: 30px;
+  padding: 10px;
+  font-family:'Nunito';
+  border-collapse: collapse;
+  border:1px solid gray;
+text-align: center;
+}
+.table-style th{
+  padding: 10px;
+  border-bottom: 1px solid var(--solid-button-color);
+}
 
+.table-style td{
+  padding: 10px;
+}
+.page-title{
+  background-color: var(--heading-bg-color);
+  color: var(--heading-text-color);
+  font-family:'Nunito';
+  font-weight: 700;
+  border-radius: 10px;
+  margin: 5px 0 0;
+  font-size: 1.5rem;
+  padding: 5px;
+  outline: 1px solid var(--out-line-color);
+  border: 2px solid #fff;
+}
+.shellComponent{
+  margin: 20px 0 50px;
+}
+
+.title {
+  background-color: rgb(247, 242, 242);
+  color: #19a3c6;
+  text-align: center;
+  padding: 5px;
+  border-radius: 2rem;
+}
+.inside-page-cards{
+  background-color: var(--card-bg-white-color);
+  padding: 10px;
+  border-radius: 10px;
+  border:1px solid #212121;
+}
 
 .solid-button{
   background-color: var(--solid-button-color);
@@ -85,11 +138,22 @@
   border: 2px solid #fff;
 
 }
+.card-style{
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+  border-radius: 30%;
+}
 
 .color-link{
   color: var(--link-text-color) ;
 }
-
+.modal-style{
+  font-family:'Nunito';
+  /* color: red; */
+  text-transform: capitalize;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+}
 @media only screen and (max-width: 600px)
 {
 .row-inner{width: 100%;}  

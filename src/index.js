@@ -12,6 +12,7 @@ import DemographicsDataReducer from "./redux/reducers/demographics-reducer";
 import ImmunizationDataReducer from "./redux/reducers/immunization-reducer";
 import PhysicianDataReducer from "./redux/reducers/physician-reducer";
 import PatientDataReducer from "./redux/reducers/patient-reducer";
+import ScheduleAppointmentReducer from "./redux/reducers/scheduler-reducer";
 import DiagnosisreportsDataReducer from "./redux/reducers/diagnosis-reports-reducer";
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   demographicsdata : DemographicsDataReducer,
   immunization :ImmunizationDataReducer,
   diagnosisreportsdata:DiagnosisreportsDataReducer,
+  Scheduleappointment: ScheduleAppointmentReducer
 });
 
 let store = createStore(rootReducer, applyMiddleware(thunk));
