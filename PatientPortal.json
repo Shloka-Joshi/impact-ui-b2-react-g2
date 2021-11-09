@@ -194,27 +194,146 @@
       "approvedUser": false,
       "registrationDate": "2021-11-03T05:01:47.024Z",
       "id": "XVYKKCP"
+    },
+    {
+      "email": "sam@gmail.com",
+      "password": "$2a$10$tFnRsPmogdLvpyI.w.ONKeFvoA9Yi3hO0ijzxujrUPggwl/yBTd7y",
+      "firstName": "doctor",
+      "lastName": "sam",
+      "dob": "2021-11-23",
+      "contact": "1212121212",
+      "cnfPassword": "12345678",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-08T11:44:44.717Z",
+      "id": "5ckD7Af"
+    },
+    {
+      "email": "Patient1@gmail.com",
+      "password": "$2a$10$IgGOs.UcvNVEoYLbUL4.4uCrKCF34iERHfEoHkz/vdJ8jlwrnlqlS",
+      "firstName": "Patient",
+      "lastName": "1",
+      "dob": "1995-04-09",
+      "contact": "9876543210",
+      "cnfPassword": "12345678",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T07:35:57.740Z",
+      "id": "BUIZMS8"
     }
   ],
-  "patientDemographics": [],
+  "patientDemographics": [
+    {
+      "firstName": "aa",
+      "lastName": "a",
+      "dob": "2021-11-10",
+      "gender": "Male",
+      "ethnicity": "qwqwq",
+      "education": "wqw",
+      "occupation": "qwqw",
+      "contact": "1212121",
+      "medicalHistory": "21",
+      "familyMedicalHistory": "2222",
+      "surgeries": "22",
+      "insuranceProvider": "222",
+      "address": "212121",
+      "userId": "8DI5jby",
+      "UpdatedDate": "2021-11-09T03:17:16.422Z",
+      "id": 1
+    },
+    {
+      "firstName": "Patient",
+      "lastName": "1",
+      "dob": "1995-09-04",
+      "gender": "Male",
+      "ethnicity": "Indian",
+      "education": "B-tech",
+      "occupation": "Engineer",
+      "contact": "9876543210",
+      "medicalHistory": "none",
+      "familyMedicalHistory": "none",
+      "surgeries": "none",
+      "insuranceProvider": "none",
+      "address": "Bangalore",
+      "userId": "BUIZMS8",
+      "UpdatedDate": "2021-11-09T07:46:42.181Z",
+      "id": 2
+    }
+  ],
   "medicationAndAllergies": {
     "medication": [],
     "allergies": []
   },
-  "immunization": [],
-  "scheduleAppointment": [],
+  "immunization": [
+    {
+      "userId" : "BUIZMS8",
+      "covid" :[ 
+      {
+      "vaccineName" : "Covishiled",
+      "numberOfDoses" : "2",
+      "vaccinatedOn" : "02/05/2021"
+      }
+       
+      ],
+    "others" :[ {
+      "vaccineName" : "NASOVAC",
+      "numberOfDoses" : "1",
+      "vaccinatedOn" : "02/10/2021"
+    }],
+    "id" : "1"
+    }
+  ],
+  "scheduleAppointment": [
+    {
+      "meetingTitle": "fvere",
+      "reason": "hghgh",
+      "time": "12pm - 1pm",
+      "date": "2021-11-10",
+      "physicianName": "doctor",
+      "patientId": "8DI5jby",
+      "physicianId": "5ckD7Af",
+      "patientname": "a",
+      "status": "Pending",
+      "id": 1
+    },
+    {
+      "meetingTitle": "Fever",
+      "reason": "Chills, shivering, shaking, Body aches and headaches",
+      "time": "10am - 11am",
+      "date": "2021-11-10",
+      "physicianName": "doctor",
+      "patientId": "BUIZMS8",
+      "physicianId": "5ckD7Af",
+      "patientname": "Patient",
+      "status": "Pending",
+      "id": 2
+    }
+  ],
   "diagnosisReports": [
     {
-      "userId": "",
-      "patientVitals": {},
-      "diagnosisDescription": "",
-      "diagnosisCode": "",
-      "labReport": "",
-      "medicationAndAllergies": {
-        "medication": {},
-        "allergies": {}
-      }
-    }
+      "userId": "8DI5jby",
+      "patientVitals": {
+        "bloodPressure": "120/80",
+        "pulseRate": "75",
+        "temperature": "98.6",
+        "respiration": "108",
+        "height": "159CM",
+        "weight": "75kg"
+      },
+      "id": "1"
+    },
+    {
+      "userId" : "BUIZMS8",
+      "patientVitals": {
+        "bloodPressure" : "120/80",
+        "pulseRate" : "74",
+        "temperature" : "97.5",
+        "respiration" : "108",
+        "height" : "153cm",
+        "weight" : "65kg"
+      },
+      "id" : "2"
+     }
   ],
   "allergies": [
     {

@@ -1,4 +1,6 @@
 import { Button } from "@material-ui/core";
+import { Box } from "@mui/system";
+import { Container } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import  { getscheduledappointmentdata,updateexistingschedulerrecord,deleteschedulerrecord } from "../../../redux/actions/scheduler-action-creater";
@@ -41,8 +43,12 @@ function PhyMain({ appointmentsData,getscheduledappointmentdata,updateexistingsc
    const headers = ["Meeting Title", "Patient Name", "Scheduled Date", "Scheduled Time","Actions"]
     return (
         <>
-            <h1 className="title" style={{margin:'0'}}>New Appointments Request </h1>
+            <h2 className="header-title" style={{margin:'0'}}>New Appointments Request</h2>
+
             <center>
+            <Container component="main" maxWidth="md">
+                    <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                <div className='inside-page-cards' style={{paddingLeft:'20px',paddingRight:'20px'}}>
             <table className="table-style">
                 {
                     headers.map((item) =>
@@ -64,6 +70,9 @@ function PhyMain({ appointmentsData,getscheduledappointmentdata,updateexistingsc
                     ))
                 }
             </table>
+            </div>
+            </Box>
+            </Container>
             </center>
 
             <BasicModal state={open1} onClose={handleClose1}>

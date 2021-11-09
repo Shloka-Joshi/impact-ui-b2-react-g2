@@ -21,8 +21,8 @@ import Header from "./header/index";
 import { useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { createTheme , ThemeProvider } from "@mui/material/styles";
-
-import InitState from "../../components/initialize-redux-state"
+// import InitState from "../../components/initialise-redux-states";
+import InitState from "../../components/initialize-redux-state";
 
 const textBoxStyle = makeStyles({
   textBox: {

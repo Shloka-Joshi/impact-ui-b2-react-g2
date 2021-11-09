@@ -21,21 +21,21 @@ const useStyles = makeStyles((theme) => ({
 
 
  export default function Profilecard({  ...props }) {
-    const diagnosis = useSelector((state) => state.diagnosisreportsdata);
+    // const diagnosis = useSelector((state) => state.diagnosisreportsdata);
     const [vitals, setvitals] = React.useState()
     const dispatch = useDispatch()
     let {id} = useParams ();
-    useEffect(()=>{
-        dispatch(getdiagnosisreportsdata(id));
+    // useEffect(()=>{
+    //     dispatch(getdiagnosisreportsdata(id));
        
-           },[]);
+    //        },[]);
 
-    useEffect(()=>{
-        if(diagnosis?.diagnosisreportsData?.length > 0 ){
-            console.log(vitals)
-            setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
-        }
-    },[diagnosis])
+    // useEffect(()=>{
+    //     if(diagnosis?.diagnosisreportsData?.length > 0 ){
+    //         console.log(vitals)
+    //         setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
+    //     }
+    // },[diagnosis])
     
     console.log ("vitals",vitals);
     const user = useSelector((state) => state.auth);
@@ -50,35 +50,20 @@ const useStyles = makeStyles((theme) => ({
             <div className="profile-image" >
                 {intials}
             </div>
-            <h2 className="usercard-title" >{user.role}</h2>
-            <p>{user?.currentUser?.firstName} {user?.currentUser?.lastName}</p>
+            <h2 className="usercard-title" >
+                {fullName}
+            </h2>
+            <p></p>
             
             {user.role === 'patient' ?
                 <>
-                    
-                    <span className="profile-data">Weight:{vitals?.weight }</span>
-                    <span className="profile-data">Height:{vitals ?.height}</span>
-                    <span className="profile-data">Blood Pressure:{vitals ?.bloodPressure}</span>
 
                 </> : ''}
             {user.role === 'physician' ?
                 <>
                    
-                    {/* <p>Patients:</p><span>{cardData.Patients}</span> */}
                 </>
                 : ''}
         </div>
     )
 }
-// const mapStateToProps = (state) => {
-//     return {
-//       data: state.patientdata.patientData,
-//     };
-//   };
-//  const mapdispatchToProps = (dispatch) => {
-//     return {
-//         getdiagnosisreportsdata: (id) => dispatch(getdiagnosisreportsdata(id)),
-        
-//     };
-//   };
-//   export default connect( mapdispatchToProps)(Profilecard);

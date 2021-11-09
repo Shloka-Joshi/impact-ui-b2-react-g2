@@ -77,19 +77,19 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
           <Grid container>
             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-              <h1 className="title-demographics">Demographics </h1>
+              <h2 className="header-title" style={{margin:'0'}}>Demographics </h2>
             </Grid>
           </Grid>
         </Box>
       </Container>
-      <Container className="section-form" maxWidth='md' overflow="auto">
+      <Container className="inside-page-cards" maxWidth='md' overflow="auto" style={{marginTop:'16px'}}>
       <Container className={classes.container} >
         <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="lg">
           <CssBaseline />
           <Box >
-        <Box component="form" name="demographics" onSubmit={SubmitDemographicsDetails}   sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
+        <Box component="form" name="demographics" onSubmit={SubmitDemographicsDetails}  style={{padding:'0px'}}>
+          <Grid container spacing={2} style={{padding:'0px'}}>
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="firstName" name="firstName" 

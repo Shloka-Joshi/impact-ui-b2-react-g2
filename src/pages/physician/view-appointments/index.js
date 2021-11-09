@@ -41,6 +41,8 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   return (
     <div>
       <Container maxWidth="sm">
+      <h2 className="header-title" style={{margin:'0'}}>All Appointments</h2>
+      <div  className='inside-page-cards' style={{paddingLeft:'20px',paddingRight:'20px',marginTop:'30px'}}>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -50,6 +52,7 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
           }
           eventClick={handeleDateClick}
         ></FullCalendar>
+        </div>
       </Container>
 
       <BasicModal style={{ border: '0', borderRadius: '20px' }} state={open} onClose={handleClose} >

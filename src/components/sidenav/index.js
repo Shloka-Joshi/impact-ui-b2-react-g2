@@ -18,7 +18,7 @@ function Sidenav(props) {
         <Container style={{padding:'10px 0 0'}} className='sidenav'>
             <div>
             <Grid>
-            <Profilecard style={{margin:'0 10px'}}  />
+            {/* <Profilecard style={{margin:'0 10px'}}  /> */}
             </Grid>
             </div>
             {/* For Admin___________________________________________________________________________________________ */}

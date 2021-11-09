@@ -3,18 +3,14 @@
     
 }
 
-.section-form{
+/* .section-form{
     border: 2px solid var(--card-bg-color2);
     border-radius: 5px;
     margin: 10px 0;
     font-family:'Nunito';
     box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
-}
+} */
 
-.title-demographics{
-    background-color: white;
-    color: var(--heading-solid-text-color);
-}
 ul
 {
     margin: 5px 0;

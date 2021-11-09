@@ -113,12 +113,12 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
                           <Grid container>
                             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                              <h1 className="title-immunization">Immunization Details </h1>
+                              <h2 className="header-title" style={{margin:'0'}}> Immunization Details</h2>
                             </Grid>
                           </Grid>
                         </Box>
                       </Container>
-                         <Container component="main" maxWidth="lg" className="section-form-immunization">
+                         <Container component="main" maxWidth="md" style={{marginTop:'15px'}} className="inside-page-cards">
                     <Box  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
                         <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
                             <Box>
@@ -238,13 +238,13 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
                                         </Grid>
                                     </Grid>
                                 </Box>
-                              
+                              <center>
                                 <Grid item sm={4}>
                                     <Button 
                                     styles={{ padding: '0', margin: '30' }} type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
                                     <div className='solid-button'>Submit</div>
                                     </Button>
-                                    </Grid>
+                                    </Grid></center>
                           
                             </Box>
                           

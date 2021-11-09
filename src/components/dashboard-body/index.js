@@ -63,7 +63,9 @@ function ShellComponent(props) {
                         <Route path={`/dashboard/:id/:role/demographics`} component={Patientdemographics} ></Route>
                         <Route path={`/dashboard/:id/:role/vital`} ><Patientvital/></Route>
                         <Route path={`/dashboard/:id/:role/immunization`} ><Immunization /></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/ScheduleNewAppointment`}>
+                            <ScheduleAppointment />
+                        </Route>
                     </Switch>
                     </Suspense>
                     : 'Not found'}
