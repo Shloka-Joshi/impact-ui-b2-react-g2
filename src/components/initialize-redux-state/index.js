@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getrolespecificuserdata} from "../../redux/actions/physician-action-creator";
-import { getpatientdata } from "../../redux/actions/patient-action-creator";
-import { getscheduledappointmentdata} from "../../redux/actions/scheduler-action-creater";
+import { getrolespecificuserdata} from "../../redux/actions/common-action-creator";
+import { getpatientdata } from "../../redux/actions/common-action-creator";
+import { getscheduledappointmentdata} from "../../redux/actions/common-action-creator";
 import { connect } from "react-redux";
 const InitState = ({isLoggedIn,getrolespecificuserdata,getpatientdata,getscheduledappointmentdata}) => {
     

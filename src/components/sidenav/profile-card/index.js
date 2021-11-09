@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { useSelector , useDispatch} from 'react-redux';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
-import { getdiagnosisreportsdata } from '../../../redux/actions/diagnosis-reports-action-creator';
+import { getdiagnosisreportsdata } from '../../../redux/actions/common-action-creator';
 import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,21 +21,21 @@ const useStyles = makeStyles((theme) => ({
 
 
  export default function Profilecard({  ...props }) {
-    // const diagnosis = useSelector((state) => state.diagnosisreportsdata);
+    const diagnosis = useSelector((state) => state.diagnosisreportsdata);
     const [vitals, setvitals] = React.useState()
     const dispatch = useDispatch()
     let {id} = useParams ();
-    // useEffect(()=>{
-    //     dispatch(getdiagnosisreportsdata(id));
+    useEffect(()=>{
+        dispatch(getdiagnosisreportsdata(id));
        
-    //        },[]);
+           },[]);
 
-    // useEffect(()=>{
-    //     if(diagnosis?.diagnosisreportsData?.length > 0 ){
-    //         console.log(vitals)
-    //         setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
-    //     }
-    // },[diagnosis])
+    useEffect(()=>{
+        if(diagnosis?.diagnosisreportsData?.length > 0 ){
+            console.log(vitals)
+            setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
+        }
+    },[diagnosis])
     
     console.log ("vitals",vitals);
     const user = useSelector((state) => state.auth);

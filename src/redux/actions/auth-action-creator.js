@@ -83,10 +83,9 @@ export  function Logout()
     };
 }
 
-export const LOAD = (params) => {
+export const LOAD = () => {
   return {
     type: ACTION_TYPE.LOAD,
-    payload:params
   };
 };
 

@@ -6,7 +6,7 @@ import { Box } from '@mui/system';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import EventIcon from '@mui/icons-material/Event';
 import AddModeratorIcon from '@mui/icons-material/AddModerator';
-import {getAppointments} from '../../../redux/actions/appointments-actions'
+// import {getAppointments} from '../../../redux/actions/appointments-actions'
 import { useDispatch,useSelector } from 'react-redux';
 
   function Card(props) {

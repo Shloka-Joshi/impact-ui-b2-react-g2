@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { Container } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-import  { getscheduledappointmentdata,updateexistingschedulerrecord,deleteschedulerrecord } from "../../../redux/actions/scheduler-action-creater";
+import  { getscheduledappointmentdata,updateexistingschedulerrecord,deleteschedulerrecord } from "../../../redux/actions/common-action-creator";
 import { connect } from "react-redux";
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -59,7 +59,7 @@ function PhyMain({ appointmentsData,getscheduledappointmentdata,updateexistingsc
                     appointmentsTableData.map((item) => (
                         <tr> 
                             <td>{item.meetingTitle}</td>
-                            <td>{item.patientId}</td>
+                            <td>{item.patientname}</td>
                             <td>{item.date}</td>
                             <td> {item.time}</td>
                             <td>

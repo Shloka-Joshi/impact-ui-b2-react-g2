@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid'
 import "./event-calender.css"
-import { getscheduledappointmentdata } from "../../redux/actions/scheduler-action-creater.js";
+import { getscheduledappointmentdata } from "../../redux/actions/common-action creator";
 import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
 import interactionPlugin from "@fullcalendar/interaction";

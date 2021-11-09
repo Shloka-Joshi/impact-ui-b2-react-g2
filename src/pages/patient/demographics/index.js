@@ -10,7 +10,7 @@ import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { connect,useSelector ,useDispatch} from "react-redux";
-import {adddemographicsdata,getdemographicsdata} from "../../../redux/actions/demographics-action-creator";
+import {adddemographicsdata,getdemographicsdata} from "../../../redux/actions/common-action-creator";
 import { FormControl } from "@mui/material";
 import { InputAdornment } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

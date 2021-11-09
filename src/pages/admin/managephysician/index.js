@@ -10,9 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import './managephysician.css';
 import { connect } from "react-redux";
-import {getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord} from '../../../redux/actions/physician-action-creator';
+import {getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord,registerUser} from '../../../redux/actions/common-action-creator';
 import Addphysician from './add-physician/index';
-import { Link } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -36,7 +35,7 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
 ];
 
-function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord}) {
+function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,registerUser,updateexistingphysicianrecord}) {
     
     const tableData = data;
 
@@ -50,7 +49,7 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypepassword:""}});
+    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypePassword:""}});
     const [open, setOpen] = React.useState(false);
     const [selectedActionState, getSelectedAction] = React.useState({action:"",id:''});
     
@@ -106,9 +105,9 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
         setFormValue(prevState => ({
             formData: {...prevState.formData},
         }));
-        let body = {...addFormValue.formData,role:'physician',registrationDate:new Date()}
+        let body = {...addFormValue.formData,role:'physician',approvedUser:true,registrationDate:new Date()}
         if(selectedActionState.action == "add")
-            addnewphysicianrecord(body);
+            registerUser(body);
         if(selectedActionState.action == "edit")
             updateexistingphysicianrecord(selectedActionState.id,body)
         handleClose();
@@ -246,7 +245,7 @@ const mapStateToProps = (state) => {
     return {
         getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         deletephysicianrecord: (id) => dispatch(deletephysicianrecord(id)),
-        addnewphysicianrecord: (data) => dispatch(addnewphysicianrecord(data)),
+        registerUser: (data) => dispatch(registerUser(data)),
         updateexistingphysicianrecord: (id,data) => dispatch(updateexistingphysicianrecord(id,data))
     };
   };

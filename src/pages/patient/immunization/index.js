@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { InputAdornment } from "@mui/material";
 import { makeStyles } from '@material-ui/core';
 import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
-import { getrolespecificuserdata,PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/immunization-action-creator";
+import { PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/common-action-creator";
 import { connect,useDispatch, useSelector } from "react-redux";
 import BasicModal from "../../../components/modals";
 import * as Yup from 'yup';
@@ -56,7 +56,7 @@ function a11yProps(index) {
   };
 }
 
-function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificuserdata,addimmunizationdata,updateexistingphysicianrecord}) {
+function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationdata,updateexistingphysicianrecord}) {
 
     let { id, role } = useParams();
     console.log(id);
@@ -391,7 +391,7 @@ const mapStateToProps = (state) => {
   };
   const mapdispatchToProps = (dispatch) => {
     return {
-        getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+        // getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         addimmunizationdata: (data) => dispatch(addimmunizationdata(data)),
     };
   };

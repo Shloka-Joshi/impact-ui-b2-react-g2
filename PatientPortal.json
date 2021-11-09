@@ -28,18 +28,6 @@
       "registrationDate": "2021-10-28T16:11:17.339Z"
     },
     {
-      "email": "Shloka.Joshi@gmail.com",
-      "password": "$2a$10$0GQcm5zZG18b.qz/OEzOVeXCdIg8Jb/OfHgXT9Z04V6QKjYilZnri",
-      "firstName": "Shloka",
-      "lastName": "Joshi",
-      "dob": "1998-04-28",
-      "contact": "1234567890",
-      "role": "admin",
-      "approvedUser": true,
-      "registrationDate": "2021-10-25T07:42:18.479Z",
-      "id": "ewrwVbO"
-    },
-    {
       "email": "anjali.k@ytup.com",
       "password": "$2a$10$wZ85gNI9h9j5I3Mu5gEYtOcnfRlt1y5ISMwwgIAAZQUH4JUETLWmG",
       "firstName": "anjali",
@@ -220,6 +208,59 @@
       "approvedUser": true,
       "registrationDate": "2021-11-09T07:35:57.740Z",
       "id": "BUIZMS8"
+    },
+    {
+      "email": "Shloka.Joshi@gmail.com",
+      "password": "$2a$10$hUJhJg9FyCbIQjq8M8BxMe/whFo22dDr2v5ZG69HZBskadiT4uHwG",
+      "firstName": "Shloka",
+      "lastName": "Joshi",
+      "dob": "1999-02-12",
+      "contact": "1234567890",
+      "cnfPassword": "Shloka@1",
+      "role": "admin",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T10:16:50.993Z",
+      "id": "PRjpx6I"
+    },
+    {
+      "email": "queen@gmail.com",
+      "password": "$2a$10$pBezCwVT6e.MzDlpWhWah.7yC97BvxEYMzDHLnKdHYfragImYcIIe",
+      "firstName": "queen",
+      "lastName": "j",
+      "dob": "1999-02-02",
+      "contact": "1234567890",
+      "cnfPassword": "queen@12",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-09T12:23:16.348Z",
+      "id": "41PgIMS"
+    },
+    {
+      "email": "marcell@gmail.com",
+      "password": "$2a$10$A0YFToyXgZLoLqnj3q.dJuifQgHDZyQFug0p3PYWmXlTVWLAaPMWS",
+      "firstName": "marcell",
+      "lastName": "jarad",
+      "dob": "1999-03-22",
+      "contact": "1234567890",
+      "retypepassword": "",
+      "retypePassword": "marcell@123",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T12:33:03.786Z",
+      "id": "s5-uyuQ"
+    },
+    {
+      "email": "loka@gmail.com",
+      "password": "$2a$10$oW20XKVaHfZc1S9JoO3eE.sNN1AFskmnKB4W/BMdCPMkqPWs2mVqG",
+      "firstName": "loka",
+      "lastName": "p",
+      "dob": "1977-04-28",
+      "contact": "1234567890",
+      "retypePassword": "loka@123",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T12:36:41.017Z",
+      "id": "O0jKLsz"
     }
   ],
   "patientDemographics": [
@@ -266,21 +307,22 @@
   },
   "immunization": [
     {
-      "userId" : "BUIZMS8",
-      "covid" :[ 
-      {
-      "vaccineName" : "Covishiled",
-      "numberOfDoses" : "2",
-      "vaccinatedOn" : "02/05/2021"
-      }
-       
+      "userId": "BUIZMS8",
+      "covid": [
+        {
+          "vaccineName": "Covishiled",
+          "numberOfDoses": "2",
+          "vaccinatedOn": "02/05/2021"
+        }
       ],
-    "others" :[ {
-      "vaccineName" : "NASOVAC",
-      "numberOfDoses" : "1",
-      "vaccinatedOn" : "02/10/2021"
-    }],
-    "id" : "1"
+      "others": [
+        {
+          "vaccineName": "NASOVAC",
+          "numberOfDoses": "1",
+          "vaccinatedOn": "02/10/2021"
+        }
+      ],
+      "id": "1"
     }
   ],
   "scheduleAppointment": [
@@ -293,7 +335,7 @@
       "patientId": "8DI5jby",
       "physicianId": "5ckD7Af",
       "patientname": "a",
-      "status": "Pending",
+      "status": "accepted",
       "id": 1
     },
     {
@@ -307,6 +349,18 @@
       "patientname": "Patient",
       "status": "Pending",
       "id": 2
+    },
+    {
+      "meetingTitle": "covid test",
+      "reason": "covid symptoms",
+      "time": "10am - 11am",
+      "date": "2021-11-11",
+      "physicianName": "PurcellLuka123",
+      "patientId": "BUIZMS8",
+      "physicianId": "2",
+      "patientname": "Patient",
+      "status": "Pending",
+      "id": 3
     }
   ],
   "diagnosisReports": [
@@ -323,17 +377,17 @@
       "id": "1"
     },
     {
-      "userId" : "BUIZMS8",
+      "userId": "BUIZMS8",
       "patientVitals": {
-        "bloodPressure" : "120/80",
-        "pulseRate" : "74",
-        "temperature" : "97.5",
-        "respiration" : "108",
-        "height" : "153cm",
-        "weight" : "65kg"
+        "bloodPressure": "120/80",
+        "pulseRate": "74",
+        "temperature": "97.5",
+        "respiration": "108",
+        "height": "153cm",
+        "weight": "65kg"
       },
-      "id" : "2"
-     }
+      "id": "2"
+    }
   ],
   "allergies": [
     {

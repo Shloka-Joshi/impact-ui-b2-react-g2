@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/patient-action-creator";
+import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/common-action-creator";
 import SearchBar from "material-ui-search-bar";
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';

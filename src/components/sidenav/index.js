@@ -18,7 +18,7 @@ function Sidenav(props) {
         <Container style={{padding:'10px 0 0'}} className='sidenav'>
             <div>
             <Grid>
-            {/* <Profilecard style={{margin:'0 10px'}}  /> */}
+            <Profilecard style={{margin:'0 10px'}}  />
             </Grid>
             </div>
             {/* For Admin___________________________________________________________________________________________ */}
@@ -51,7 +51,7 @@ function Sidenav(props) {
                 <div className='item'>
                     <HomeIcon className='icon' />
                     <h6 className='text'>
-                        <Link to={`/dashboard/${id}/${role}/calender`} className='link'>
+                        <Link to={`/dashboard/${id}/${role}`} className='link'>
                             Dashboard</Link></h6>
                 </div>
                 <div className='item' style={{ fontFamily: 'Nunito' }}>

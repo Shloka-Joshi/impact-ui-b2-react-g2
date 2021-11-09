@@ -10,7 +10,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { Typography } from "../../utils/mui";
 import { Container } from "../../utils/mui";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { registerUser } from "../../redux/actions/auth-action-creator";
+import { registerUser } from "../../redux/actions/common-action-creator";
 import { connect } from "react-redux";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CheckIcon from '@mui/icons-material/Check';

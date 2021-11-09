@@ -48,7 +48,7 @@ function ShellComponent(props) {
                     <Route path={`/dashboard/:id/:role/ViewAppointment`}>
                         <ViewAppointment />
                     </Route>
-                    <Route path={`/dashboard/:id/:role/calender`}>
+                    <Route path={`/dashboard/:id/:role`}>
                         <ViewCalender />
                     </Route>
                     <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
