@@ -44,14 +44,13 @@ function ShellComponent(props) {
                 : role == 'physician' ? 
                 <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
-                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
                     <Route path={`/dashboard/:id/:role/ViewAppointment`}>
                         <ViewAppointment />
                     </Route>
                     <Route path={`/dashboard/:id/:role`}>
                         <ViewCalender />
                     </Route>
-                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/`}></Route>
                 </Switch> 
                 </Suspense>
                 //________________________________Patient Routes_________________________________________________________________*/}

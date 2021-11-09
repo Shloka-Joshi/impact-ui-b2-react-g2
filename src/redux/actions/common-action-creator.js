@@ -14,7 +14,7 @@ axios.interceptors.request.use((req) => {
   });
 
 export const registerUser = (params) => {
-  return (dispatch) => {
+  return (dispatch,getState) => {
     let payload = {
       message: "",
       isRegistered:false
@@ -25,6 +25,10 @@ export const registerUser = (params) => {
       .post("http://localhost:9999/register", params, config)
       .then((response) => {
         payload.message = `registered successfully`;
+        payload.isLoggedIn = getState().auth.isLoggedIn;
+        payload.authToken = getState().auth.authToken;
+        payload.role = getState().auth.role;
+        payload.currentUser = getState().auth.currentUser;
         payload.isRegistered = true;
         dispatch(SUCCESS(payload));
       })

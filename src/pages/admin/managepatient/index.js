@@ -25,15 +25,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../../../styles/common-style.css';
+import { Container } from '@material-ui/core';
 
 const columns = [
-    { id: 'sno', label: 'Serial No.', padding: '0', minWidth: 170, align: 'center' },
-    { id: 'firstName', label: 'First Name', padding: '0',minWidth: 170, align: 'center' },
-    { id: 'lastName', label: 'Last Name', minWidth: 170, padding: '0',align: 'center' },
-    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center',padding: '0' },
-    { id: 'email', label: 'Email', minWidth: 170, align: 'center',padding: '0'},
-    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center',padding: '0'},
-    { id: 'action', label: 'Action', minWidth: 300,align: 'center',padding: '0'}
+    { id: 'sno', label: 'Serial No.', padding: '0', minWidth: 50, align: 'center' },
+    { id: 'firstName', label: 'First Name', padding: '0',minWidth: 70, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 70, padding: '0',align: 'center' },
+    { id: 'contact', label: 'Contact', minWidth: 100, align: 'center',padding: '0' },
+    { id: 'email', label: 'Email', minWidth: 100, align: 'center',padding: '0'},
+    { id: 'action', label: 'Action', minWidth: 200,align: 'center',padding: '0'}
 ];
 
 function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,updateexistingpatientrecord}) {
@@ -130,9 +130,20 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
 
     return (
         <Grid>
-                <h2 className="header-title" style={{ margin: '0' }}> Patient Records</h2>
+            <Container component="main" maxWidth="sm">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Grid container>
+                            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                                <h2 className="header-title" style={{margin:'0'}}> Patient Records</h2>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Container>
 
-          <div className="inside-page-cards" style={{marginTop:'16px'}}>
+                <Container component="main" maxWidth="md">
+                    <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className='inside-page-cards' style={{paddingRight:'25px',paddingLeft:'25px'}}>
+ 
           <div className="top-toolbar">
                 <SearchBar
                     className="searchBar"
@@ -181,7 +192,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                                     <TableCell 
                                         key={column.id}
                                         align={column.align}
-                                        style={{ minWidth: column.minWidth, padding: column.padding }}
+                                        style={{ minWidth: column.minWidth, padding:'6px',background: '#d9edf3' }}
                                     >
                                         {column.label}
                                     </TableCell>
@@ -205,13 +216,13 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                                             
                                             : <TableCell key={column.id} align={column.align} style={{padding:column.padding}}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
                                                         <EditIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
                                                         <DeleteIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
                                                         <VisibilityIcon />
                                                     </Fab>
                                                     </Box>
@@ -235,7 +246,8 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                 />
             </Paper>
           </div>
-
+                                </Box>
+                                </Container>
         </Grid>
     );
 }

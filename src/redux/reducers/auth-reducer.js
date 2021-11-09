@@ -9,11 +9,13 @@ const authReducer = (state = initialState, actions) => {
 
     case ACTION_TYPE.SUCCESS:
       return {
+        ...state,
         data: actions.data,
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
         currentUser:actions.data.currentUser,
+      
         
       };
 

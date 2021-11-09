@@ -21,14 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 
  export default function Profilecard({  ...props }) {
-    const diagnosis = useSelector((state) => state.diagnosisreportsdata);
+    let {id,role} = useParams ();
+
     const [vitals, setvitals] = React.useState()
     const dispatch = useDispatch()
-    let {id} = useParams ();
     useEffect(()=>{
+        if(role == "patient")
         dispatch(getdiagnosisreportsdata(id));
        
            },[]);
+    const diagnosis = useSelector((state) => state.diagnosisreportsdata);
+
 
     useEffect(()=>{
         if(diagnosis?.diagnosisreportsData?.length > 0 ){

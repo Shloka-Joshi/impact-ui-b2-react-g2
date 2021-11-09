@@ -63,8 +63,8 @@ function PhyMain({ appointmentsData,getscheduledappointmentdata,updateexistingsc
                             <td>{item.date}</td>
                             <td> {item.time}</td>
                             <td>
-                                <Button variant='text' style={{ margin: '5px',padding:'0' }} onClick={()=>accept(item)}><CheckIcon style={{color:'--solid-icon-color',padding:'0'}}></CheckIcon></Button>
-                                <Button variant='text' style={{ margin: '5px',padding:'0' }} onClick={()=>reject(item.id)}><ClearIcon style={{color:'--solid-icon-color',padding:'0'}}></ClearIcon></Button>
+                                <Button variant='text' style={{ margin: '5px',padding:'0' }} onClick={()=>accept(item)}><CheckIcon style={{color:'var(--solid-button-color)',padding:'0'}}></CheckIcon></Button>
+                                <Button variant='text' style={{ margin: '5px',padding:'0' }} onClick={()=>reject(item.id)}><ClearIcon style={{color:'var(--solid-button-color)',padding:'0'}}></ClearIcon></Button>
                             </td>
                         </tr>
                     ))

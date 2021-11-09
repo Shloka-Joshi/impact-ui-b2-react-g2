@@ -61,7 +61,7 @@ function Sidenav(props) {
                 <div className='item'>
                     <LocalLibraryIcon className='icon' />
                     <h6 className='text'>
-                        <Link to={`/dashboard/${id}/${role}/#`} className='link'>Patient Details </Link>
+                        <Link to={`/dashboard/${id}/${role}/#/`} className='link'>Patient Details </Link>
                     </h6>
                 </div>
             </Container>

@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "id": "1",
       "firstName": "Cyril",
       "lastName": "Crome",
       "dob": "02/05/1978",
-      "role": "patient",
       "email": "Cyril.Crome@gmail.com",
       "contact": "385-158-6580",
-      "password": "Cyril@1234",
+      "password": "$2a$10$yTp4TdM09vrVcQLM5bH.tuHAYUK7asvfZY2l4JqGXqDeOq/mh.xeq",
       "retypePassword": "Cyril@1234",
-      "approvedUser": true,
-      "registrationDate": "10/25/2021"
+      "id": "1",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-09T15:59:31.724Z"
     },
     {
       "firstName": "PurcellLuka123",
@@ -42,14 +42,14 @@
     },
     {
       "email": "2@gmail.com",
-      "password": "$2a$10$kDyxNlmf0h47lrYlozC4b.v4HFUdU6SRB/7.ALqmalua4YVYDoSfm",
+      "password": "$2a$10$DXSDMYBBYwCEnIqRkCiGFuXP0nF9rlncJjqFjDmWeiEpp7bBF3V42",
       "firstName": "a",
       "lastName": "a",
       "dob": "2021-10-26",
       "contact": "12345",
       "cnfPassword": "abcdefgh",
       "role": "patient",
-      "approvedUser": false,
+      "approvedUser": true,
       "registrationDate": "2021-10-26T14:03:45.439Z",
       "id": "Kfm-SxK"
     },
@@ -261,6 +261,84 @@
       "approvedUser": true,
       "registrationDate": "2021-11-09T12:36:41.017Z",
       "id": "O0jKLsz"
+    },
+    {
+      "email": "Sham@gmail.com",
+      "password": "$2a$10$67jAA4mUpIqnU9Rq59nILuv4Tt.jAZXcsRzQX7NTh0HESDT5DlZre",
+      "firstName": "Dr. Sham",
+      "lastName": "Prasad",
+      "dob": "1991-12-12",
+      "contact": "9900990099",
+      "retypePassword": "1234567",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T15:25:43.189Z",
+      "id": "JYHenx0"
+    },
+    {
+      "email": "prasad@gmail.com",
+      "password": "$2a$10$AJAO6i.fAlw1rjuiy4XRq.2ySvI2lORV6hOMAU7JoD13x9lQVkohK",
+      "firstName": "Dr.Prasad",
+      "lastName": "Sham",
+      "dob": "1998-12-11",
+      "contact": "1234567890",
+      "retypePassword": "12345678",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T15:26:58.422Z",
+      "id": "-SVoIzO"
+    },
+    {
+      "email": "alexa@gmail.com",
+      "password": "$2a$10$kYlYpPOaY.C2DVfbAOwByO0LWH/G95yKU4R3g.8LpoNkFzpuw/NBG",
+      "firstName": "Alexa",
+      "lastName": "siri",
+      "dob": "1998-12-12",
+      "contact": "123456789",
+      "retypePassword": "12345678",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T15:34:25.059Z",
+      "id": "wW1lx2m"
+    },
+    {
+      "email": "siri@gmail.com",
+      "password": "$2a$10$/wBJptfb8m3nmHEnTn6eJeyteW2Pn5sd4ijrPVJ9LykV5w5eogayS",
+      "firstName": "siri",
+      "lastName": "alexa",
+      "dob": "1991-12-12",
+      "contact": "1234567890",
+      "retypePassword": "12345678",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T15:54:19.260Z",
+      "id": "1rTXF9X"
+    },
+    {
+      "email": "p2@gmail.com",
+      "password": "$2a$10$nDPdYYEcktqFdx39b3j0zer7qklQqJ60ad68BycXAjX55cx/1S1x.",
+      "firstName": "patient2",
+      "lastName": "2",
+      "dob": "1997-11-11",
+      "contact": "1234567890",
+      "retypePassword": "12345678",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-09T15:55:27.478Z",
+      "id": "4jbM-Ev"
+    },
+    {
+      "email": "p3@gmail.com",
+      "password": "$2a$10$6.K4jH1hJOIKlpkVbMLl9enEHAnpSYUoCcacFgQe42eVGWXD/kC02",
+      "firstName": "Patient3",
+      "lastName": "3",
+      "dob": "1998-11-11",
+      "contact": "12121212",
+      "cnfPassword": "12345678",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-09T15:56:41.081Z",
+      "id": "P93Ql8U"
     }
   ],
   "patientDemographics": [
