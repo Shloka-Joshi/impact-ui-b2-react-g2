@@ -10,9 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import './managepatient.css';
 import { connect } from "react-redux";
-import {getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord} from '../../../redux/actions/patient-action-creator';
+import {getpatientdata,deletepatientrecord,updateexistingpatientrecord,registerUser} from '../../../redux/actions/common-action-creator';
 import Addpatient from './add-patient';
-import { Link } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -23,36 +22,34 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../../../styles/common-style.css';
+import { Container } from '@material-ui/core';
 
 const columns = [
-    { id: 'sno', label: 'Serial No.', minWidth: 170, align: 'center' },
-    { id: 'firstName', label: 'First Name', minWidth: 170, align: 'center' },
-    { id: 'lastName', label: 'Last Name', minWidth: 170, align: 'center' },
-    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center' },
-    { id: 'email', label: 'Email', minWidth: 170, align: 'center'},
-    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center'},
-    { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
+    { id: 'sno', label: 'Serial No.', padding: '0', minWidth: 50, align: 'center' },
+    { id: 'firstName', label: 'First Name', padding: '0',minWidth: 70, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 70, padding: '0',align: 'center' },
+    { id: 'contact', label: 'Contact', minWidth: 100, align: 'center',padding: '0' },
+    { id: 'email', label: 'Email', minWidth: 100, align: 'center',padding: '0'},
+    { id: 'action', label: 'Action', minWidth: 200,align: 'center',padding: '0'}
 ];
 
-function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord}) {
+function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,updateexistingpatientrecord}) {
     
-    // const tableData = data;
     const [userTableData,setUserTableData] = React.useState(data);
 
 
     useEffect(()=>{
         getpatientdata("patient");
         
-    },[]);
+    },[userTableData]);
 
     
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypepassword:""}});
+    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypePassword:""}});
     const [open, setOpen] = React.useState(false);
     const [selectedActionState, getSelectedAction] = React.useState({action:"",id:''});
     
@@ -108,9 +105,9 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
         setFormValue(prevState => ({
             formData: {...prevState.formData},
         }));
-        let body = {...addFormValue.formData,role:'patient',registrationDate:new Date()}
+        let body = {...addFormValue.formData,role:'patient',approvedUser:false,registrationDate:new Date()}
         if(selectedActionState.action == "add")
-            addnewpatientrecord(body);
+            registerUser(body);
         if(selectedActionState.action == "edit")
             updateexistingpatientrecord(selectedActionState.id,body)
         handleClose();
@@ -130,11 +127,21 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
 
     return (
         <Grid>
-            <div className='title'>
-                <h2 style={{ margin: '0' }}>Patient Records</h2>
-            </div>
+            <Container component="main" maxWidth="sm">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Grid container>
+                            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                                <h2 className="header-title" style={{margin:'0'}}> Patient Records</h2>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Container>
 
-            <div className="top-toolbar">
+                <Container component="main" maxWidth="md">
+                    <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className='inside-page-cards' style={{paddingRight:'25px',paddingLeft:'25px'}}>
+ 
+          <div className="top-toolbar">
                 <SearchBar
                     className="searchBar"
                     value={searched}
@@ -175,14 +182,14 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
             </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead className='head'>
-                            <TableRow>
+                    <Table stickyHeader aria-label="sticky table" style={{borderRadius:'0',border:"1px solid #000"}}>
+                        <TableHead className='head'> 
+                            <TableRow style={{backgroundColor:'#d9edf3'}}>
                                 {columns.map((column) => (
-                                    <TableCell
+                                    <TableCell 
                                         key={column.id}
                                         align={column.align}
-                                        style={{ minWidth: column.minWidth }}
+                                        style={{ minWidth: column.minWidth, padding:'6px',background: '#d9edf3' }}
                                     >
                                         {column.label}
                                     </TableCell>
@@ -196,20 +203,21 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                                         {columns.map((column) => {
                                             const value = row[column.id];
                                             return (
-                                            column.id === 'sno' ? <TableCell key={column.id} align={column.align}>{rowIndex+1}</TableCell> :
-                                               column.id != 'action' ? <TableCell key={column.id} align={column.align}>
+                                            column.id === 'sno' ?
+                                             <TableCell key={column.id} style={{padding:column.padding}} align={column.align}>{rowIndex+1}</TableCell> :
+                                            
+                                             column.id != 'action' ?
+                                             <TableCell key={column.id} align={column.align} style={{padding:column.padding}}>
                                                     {value}
-                                                </TableCell> 
-                                                : <TableCell key={column.id} align={column.align}>
+                                             </TableCell> 
+                                            
+                                            : <TableCell key={column.id} align={column.align} style={{padding:column.padding}}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }} key="edit">
                                                         <EditIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }} key="delete">
                                                         <DeleteIcon />
-                                                    </Fab>
-                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <VisibilityIcon />
                                                     </Fab>
                                                     </Box>
                                                 </TableCell>
@@ -221,7 +229,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <TablePagination
+                {/* <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
                     count={userTableData.length}
@@ -229,9 +237,11 @@ function Managepatient({data,getpatientdata,deletepatientrecord,addnewpatientrec
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+                /> */}
             </Paper>
-
+          </div>
+                                </Box>
+                                </Container>
         </Grid>
     );
 }
@@ -245,7 +255,7 @@ const mapStateToProps = (state) => {
     return {
         getpatientdata: (data) => dispatch(getpatientdata(data)),
         deletepatientrecord: (id) => dispatch(deletepatientrecord(id)),
-        addnewpatientrecord: (data) => dispatch(addnewpatientrecord(data)),
+        registerUser: (data) => dispatch(registerUser(data)),
         updateexistingpatientrecord: (id,data) => dispatch(updateexistingpatientrecord(id,data))
     };
   };

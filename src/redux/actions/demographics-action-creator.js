@@ -24,10 +24,8 @@ export const adddemographicsdata = (DemographicsData) => {
 
       axios.post(`http://localhost:9999/patientDemographics`,DemographicsData,config)
           .then(res => {
-            console.log(res);
               axios.get(`http://localhost:9999/patientDemographics`)
               .then(res => {
-                console.log(res);
                   dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
               })
               .catch(err => {
@@ -45,7 +43,6 @@ export const getdemographicsdata = (id) => {
       authToken = getState().auth.authToken;
               axios.get(`http://localhost:9999/patientDemographics?id=38`)
               .then(res => {
-                console.log(res);
                   dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
               })
               .catch(err => {

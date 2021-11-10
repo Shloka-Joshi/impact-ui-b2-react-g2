@@ -9,22 +9,22 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/patient-action-creator";
+import {getpatientdata,updateexistingpatientrecord,deletepatientrecord} from "../../../redux/actions/common-action-creator";
 import SearchBar from "material-ui-search-bar";
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 import '../../../styles/common-style.css';
+import { Container } from '@material-ui/core';
 
 const columns = [
-    { id: 'sno', label: 'Serial No.', minWidth: 170, align: 'center' },
-    { id: 'firstName', label: 'First Name', minWidth: 170, align: 'center' },
-    { id: 'lastName', label: 'Last Name', minWidth: 170, align: 'center' },
-    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center' },
-    { id: 'email', label: 'Email', minWidth: 170, align: 'center'},
-    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center'},
-    { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
+    { id: 'sno', label: 'Serial No.', minWidth: 50, align: 'center' },
+    { id: 'firstName', label: 'First Name', minWidth: 70, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 70, align: 'center' },
+    { id: 'contact', label: 'Contact', minWidth: 100, align: 'center' },
+    { id: 'email', label: 'Email', minWidth: 100, align: 'center'},
+    { id: 'action', label: 'Action', minWidth: 100,align: 'center'}
 ];
 
 function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletepatientrecord}) {
@@ -75,10 +75,19 @@ function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletep
 
     return (
         <Grid>
-            <div className='title'>
-                <h2 style={{ margin: '0' }}>New User Requests</h2>
-            </div>
 
+                <Container component="main" maxWidth="sm">
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Grid container>
+                            <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                                <h2 className="header-title" style={{margin:'0'}}> New User Requests</h2>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Container>
+                <Container component="main" maxWidth="md">
+                    <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className='inside-page-cards' style={{paddingRight:'25px',paddingLeft:'25px'}}>
             <div className="top-toolbar">
                 <SearchBar
                     className="searchBar"
@@ -89,14 +98,14 @@ function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletep
             </div>
             <Paper className='root'>
                 <TableContainer className=' tabel-style'>
-                    <Table stickyHeader aria-label="sticky table">
+                    <Table stickyHeader aria-label="sticky table" style={{border:'1px solid #000', borderRadius:'0'}}>
                         <TableHead className='head'>
                             <TableRow>
                                 {columns.map((column) => (
                                     <TableCell
                                         key={column.id}
                                         align={column.align}
-                                        style={{ minWidth: column.minWidth }}
+                                        style={{ minWidth: column.minWidth, padding:'7px',background: '#d9edf3' }}
                                     >
                                         {column.label}
                                     </TableCell>
@@ -114,12 +123,12 @@ function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletep
                                                column.id != 'action' ? <TableCell key={column.id} align={column.align}>
                                                     {value}
                                                 </TableCell> 
-                                                : <TableCell key={column.id} align={column.align}>
+                                                : <TableCell key={column.id} align={column.align} style={{padding:'0'}}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>accept(row)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>accept(row)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
                                                         <CheckIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>reject(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>reject(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
                                                         <ClearIcon />
                                                     </Fab>
                                                     </Box>
@@ -142,6 +151,9 @@ function AdminDashboard({data,getpatientdata,updateexistingpatientrecord,deletep
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
+            </div>
+            </Box>
+            </Container>
 
         </Grid>
     );

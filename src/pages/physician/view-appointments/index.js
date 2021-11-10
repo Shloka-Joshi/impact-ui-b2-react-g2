@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from '@fullcalendar/daygrid'
 import "./view-appointments.css"
-import { getscheduledappointmentdata } from "../../../redux/actions/scheduler-action-creater.js";
+import { getscheduledappointmentdata } from "../../../redux/actions/common-action-creator";
 import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -20,7 +20,6 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   const[viewAppointmentData,setAppointmentId] = React.useState([]);
 
   const handeleDateClick = (arg) => {
-    console.log(arg.event._def.publicId);
     appointmentsData.map(item => {
       if (item.id == arg.event._def.publicId) {
         setAppointmentId([item]);
@@ -41,6 +40,8 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   return (
     <div>
       <Container maxWidth="sm">
+      <h2 className="header-title" style={{margin:'0'}}>All Appointments</h2>
+      <div  className='inside-page-cards' style={{paddingLeft:'20px',paddingRight:'20px',marginTop:'30px'}}>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -50,17 +51,21 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
           }
           eventClick={handeleDateClick}
         ></FullCalendar>
+        </div>
       </Container>
 
       <BasicModal style={{ border: '0', borderRadius: '20px' }} state={open} onClose={handleClose} >
         {viewAppointmentData.length > 0? viewAppointmentData.map(item => {
           return <>
-              <p>Name :  {item.patientname}</p>
-              <p>Title : {item.meetingTitle}</p>
-              <p>Reason :{item.reason}</p>
-              <p>Time : {item.time}</p>
-              <p>Status : {item.status}</p>
+          <div style={{textAlign:'left'}}>
+              <p><b>Name :  </b> {item.patientname}</p>
+              <p><b>Title : </b>{item.meetingTitle}</p>
+              <p><b>Reason :</b> {item.reason}</p>
+              <p><b>Time : </b> {item.time}</p>
+              <p><b>Status : </b>{item.status}</p>
+              </div>
               </>
+              
              })
              : <p>Invalid ID </p>
             }

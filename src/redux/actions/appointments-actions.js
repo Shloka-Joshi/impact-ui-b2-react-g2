@@ -15,18 +15,18 @@ let config = {
         return req;
       });
 
-export const getAppointments = (role) => {
-        return (dispatch,getState) => {
+// export const getAppointments = (role) => {
+//         return (dispatch,getState) => {
 
-                authToken = getState().auth.authToken;
+//                 authToken = getState().auth.authToken;
 
-        axios.get(`hhttp://localhost:9999/scheduleAppointment`)
-            .then(res => {
-                console.log(res);
-                    dispatch({type: ACTION_TYPE.GET_ALL_APPOINTMENT, appointmentData:res.data});
-            })
-            .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_ALL_APPOINTMENT, appointmentData:err.res.data});
-            })
-    };
-}
+//         axios.get(`hhttp://localhost:9999/scheduleAppointment`)
+//             .then(res => {
+//                 console.log(res);
+//                     dispatch({type: ACTION_TYPE.GET_ALL_APPOINTMENT, appointmentData:res.data});
+//             })
+//             .catch(err => {
+//                     dispatch({type: ACTION_TYPE.GET_ALL_APPOINTMENT, appointmentData:err.res.data});
+//             })
+//     };
+// }

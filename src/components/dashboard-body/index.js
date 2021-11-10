@@ -44,14 +44,13 @@ function ShellComponent(props) {
                 : role == 'physician' ? 
                 <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
-                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
                     <Route path={`/dashboard/:id/:role/ViewAppointment`}>
                         <ViewAppointment />
                     </Route>
-                    <Route path={`/dashboard/:id/:role/calender`}>
+                    <Route path={`/dashboard/:id/:role`}>
                         <ViewCalender />
                     </Route>
-                    <Route path={`/dashboard/:id/:role/#`} component={'#'}></Route>
+                    <Route path={`/dashboard/:id/:role/`}></Route>
                 </Switch> 
                 </Suspense>
                 //________________________________Patient Routes_________________________________________________________________*/}
@@ -63,7 +62,9 @@ function ShellComponent(props) {
                         <Route path={`/dashboard/:id/:role/demographics`} component={Patientdemographics} ></Route>
                         <Route path={`/dashboard/:id/:role/vital`} ><Patientvital/></Route>
                         <Route path={`/dashboard/:id/:role/immunization`} ><Immunization /></Route>
-                        <Route path={`/dashboard/${id}/${role}/#`} component={'#'}></Route>
+                        <Route path={`/dashboard/:id/:role/ScheduleNewAppointment`}>
+                            <ScheduleAppointment />
+                        </Route>
                     </Switch>
                     </Suspense>
                     : 'Not found'}

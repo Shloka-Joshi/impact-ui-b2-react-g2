@@ -10,9 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import './managephysician.css';
 import { connect } from "react-redux";
-import {getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord} from '../../../redux/actions/physician-action-creator';
+import { getrolespecificuserdata, deletephysicianrecord, updateexistingphysicianrecord, registerUser } from '../../../redux/actions/common-action-creator';
 import Addphysician from './add-physician/index';
-import { Link } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -23,37 +22,35 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../../../styles/common-style.css';
-
+import { Container } from '@material-ui/core';
 const columns = [
-    { id: 'sno', label: 'Serial No.', minWidth: 170, align: 'center' },
-    { id: 'firstName', label: 'First Name', minWidth: 170, align: 'center' },
-    { id: 'lastName', label: 'Last Name', minWidth: 170, align: 'center' },
-    { id: 'contact', label: 'Contact', minWidth: 170, align: 'center' },
-    { id: 'email', label: 'Email', minWidth: 170, align: 'center'},
-    { id: 'registerationDate', label: 'Registeration Date', minWidth: 170, align: 'center'},
-    { id: 'action', label: 'Action', minWidth: 300,align: 'center'}
+    { id: 'sno', label: 'Serial No.', minWidth: 60, padding: '0',align: 'center' },
+    { id: 'firstName', label: 'First Name', minWidth: 70, padding: '0',align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 60, align: 'center',padding: '0' },
+    { id: 'contact', label: 'Contact',padding: '0', minWidth: 100, align: 'center' },
+    { id: 'email', label: 'Email', minWidth: 100,padding: '0', align: 'center' },
+    { id: 'action', label: 'Action', minWidth: 100,padding: '0', align: 'center' }
 ];
 
-function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,addnewphysicianrecord,updateexistingphysicianrecord}) {
-    
+function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord, registerUser, updateexistingphysicianrecord }) {
     const tableData = data;
+    const [userTableData, setUserTableData] = React.useState(tableData);
 
-    useEffect(()=>{
+
+    useEffect(() => {
         getrolespecificuserdata("physician");
-    },[]);
+    }, [userTableData]);
 
-    
-    const [userTableData,setUserTableData] = React.useState(tableData);
+
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const [addFormValue,setFormValue] = React.useState({formData:{firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypepassword:""}});
+    const [addFormValue, setFormValue] = React.useState({ formData: { firstName: "", lastName: "", dob: "", email: "", contact: "", password: "", retypePassword: "" } });
     const [open, setOpen] = React.useState(false);
-    const [selectedActionState, getSelectedAction] = React.useState({action:"",id:''});
-    
+    const [selectedActionState, getSelectedAction] = React.useState({ action: "", id: '' });
+
     const [searched, setSearched] = React.useState("");
 
     const handleChangePage = (event, newPage) => {
@@ -67,29 +64,26 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
 
     const handleOpen = () => {
         setOpen(true);
-        getSelectedAction({action:'add',id:''});
+        getSelectedAction({ action: 'add', id: '' });
     };
 
     const handleClose = () => {
         setOpen(false)
         setFormValue({
-            formData: {firstName:"",lastName:"",dob:"",email:"",contact:"",password:"",retypePassword:""}
+            formData: { firstName: "", lastName: "", dob: "", email: "", contact: "", password: "", retypePassword: "" }
         });
     };
 
     const edituser = (id) => {
-        getSelectedAction({action:"edit",id:id});
+        getSelectedAction({ action: "edit", id: id });
         let user = userTableData.filter((item) => item.id == id);
         setFormValue(prevState => ({
-            formData: { ...prevState.formData, ...user[0]}
+            formData: { ...prevState.formData, ...user[0] }
         }))
         setOpen(true);
 
     }
 
-    const viewuser = (id) => {
-
-    }
     const deleteuser = (id) => {
         deletephysicianrecord(id);
     }
@@ -99,156 +93,163 @@ function Managephysician({data,getrolespecificuserdata,deletephysicianrecord,add
         setFormValue(prevState => ({
             formData: { ...prevState.formData, [id]: value }
         }));
-      };
+    };
 
     const adduserformvaluesubmit = e => {
         e.preventDefault();
         setFormValue(prevState => ({
-            formData: {...prevState.formData},
+            formData: { ...prevState.formData },
         }));
-        let body = {...addFormValue.formData,role:'physician',registrationDate:new Date()}
-        if(selectedActionState.action == "add")
-            addnewphysicianrecord(body);
-        if(selectedActionState.action == "edit")
-            updateexistingphysicianrecord(selectedActionState.id,body)
+        let body = { ...addFormValue.formData, role: 'physician', approvedUser: true, registrationDate: new Date() }
+        if (selectedActionState.action == "add")
+            registerUser(body);
+        if (selectedActionState.action == "edit")
+            updateexistingphysicianrecord(selectedActionState.id, body)
         handleClose();
     };
 
     const requestSearch = (searchedVal) => {
         let filteredRows = data.filter((row) => {
-          return row.firstName.toLowerCase().includes(searchedVal.toLowerCase());
+            return row.firstName.toLowerCase().includes(searchedVal.toLowerCase());
         });
         setUserTableData(filteredRows);
-      };
+    };
 
-      const cancelSearch = () => {
+    const cancelSearch = () => {
         setSearched("");
         requestSearch(searched);
-      };
+    };
 
     return (
         <Grid>
-            <div className='title'>
-                <h2 style={{ margin: '0' }}>Physician Records</h2>
-            </div>
+            <Container component="main" maxWidth="sm">
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Grid container>
+                        <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
+                            <h2 className="header-title" style={{ margin: '0' }}>Physician Records</h2>
+                        </Grid>
+                    </Grid>
+                </Box>
+            </Container>
+            <Container component="main" maxWidth="md">
+                <Box mt={2} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <div className='inside-page-cards' style={{ paddingRight: '25px', paddingLeft: '25px' }}>
+                        <div className="top-toolbar">
+                            <SearchBar
+                                className="searchBar"
+                                value={searched}
+                                onChange={(searchVal) => requestSearch(searchVal)}
+                                onCancelSearch={() => cancelSearch()}
+                            />
+                            <Fab aria-label="add" onClick={handleOpen} style={{ float: 'right', backgroundColor: 'var(--solid-button-color)', color: 'white' }}>
+                                <AddIcon />
+                            </Fab>
+                            <Modal
+                                aria-labelledby="transition-modal-title"
+                                aria-describedby="transition-modal-description"
+                                open={open}
+                                onClose={handleClose}
+                                closeAfterTransition
+                                BackdropComponent={Backdrop}
+                                BackdropProps={{
+                                    timeout: 500,
+                                }}
+                            >
+                                <Fade in={open}>
+                                    <Box className='model'>
+                                        <Typography id="transition-modal-title" variant="h6" component="h2">
+                                            Add Physician
+                                        </Typography>
+                                        <Typography id="transition-modal-description" sx={{ mt: 2 }}>
 
-            <div className="top-toolbar">
-                <SearchBar
-                    className="searchBar"
-                    value={searched}
-                    onChange={(searchVal) => requestSearch(searchVal)}
-                    onCancelSearch={() => cancelSearch()}
-                />
-                <Fab aria-label="add" onClick={handleOpen} style={{ float: 'right', backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                    <AddIcon />
-                </Fab>
-                <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                        timeout: 500,
-                    }}
-                >
-                    <Fade in={open}>
-                        <Box className='model'>
-                            <Typography id="transition-modal-title" variant="h6" component="h2">
-                                Add Physician
-                            </Typography>
-                            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                               
-                               <Addphysician
-                               handleChange={adduserformvaluechange}
-                               userData={addFormValue.formData}
-                               handleSubmit={adduserformvaluesubmit}
-                               
-                               />
-                            </Typography>
-                        </Box>
-                    </Fade>
-                </Modal>
-            </div>
-            <Paper className='root'>
-                <TableContainer className=' tabel-style'>
-                    <Table stickyHeader aria-label="sticky table">
-                        <TableHead className='head'>
-                            <TableRow>
-                                {columns.map((column) => (
-                                    <TableCell
-                                        key={column.id}
-                                        align={column.align}
-                                        style={{ minWidth: column.minWidth }}
-                                    >
-                                        {column.label}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            
-                            { userTableData.length > 0 ? userTableData.map((row,rowIndex) => {
-                                return (
-                                    <TableRow hover  tabIndex={-1} key={row.id}>
-                                        {columns.map((column) => {
-                                            const value = row[column.id];
-                                            return (
-                                            column.id === 'sno' ? <TableCell key={column.id} align={column.align}>{rowIndex+1}</TableCell> :
-                                               column.id != 'action' ? <TableCell key={column.id} align={column.align}>
-                                                    {value}
-                                                </TableCell> 
-                                                : <TableCell key={column.id} align={column.align}>
-                                                    <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <EditIcon />
-                                                    </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <DeleteIcon />
-                                                    </Fab>
-                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'var(--solid-button-color)',color:'white' }}>
-                                                        <VisibilityIcon />
-                                                    </Fab>
-                                                    </Box>
+                                            <Addphysician
+                                                handleChange={adduserformvaluechange}
+                                                userData={addFormValue.formData}
+                                                handleSubmit={adduserformvaluesubmit}
+
+                                            />
+                                        </Typography>
+                                    </Box>
+                                </Fade>
+                            </Modal>
+                        </div>
+                        <Paper className='root'>
+                            <TableContainer className=' tabel-style'>
+                                <Table stickyHeader aria-label="sticky table" style={{border:'1px solid #000'}} >
+                                    <TableHead className='head'>
+                                        <TableRow>
+                                            {columns.map((column) => (
+                                                <TableCell
+                                                    key={column.id}
+                                                    align={column.align}
+                                                    style={{ minWidth: column.minWidth,padding:'5px',background: '#d9edf3' }}
+                                                >
+                                                    {column.label}
                                                 </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            }) 
-                            : <TableRow>No Data Available</TableRow>
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
-                    component="div"
-                    count={userTableData.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
+                                            ))}
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
 
+                                        {userTableData.length > 0 ? userTableData.map((row, rowIndex) => {
+                                            return (
+                                                <TableRow hover tabIndex={-1} key={row.id}>
+                                                    {columns.map((column) => {
+                                                        const value = row[column.id];
+                                                        return (
+                                                            column.id === 'sno' ? <TableCell style={{padding:'0'}} key={column.id} align={column.align}>{rowIndex + 1}</TableCell> :
+                                                                column.id != 'action' ? <TableCell style={{padding:'0'}} key={column.id} align={column.align}>
+                                                                    {value}
+                                                                </TableCell>
+                                                                    : <TableCell key={column.id} align={column.align} style={{padding:'0'}}>
+                                                                        <Box sx={{ '& > :not(style)': { m: 1 } }}>
+                                                                            <Fab className="actions" aria-label="edit" id="edit" onClick={() => edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="edit">
+                                                                                <EditIcon />
+                                                                            </Fab>
+                                                                            <Fab className="actions" aria-label="delete" id="delete" onClick={() => deleteuser(row.id)} style={{backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="delete">
+                                                                                <DeleteIcon />
+                                                                            </Fab>
+                                                                        </Box>
+                                                                    </TableCell>
+                                                        );
+                                                    })}
+                                                </TableRow>
+                                            );
+                                        })
+                                            : <TableRow>No Data Available</TableRow>
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            {/* <TablePagination
+                                rowsPerPageOptions={[10, 25, 100]}
+                                component="div"
+                                count={userTableData.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                            /> */}
+                        </Paper>
+                    </div>
+                </Box>
+            </Container>
         </Grid>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-      data: state.physiciandata.physicianData,
+        data: state.physiciandata.physicianData,
     };
-  };
-  const mapdispatchToProps = (dispatch) => {
+};
+const mapdispatchToProps = (dispatch) => {
     return {
         getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         deletephysicianrecord: (id) => dispatch(deletephysicianrecord(id)),
-        addnewphysicianrecord: (data) => dispatch(addnewphysicianrecord(data)),
-        updateexistingphysicianrecord: (id,data) => dispatch(updateexistingphysicianrecord(id,data))
+        registerUser: (data) => dispatch(registerUser(data)),
+        updateexistingphysicianrecord: (id, data) => dispatch(updateexistingphysicianrecord(id, data))
     };
-  };
+};
 
-  export default connect(mapStateToProps, mapdispatchToProps)(Managephysician);
+export default connect(mapStateToProps, mapdispatchToProps)(Managephysician);

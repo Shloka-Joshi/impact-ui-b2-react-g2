@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Grid } from "../../utils/mui";
 import { Box } from "../../utils/mui";
 import { Container } from "../../utils/mui";
-import { userLogin } from "../../redux/actions/auth-action-creator";
+import { userLogin } from "../../redux/actions/common-action-creator";
 import { connect } from "react-redux";
 import "../../styles/common-style.css"
 import "../login/login.css"
@@ -21,8 +21,8 @@ import Header from "./header/index";
 import { useState } from "react";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { createTheme , ThemeProvider } from "@mui/material/styles";
-
-import InitState from "../../components/initialize-redux-state"
+// import InitState from "../../components/initialise-redux-states";
+import InitState from "../../components/initialize-redux-state";
 
 const textBoxStyle = makeStyles({
   textBox: {

@@ -8,14 +8,16 @@ import { Select, MenuItem, InputLabel } from "@mui/material";
 import { FormControl } from "@mui/material";
 import axios from "axios";
 import { useEffect } from "react";
-import { getscheduledappointmentdata, addscheduledappointmentdata } from "../../../redux/actions/scheduler-action-creater";
+import { getscheduledappointmentdata, addscheduledappointmentdata } from "../../../redux/actions/common-action-creator";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getrolespecificuserdata } from "../../../redux/actions/physician-action-creator";
+import { getrolespecificuserdata } from "../../../redux/actions/common-action-creator";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import FormHelperText from '@mui/material/FormHelperText';
 import BasicModal from "../../../components/modals";
-import "../../../styles/common-style.css"
+import "../../../styles/common-style.css";
+
+
 const useStyles = makeStyles(theme => ({
     formControl: {
         minWidth: 100,
@@ -24,6 +26,8 @@ const useStyles = makeStyles(theme => ({
 
 function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, getrolespecificuserdata, getscheduledappointmentdata, addscheduledappointmentdata }) {
     
+
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -80,11 +84,11 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
 
         return (
             <>
-                <Container component="main" maxWidth="lg">
+                <Container component="main" maxWidth="sm">
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <Grid container>
                             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                                <h1 className="title" style={{margin:'0'}}> Schedule an Appointment</h1>
+                                <h2 className="header-title" style={{margin:'0'}}> Schedule an Appointment</h2>
                             </Grid>
                         </Grid>
                     </Box>
@@ -98,13 +102,13 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
                                     <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
                                         <FormControl fullWidth required>
                                             <TextField required style={{ padding: '0px' }} className={classes.textFeild} placeholder="Meeting Title" id="meetingTitle" name="meetingTitle"
-                                                InputProps={{ startAdornment: <InputAdornment position="start">Title : </InputAdornment>, }} />
+                                                InputProps={{ startAdornment: <InputAdornment position="start" >Title : </InputAdornment>, }} />
                                         </FormControl>
                                     </Grid>
                                     <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
                                         <FormControl fullWidth>
-                                            <FormHelperText>Meeting Title</FormHelperText>
-                                            <TextareaAutosize required className={classes.textFieldStyle} placeholder="Meeting Description" id="reason" name="reason" minRows={8}
+                                            <FormHelperText>Meeting Description</FormHelperText>
+                                            <TextareaAutosize style={{ border:'1px solid #c3c3c3',borderRadius :'5px'}} required placeholder="Meeting Description" id="reason" name="reason" minRows={4} 
                                                 InputProps={{ startAdornment: <InputAdornment style={{ padding: '0' }} position="start">Description : </InputAdornment>, }} />
                                         </FormControl>
                                     </Grid>
@@ -137,9 +141,11 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
                                     <Grid>
                                         <Grid maxWidth="sm" item xs={12} sm={12} lg={6} xl={6} md={6}>
                                             
-                                            <Button
+                                            <Button  style={{padding:'0'}}
                                                 type="submit"
-                                                variant="contained">Schedule Appointment</Button>
+                                                variant="link">
+                                                   <span className='solid-button-style'> Schedule Appointment</span>
+                                                    </Button>
                                         </Grid>
                                     </Grid>
                                     {/* <PhyMain data={schedulerdata} /> */}

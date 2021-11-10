@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { InputAdornment } from "@mui/material";
 import { makeStyles } from '@material-ui/core';
 import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
-import { getrolespecificuserdata,PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/immunization-action-creator";
+import { PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/common-action-creator";
 import { connect,useDispatch, useSelector } from "react-redux";
 import BasicModal from "../../../components/modals";
 import * as Yup from 'yup';
@@ -56,10 +56,9 @@ function a11yProps(index) {
   };
 }
 
-function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificuserdata,addimmunizationdata,updateexistingphysicianrecord}) {
+function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationdata,updateexistingphysicianrecord}) {
 
     let { id, role } = useParams();
-    console.log(id);
 
         const SubmitImmunization = (event) => {
             event.preventDefault();
@@ -113,12 +112,12 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
                           <Grid container>
                             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                              <h1 className="title-immunization">Immunization Details </h1>
+                              <h2 className="header-title" style={{margin:'0'}}> Immunization Details</h2>
                             </Grid>
                           </Grid>
                         </Box>
                       </Container>
-                         <Container component="main" maxWidth="lg" className="section-form-immunization">
+                         <Container component="main" maxWidth="md" style={{marginTop:'15px'}} className="inside-page-cards">
                     <Box  sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
                         <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
                             <Box>
@@ -238,13 +237,13 @@ function Immunization({ImmunizationData,PatientImmunizationData,getrolespecificu
                                         </Grid>
                                     </Grid>
                                 </Box>
-                              
+                              <center>
                                 <Grid item sm={4}>
                                     <Button 
                                     styles={{ padding: '0', margin: '30' }} type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
                                     <div className='solid-button'>Submit</div>
                                     </Button>
-                                    </Grid>
+                                    </Grid></center>
                           
                             </Box>
                           
@@ -391,7 +390,7 @@ const mapStateToProps = (state) => {
   };
   const mapdispatchToProps = (dispatch) => {
     return {
-        getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
+        // getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         addimmunizationdata: (data) => dispatch(addimmunizationdata(data)),
     };
   };

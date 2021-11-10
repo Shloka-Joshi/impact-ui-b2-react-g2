@@ -9,12 +9,13 @@ const authReducer = (state = initialState, actions) => {
 
     case ACTION_TYPE.SUCCESS:
       return {
+        ...state,
         data: actions.data,
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
         currentUser:actions.data.currentUser,
-        
+      
       };
 
     case ACTION_TYPE.FAILURE:
@@ -28,6 +29,13 @@ const authReducer = (state = initialState, actions) => {
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
+        users:[],
+        message: "",
+        DemographicsData : [],
+        ImmunizationData : [],
+        physicianData : [],
+        patientData: [],
+        schedulerData:[],
       };
 
     default:

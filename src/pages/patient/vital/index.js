@@ -36,12 +36,12 @@ export default function Patientvital() {
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'right' }}>
       <Grid container>
         <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-          <h1 className="title-vital">Vital Details</h1>
+          <h2 className="header-title" style={{margin:'0'}}>Vital Details</h2>
         </Grid>
       </Grid>
     </Box>
   </Container>
-  <Container component="main" maxWidth="lg" className="section-form-vital">
+  <Container component="main" maxWidth="md" className="inside-page-cards" style={{marginTop:'16px'}}>
     <Box sx={{ flexGrow: 1,  flexWrap: 'wrap', overflow: 'hidden', px: 3  , display: 'flex',}}  className={classes.container} >
        <Paper   className={classes.Paper} sx={{ maxWidth: 400, my: 1, mx: 'auto', p: 2 }}style={{backgroundColor:'var(--card-bg-color1)',color: 'var(--button-text-color)'}} className="section-form" >
         <Grid container wrap="nowrap" spacing={4} >
