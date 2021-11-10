@@ -1,0 +1,80 @@
+ .title {
+    font-size: 24px;
+    font-family: Nunito;
+}
+.content{
+    padding: 3px;
+} 
+
+
+ @media only screen and (max-width: 480px) {
+    /* For mobile phones:  */
+     .UserCard {
+      display: none;
+    }
+  
+  }  
+  
+  .user-card h2{
+    font-weight: 800;
+    text-transform: capitalize;
+  }
+   .user-card {
+      /* width: 100%; */
+      min-height: 200px;
+      border: black;
+      border-radius: 20px 20px;
+      /* box-shadow: 5px 5px 30px rgb(209, 203, 203); */
+      margin:0 10px;
+      padding: 10px  10px;
+      background-color: white;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .user-card .profile-image {
+    width: 90px;
+    height: 90px;
+    /* margin-left: 35px; */
+    border-radius: 50%;
+    background: #19a3c6;
+    font-size: 30px;
+    color: #fff;
+    align-items: center;
+   text-align: center; 
+    line-height: 90px;
+    display: block;
+    }
+  
+    .user-card p {
+      color: #4e5052;
+      font-size: medium;
+      margin: 0;
+      font-family: 'Nunito';
+      display :inline-block;
+      font-size: 12px;
+      text-align: center;
+    }
+  
+     .usercard-title {
+      display: block;
+      font-size: 15px;
+      color: #4e5052;
+      text-transform: capitalize;
+    }
+   
+   .user-card span{
+     font-size: 10.47px;
+   }
+  .profile-data{
+    display: inline;
+    color:#000 !important;
+    font-family: 'Nunito';
+
+  }
+   

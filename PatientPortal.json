@@ -1,228 +1,207 @@
 {
-  "registerData": [
+  "users": [
     {
-      "id": "1",
-      "firstName": "Missie",
-      "lastName": "Bissiker",
-      "Dob": "10/31/1969",
-      "userName": "mbissiker0",
-      "role": "patient",
-      "email": "mbissiker0@techcrunch.com",
-      "contact": "455-342-3039",
-      "password": "tWHUbM9ZWx",
-      "retypePassword": "EalZagS"
-    },
-    {
+      "firstName": "PurcellLuka123",
+      "lastName": "Glisane",
+      "dob": "07/04/1978",
+      "email": "Purcell.Glisane@gmail.com",
+      "contact": "385-158-6580",
+      "password": "$2a$10$LZjFcG6d4O3qe.3p9rHQheCfvH7O4Az0eQTpNr9IuN9KjQGBDZn.m",
+      "retypepassword": "",
+      "retypePassword": "Purcell@1234",
       "id": "2",
-      "firstName": "Gui",
-      "lastName": "Robiou",
-      "Dob": "09/07/1994",
-      "userName": "grobiou1",
-      "role": "patient",
-      "email": "grobiou1@ed.gov",
-      "contact": "761-482-9128",
-      "password": "mzbBHW8",
-      "retypePassword": "cFMSBarF"
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-10-28T16:11:17.339Z"
     },
     {
-      "id": "3",
-      "firstName": "Anica",
-      "lastName": "Raincin",
-      "Dob": "11/02/1958",
-      "userName": "araincin2",
+      "email": "anjali.k@ytup.com",
+      "password": "$2a$10$7YyidoxtaRgC6a.FOGGHuu2k6AzrJ7G7KrVtixmZe0K00V5RGxpUi",
+      "firstName": "anjali",
+      "lastName": "k",
+      "dob": "1999-02-09",
+      "contact": "1234567890",
+      "cnfPassword": "anju@123",
       "role": "patient",
-      "email": "araincin2@hugedomains.com",
-      "contact": "622-932-3256",
-      "password": "735qtnQQe",
-      "retypePassword": "TbazEMWiX"
+      "approvedUser": true,
+      "registrationDate": "2021-10-26T13:45:16.445Z",
+      "id": "L8GkhnH"
     },
     {
-      "id": "4",
-      "firstName": "Dominga",
-      "lastName": "Lemasney",
-      "Dob": "05/14/1984",
-      "userName": "dlemasney3",
-      "role": "patient",
-      "email": "dlemasney3@mysql.com",
-      "contact": "180-633-2425",
-      "password": "0t1AMNOHxrWq",
-      "retypePassword": "2b0Dd4R"
+      "email": "sam@gmail.com",
+      "password": "$2a$10$tFnRsPmogdLvpyI.w.ONKeFvoA9Yi3hO0ijzxujrUPggwl/yBTd7y",
+      "firstName": "doctor",
+      "lastName": "sam",
+      "dob": "2021-11-23",
+      "contact": "1212121212",
+      "cnfPassword": "12345678",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-08T11:44:44.717Z",
+      "id": "5ckD7Af"
     },
     {
-      "id": "5",
-      "firstName": "Ingamar",
-      "lastName": "Jezard",
-      "Dob": "09/15/2001",
-      "userName": "ijezard4",
+      "email": "Patient1@gmail.com",
+      "password": "$2a$10$IgGOs.UcvNVEoYLbUL4.4uCrKCF34iERHfEoHkz/vdJ8jlwrnlqlS",
+      "firstName": "Patient",
+      "lastName": "1",
+      "dob": "1995-04-09",
+      "contact": "9876543210",
+      "cnfPassword": "12345678",
       "role": "patient",
-      "email": "ijezard4@a8.net",
-      "contact": "751-191-4125",
-      "password": "rfwkuuwXCA",
-      "retypePassword": "x7Md0Y"
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T07:35:57.740Z",
+      "id": "BUIZMS8"
     },
     {
-      "firstName": "Ravi",
-      "lastName": "Pandey",
-      "Dob": "10/31/19",
-      "userName": "mbissiker0",
+      "email": "Shloka.Joshi@gmail.com",
+      "password": "$2a$10$hUJhJg9FyCbIQjq8M8BxMe/whFo22dDr2v5ZG69HZBskadiT4uHwG",
+      "firstName": "Shloka",
+      "lastName": "Joshi",
+      "dob": "1999-02-12",
+      "contact": "1234567890",
+      "cnfPassword": "Shloka@1",
+      "role": "admin",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T10:16:50.993Z",
+      "id": "PRjpx6I"
+    },
+    {
+      "email": "queen@gmail.com",
+      "password": "$2a$10$pBezCwVT6e.MzDlpWhWah.7yC97BvxEYMzDHLnKdHYfragImYcIIe",
+      "firstName": "queen",
+      "lastName": "j",
+      "dob": "1999-02-02",
+      "contact": "1234567890",
+      "cnfPassword": "queen@12",
       "role": "patient",
-      "email": "mbissiker0@techcrunch.com",
-      "contact": "455-342-3039",
-      "password": "tWHUbM9ZWx",
-      "retypePassword": "EalZagS",
-      "id": "S9Mm4so"
+      "approvedUser": false,
+      "registrationDate": "2021-11-09T12:23:16.348Z",
+      "id": "41PgIMS"
+    },
+    {
+      "email": "marcell@gmail.com",
+      "password": "$2a$10$A0YFToyXgZLoLqnj3q.dJuifQgHDZyQFug0p3PYWmXlTVWLAaPMWS",
+      "firstName": "marcell",
+      "lastName": "jarad",
+      "dob": "1999-03-22",
+      "contact": "1234567890",
+      "retypepassword": "",
+      "retypePassword": "marcell@123",
+      "role": "physician",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T12:33:03.786Z",
+      "id": "s5-uyuQ"
+    },
+    {
+      "email": "peter@gmail.com",
+      "password": "$2a$10$n0zAvYLCT1YJCp5tetpYkOl4CzrZDhI3u8AMHFon1iRiiMZoMATku",
+      "firstName": "peter",
+      "lastName": "e",
+      "dob": "1999-03-04",
+      "contact": "1234567890",
+      "cnfPassword": "peter@12",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-10T04:18:36.035Z",
+      "id": "FMEDdzk"
+    },
+    {
+      "email": "loka@gmail.com",
+      "password": "$2a$10$.1x7yRBnnVdU5ZwypAe5K.0FphhcEQB3o6me7LLIfQiFCBooRU2wq",
+      "firstName": "loka",
+      "lastName": "p",
+      "dob": "1999-03-06",
+      "contact": "1234567890",
+      "retypePassword": "loka@123",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-10T04:34:34.012Z",
+      "id": "RbDXY7e"
     }
   ],
   "patientDemographics": [
     {
-      "id": "1",
-      "firstName": "Cyril",
-      "lastName": "Glisane",
-      "dob": "03/19/1959",
-      "gender": "Polygender",
-      "ethnicity": "American Indian and Alaska Native (AIAN)",
-      "education": "Fachhochschule St. Pölten",
-      "occupation": "Director of Sales",
-      "address": "0781 Macpherson Street",
-      "contact": "385-158-6580",
-      "medicalHistory": "Spastic entropion of eyelid",
-      "familyMedicalHistory": "Spastic entropion of eyelid",
-      "surgeries": "Mechanical lagophthalmos",
-      "insuranceProvider": "Koss-Grimes"
-    },
-    {
-      "id": "2",
-      "firstName": "Rebe",
-      "lastName": "Delyth",
-      "dob": "02/05/1978",
-      "gender": "Genderqueer",
-      "ethnicity": "Central American",
-      "education": "Universidad Católica Anselmo Llorente",
-      "occupation": "Quality Engineer",
-      "address": "94031 Reinke Street",
-      "contact": "405-540-8280",
-      "medicalHistory": "Oth forn object in oth prt resp tract cause oth injury, subs",
-      "familyMedicalHistory": "Other foreign object in other parts of respiratory tract causing other injury, subsequent encounter",
-      "surgeries": "Late eff inj-undet circ",
-      "insuranceProvider": "Windler Inc"
-    },
-    {
-      "id": "3",
-      "firstName": "Tedmund",
-      "lastName": "Tweed",
-      "dob": "05/25/1953",
-      "gender": "Female",
-      "ethnicity": "Yuman",
-      "education": "Guru Ghasidas University",
-      "occupation": "Engineer I",
-      "address": "094 Cardinal Court",
-      "contact": "881-788-9401",
-      "medicalHistory": "Spastic entropion of right lower eyelid",
-      "familyMedicalHistory": "Spastic entropion of right lower eyelid",
-      "surgeries": "Nonsenile cataract NOS",
-      "insuranceProvider": "Kirlin, Friesen and McClure"
-    },
-    {
-      "id": "4",
-      "firstName": "Purcell",
-      "lastName": "Crome",
-      "dob": "12/06/1986",
-      "gender": "Non-binary",
-      "ethnicity": "Comanche",
-      "education": "Music Academy \"Karol Szymanowski\" in Katowice",
-      "occupation": "Developer II",
-      "address": "36187 Hudson Point",
-      "contact": "913-511-5383",
-      "medicalHistory": "Lac w fb of back wall of thorax w/o penet thoracic cavity",
-      "familyMedicalHistory": "Laceration with foreign body of back wall of thorax without penetration into thoracic cavity",
-      "surgeries": "Primary anal syphilis",
-      "insuranceProvider": "Simonis-O'Kon"
+      "firstName": "Patient",
+      "lastName": "1",
+      "dob": "1995-09-04",
+      "gender": "Male",
+      "ethnicity": "Indian",
+      "education": "B-tech",
+      "occupation": "Engineer",
+      "contact": "9876543210",
+      "medicalHistory": "none",
+      "familyMedicalHistory": "none",
+      "surgeries": "none",
+      "insuranceProvider": "none",
+      "address": "Bangalore",
+      "userId": "BUIZMS8",
+      "UpdatedDate": "2021-11-09T07:46:42.181Z",
+      "id": 2
     }
   ],
   "medicationAndAllergies": {
-    "medication": [
-      {
-        "currentMedication": "Bupivacaine Hydrochloride and Epinephrine",
-        "otcMedication": "BUPIVACAINE HYDROCHLORIDE AND EPINEPHRINE BITARTRATE",
-        "herbs": "Ondansetron Hydrochloride",
-        "socialDrug": "Smoke",
-        "pastMedications": "Ondansetron Hydrochloride"
-      },
-      {
-        "currentMedication": "TIGAN",
-        "otcMedication": "trimethobenzamide hydrochloride",
-        "herbs": "TITANIUM DIOXIDE, OCTINOXATE, OXYBENZONE",
-        "socialDrug": "Smoke",
-        "pastMedications": "DIORSNOW WHITE REVEAL PURE TRANSPARENCY MAKEUP SPF 30 021 Linen"
-      }
-    ],
-    "allergies": [
-      {
-        "drugAllergies": null,
-        "otherAllergies": null
-      },
-      {
-        "drugAllergies": null,
-        "otherAllergies": null
-      }
-    ]
+    "medication": [],
+    "allergies": []
   },
   "immunization": [
     {
-      "id": 1,
-      "patientId": "218-85-3285",
-      "vaccineName": "Covishield",
-      "numberOfDoses": 2,
-      "vaccinatedOn": "01/10/1995"
-    },
-    {
-      "id": 2,
-      "patientId": "743-87-5293",
-      "vaccineName": "Covishield",
-      "numberOfDoses": 1,
-      "vaccinatedOn": "01/08/1968"
+      "userId": "BUIZMS8",
+      "covid": [
+        {
+          "vaccineName": "Covishiled",
+          "numberOfDoses": "2",
+          "vaccinatedOn": "02/05/2021"
+        }
+      ],
+      "others": [
+        {
+          "vaccineName": "NASOVAC",
+          "numberOfDoses": "1",
+          "vaccinatedOn": "02/10/2021"
+        }
+      ],
+      "id": "1"
     }
   ],
   "scheduleAppointment": [
     {
-      "meetingTitle": null,
-      "description": null,
-      "physician": "Leonelle Poon",
-      "date": "05/19/2024",
-      "time": "1:53 AM",
-      "reason": null
+      "meetingTitle": "fvere",
+      "reason": "hghgh",
+      "time": "12pm - 1pm",
+      "date": "2021-11-10",
+      "physicianName": "doctor",
+      "patientId": "8DI5jby",
+      "physicianId": "5ckD7Af",
+      "patientname": "a",
+      "status": "accepted",
+      "id": 1
     },
     {
-      "meetingTitle": null,
-      "description": null,
-      "physician": "Cleve Pauel",
-      "date": "11/01/2023",
-      "time": "6:14 PM",
-      "reason": null
+      "meetingTitle": "covid test",
+      "reason": "covid symptoms",
+      "time": "10am - 11am",
+      "date": "2021-11-11",
+      "physicianName": "PurcellLuka123",
+      "patientId": "BUIZMS8",
+      "physicianId": "2",
+      "patientname": "Patient",
+      "status": "Pending",
+      "id": 3
     }
   ],
-  "patientReports": [
+  "diagnosisReports": [
     {
+      "userId": "BUIZMS8",
       "patientVitals": {
-        "bloodPressure": null,
-        "pulseRate": null,
-        "temperature": null,
-        "respiration": null,
-        "height": null,
-        "weight": null
+        "bloodPressure": "120/80",
+        "pulseRate": "74",
+        "temperature": "97.5",
+        "respiration": "108",
+        "height": "153cm",
+        "weight": "65kg"
       },
-      "procedureCode": "0CC6XZZ",
-      "diagnosisCode": "V215XXS",
-      "labReport": "audio/mpeg3",
-      "radiologyReport": "image/tiff",
-      "medication": "oxycodone hydrochloride"
-    }
-  ],
-  "billing": [
-    {
-      "patientBill": "video/mpeg",
-      "paymentMethod": "NetBanking",
-      "paymentHistory": "application/msword"
+      "id": "2"
     }
   ],
   "allergies": [
