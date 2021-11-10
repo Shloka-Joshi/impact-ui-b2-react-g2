@@ -20,7 +20,6 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   const[viewAppointmentData,setAppointmentId] = React.useState([]);
 
   const handeleDateClick = (arg) => {
-    console.log(arg.event._def.publicId);
     appointmentsData.map(item => {
       if (item.id == arg.event._def.publicId) {
         setAppointmentId([item]);
@@ -58,12 +57,15 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
       <BasicModal style={{ border: '0', borderRadius: '20px' }} state={open} onClose={handleClose} >
         {viewAppointmentData.length > 0? viewAppointmentData.map(item => {
           return <>
-              <p>Name :  {item.patientname}</p>
-              <p>Title : {item.meetingTitle}</p>
-              <p>Reason :{item.reason}</p>
-              <p>Time : {item.time}</p>
-              <p>Status : {item.status}</p>
+          <div style={{textAlign:'left'}}>
+              <p><b>Name :  </b> {item.patientname}</p>
+              <p><b>Title : </b>{item.meetingTitle}</p>
+              <p><b>Reason :</b> {item.reason}</p>
+              <p><b>Time : </b> {item.time}</p>
+              <p><b>Status : </b>{item.status}</p>
+              </div>
               </>
+              
              })
              : <p>Invalid ID </p>
             }

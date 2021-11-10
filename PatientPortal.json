@@ -1,19 +1,6 @@
 {
   "users": [
     {
-      "firstName": "Cyril",
-      "lastName": "Crome",
-      "dob": "02/05/1978",
-      "email": "Cyril.Crome@gmail.com",
-      "contact": "385-158-6580",
-      "password": "$2a$10$yTp4TdM09vrVcQLM5bH.tuHAYUK7asvfZY2l4JqGXqDeOq/mh.xeq",
-      "retypePassword": "Cyril@1234",
-      "id": "1",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-11-09T15:59:31.724Z"
-    },
-    {
       "firstName": "PurcellLuka123",
       "lastName": "Glisane",
       "dob": "07/04/1978",
@@ -29,159 +16,16 @@
     },
     {
       "email": "anjali.k@ytup.com",
-      "password": "$2a$10$wZ85gNI9h9j5I3Mu5gEYtOcnfRlt1y5ISMwwgIAAZQUH4JUETLWmG",
+      "password": "$2a$10$7YyidoxtaRgC6a.FOGGHuu2k6AzrJ7G7KrVtixmZe0K00V5RGxpUi",
       "firstName": "anjali",
       "lastName": "k",
       "dob": "1999-02-09",
       "contact": "1234567890",
       "cnfPassword": "anju@123",
       "role": "patient",
-      "approvedUser": false,
+      "approvedUser": true,
       "registrationDate": "2021-10-26T13:45:16.445Z",
       "id": "L8GkhnH"
-    },
-    {
-      "email": "2@gmail.com",
-      "password": "$2a$10$DXSDMYBBYwCEnIqRkCiGFuXP0nF9rlncJjqFjDmWeiEpp7bBF3V42",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-26",
-      "contact": "12345",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-10-26T14:03:45.439Z",
-      "id": "Kfm-SxK"
-    },
-    {
-      "email": "3@gmail.com",
-      "password": "$2a$10$6Q24U20dJQzrdgdJ0ZM5Ae0x7papTSyxh9bqFVtX.4tfdXliZ52k6",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-09-30",
-      "contact": "11",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T05:29:24.376Z",
-      "id": "e0F3Txq"
-    },
-    {
-      "email": "b@gmai.com",
-      "password": "$2a$10$x0OO2IDuQpWxHsEabWOz7ePF9sprsHu10WnoQs5DiC5wDD9Rukbym",
-      "firstName": "aaa",
-      "lastName": "a",
-      "dob": "2021-10-28",
-      "contact": "1",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T05:33:05.138Z",
-      "id": "sss3ZZC"
-    },
-    {
-      "email": "a2@gmail.com",
-      "password": "$2a$10$oqYL0iHJwAnweEloJEC6QO4L1dwUiPRQ6464nlCqqNtUZPZ1lxRda",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-28",
-      "contact": "1",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T05:45:05.442Z",
-      "id": "PiE5ag5"
-    },
-    {
-      "email": "a3@gmail.com",
-      "password": "$2a$10$6ITRY91V7BkLysutkOpAruBplbHfxqHXLH1rXARbYNjCe.BMn/.eK",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-27",
-      "contact": "1",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T05:46:31.817Z",
-      "id": "gZY-55a"
-    },
-    {
-      "email": "a5@gmail.com",
-      "password": "$2a$10$dKGvtPQCn.UEt69WO78n6ecl3MyLIBSZd40/CQne7JTA1jqAXOuIK",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-28",
-      "contact": "1",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T06:27:38.361Z",
-      "id": "AEOk7UI"
-    },
-    {
-      "email": "ravi@gmail.com",
-      "password": "$2a$10$qOEPU/7.6Ax/skL07sXW3e9J5ZCXvBQpx5DonoLCDnYo1Qx5VwyFm",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-21",
-      "contact": "1",
-      "cnfPassword": "abcdefgh",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-27T07:38:49.605Z",
-      "id": "PIqv-Xp"
-    },
-    {
-      "email": "aaaa1@gmail.com",
-      "password": "$2a$10$vjlDy6IGqlcezLhkn/9DRu90VxhxvTLhyyrS0xiG3zdrIJUfxXPzi",
-      "firstName": "aaaaa",
-      "lastName": "aaaaaa",
-      "dob": "2021-10-19",
-      "contact": "11111",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-28T17:51:32.659Z",
-      "id": "ZYN4GHu"
-    },
-    {
-      "email": "a123@gmail.com",
-      "password": "$2a$10$6w2ESxjgys.zyniQ8tnRYeH4m/gSBXY6BsqHt7WuyJXl3H4XjbDoy",
-      "firstName": "aa",
-      "lastName": "aa",
-      "dob": "2021-10-20",
-      "contact": "99999",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-10-29T04:35:37.295Z",
-      "id": "ny8ElYU"
-    },
-    {
-      "email": "1234@gmail.com",
-      "password": "$2a$10$MGRaJaJgCS4KbkgLcrGXw.38XcjUSV4z6hGB9bUAyjJYVk6Iv72MK",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-10-19",
-      "contact": "1",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-10-29T06:56:50.929Z",
-      "id": "8DI5jby"
-    },
-    {
-      "email": "a1234@gmail.com",
-      "password": "$2a$10$JLMnQkSb3zvvWplFaNOpye9XCutcb5dRSvRKtpPkOXxhlL1jU16V2",
-      "firstName": "a",
-      "lastName": "a",
-      "dob": "2021-11-16",
-      "contact": "1",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-11-03T05:01:47.024Z",
-      "id": "XVYKKCP"
     },
     {
       "email": "sam@gmail.com",
@@ -250,116 +94,33 @@
       "id": "s5-uyuQ"
     },
     {
+      "email": "peter@gmail.com",
+      "password": "$2a$10$n0zAvYLCT1YJCp5tetpYkOl4CzrZDhI3u8AMHFon1iRiiMZoMATku",
+      "firstName": "peter",
+      "lastName": "e",
+      "dob": "1999-03-04",
+      "contact": "1234567890",
+      "cnfPassword": "peter@12",
+      "role": "patient",
+      "approvedUser": false,
+      "registrationDate": "2021-11-10T04:18:36.035Z",
+      "id": "FMEDdzk"
+    },
+    {
       "email": "loka@gmail.com",
-      "password": "$2a$10$oW20XKVaHfZc1S9JoO3eE.sNN1AFskmnKB4W/BMdCPMkqPWs2mVqG",
+      "password": "$2a$10$.1x7yRBnnVdU5ZwypAe5K.0FphhcEQB3o6me7LLIfQiFCBooRU2wq",
       "firstName": "loka",
       "lastName": "p",
-      "dob": "1977-04-28",
+      "dob": "1999-03-06",
       "contact": "1234567890",
       "retypePassword": "loka@123",
       "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-11-09T12:36:41.017Z",
-      "id": "O0jKLsz"
-    },
-    {
-      "email": "Sham@gmail.com",
-      "password": "$2a$10$67jAA4mUpIqnU9Rq59nILuv4Tt.jAZXcsRzQX7NTh0HESDT5DlZre",
-      "firstName": "Dr. Sham",
-      "lastName": "Prasad",
-      "dob": "1991-12-12",
-      "contact": "9900990099",
-      "retypePassword": "1234567",
-      "role": "physician",
-      "approvedUser": true,
-      "registrationDate": "2021-11-09T15:25:43.189Z",
-      "id": "JYHenx0"
-    },
-    {
-      "email": "prasad@gmail.com",
-      "password": "$2a$10$AJAO6i.fAlw1rjuiy4XRq.2ySvI2lORV6hOMAU7JoD13x9lQVkohK",
-      "firstName": "Dr.Prasad",
-      "lastName": "Sham",
-      "dob": "1998-12-11",
-      "contact": "1234567890",
-      "retypePassword": "12345678",
-      "role": "physician",
-      "approvedUser": true,
-      "registrationDate": "2021-11-09T15:26:58.422Z",
-      "id": "-SVoIzO"
-    },
-    {
-      "email": "alexa@gmail.com",
-      "password": "$2a$10$kYlYpPOaY.C2DVfbAOwByO0LWH/G95yKU4R3g.8LpoNkFzpuw/NBG",
-      "firstName": "Alexa",
-      "lastName": "siri",
-      "dob": "1998-12-12",
-      "contact": "123456789",
-      "retypePassword": "12345678",
-      "role": "physician",
-      "approvedUser": true,
-      "registrationDate": "2021-11-09T15:34:25.059Z",
-      "id": "wW1lx2m"
-    },
-    {
-      "email": "siri@gmail.com",
-      "password": "$2a$10$/wBJptfb8m3nmHEnTn6eJeyteW2Pn5sd4ijrPVJ9LykV5w5eogayS",
-      "firstName": "siri",
-      "lastName": "alexa",
-      "dob": "1991-12-12",
-      "contact": "1234567890",
-      "retypePassword": "12345678",
-      "role": "physician",
-      "approvedUser": true,
-      "registrationDate": "2021-11-09T15:54:19.260Z",
-      "id": "1rTXF9X"
-    },
-    {
-      "email": "p2@gmail.com",
-      "password": "$2a$10$nDPdYYEcktqFdx39b3j0zer7qklQqJ60ad68BycXAjX55cx/1S1x.",
-      "firstName": "patient2",
-      "lastName": "2",
-      "dob": "1997-11-11",
-      "contact": "1234567890",
-      "retypePassword": "12345678",
-      "role": "patient",
       "approvedUser": false,
-      "registrationDate": "2021-11-09T15:55:27.478Z",
-      "id": "4jbM-Ev"
-    },
-    {
-      "email": "p3@gmail.com",
-      "password": "$2a$10$6.K4jH1hJOIKlpkVbMLl9enEHAnpSYUoCcacFgQe42eVGWXD/kC02",
-      "firstName": "Patient3",
-      "lastName": "3",
-      "dob": "1998-11-11",
-      "contact": "12121212",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-11-09T15:56:41.081Z",
-      "id": "P93Ql8U"
+      "registrationDate": "2021-11-10T04:34:34.012Z",
+      "id": "RbDXY7e"
     }
   ],
   "patientDemographics": [
-    {
-      "firstName": "aa",
-      "lastName": "a",
-      "dob": "2021-11-10",
-      "gender": "Male",
-      "ethnicity": "qwqwq",
-      "education": "wqw",
-      "occupation": "qwqw",
-      "contact": "1212121",
-      "medicalHistory": "21",
-      "familyMedicalHistory": "2222",
-      "surgeries": "22",
-      "insuranceProvider": "222",
-      "address": "212121",
-      "userId": "8DI5jby",
-      "UpdatedDate": "2021-11-09T03:17:16.422Z",
-      "id": 1
-    },
     {
       "firstName": "Patient",
       "lastName": "1",
@@ -417,18 +178,6 @@
       "id": 1
     },
     {
-      "meetingTitle": "Fever",
-      "reason": "Chills, shivering, shaking, Body aches and headaches",
-      "time": "10am - 11am",
-      "date": "2021-11-10",
-      "physicianName": "doctor",
-      "patientId": "BUIZMS8",
-      "physicianId": "5ckD7Af",
-      "patientname": "Patient",
-      "status": "Pending",
-      "id": 2
-    },
-    {
       "meetingTitle": "covid test",
       "reason": "covid symptoms",
       "time": "10am - 11am",
@@ -442,18 +191,6 @@
     }
   ],
   "diagnosisReports": [
-    {
-      "userId": "8DI5jby",
-      "patientVitals": {
-        "bloodPressure": "120/80",
-        "pulseRate": "75",
-        "temperature": "98.6",
-        "respiration": "108",
-        "height": "159CM",
-        "weight": "75kg"
-      },
-      "id": "1"
-    },
     {
       "userId": "BUIZMS8",
       "patientVitals": {

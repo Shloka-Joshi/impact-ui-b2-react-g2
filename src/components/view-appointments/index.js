@@ -20,7 +20,6 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   const[viewAppointmentData,setAppointmentId] = React.useState([]);
 
   const handeleDateClick = (arg) => {
-    console.log(arg.event._def.publicId);
     appointmentsData.map(item => {
       if (item.id == arg.event._def.publicId) {
         setAppointmentId([item]);

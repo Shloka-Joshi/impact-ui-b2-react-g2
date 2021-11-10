@@ -10,9 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import './managepatient.css';
 import { connect } from "react-redux";
-import {getpatientdata,deletepatientrecord,addnewpatientrecord,updateexistingpatientrecord,registerUser} from '../../../redux/actions/common-action-creator';
+import {getpatientdata,deletepatientrecord,updateexistingpatientrecord,registerUser} from '../../../redux/actions/common-action-creator';
 import Addpatient from './add-patient';
-import { Link } from 'react-router-dom';
 import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -23,7 +22,6 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../../../styles/common-style.css';
 import { Container } from '@material-ui/core';
 
@@ -38,14 +36,13 @@ const columns = [
 
 function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,updateexistingpatientrecord}) {
     
-    // const tableData = data;
     const [userTableData,setUserTableData] = React.useState(data);
 
 
     useEffect(()=>{
         getpatientdata("patient");
         
-    },[]);
+    },[userTableData]);
 
     
 
@@ -216,14 +213,11 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                                             
                                             : <TableCell key={column.id} align={column.align} style={{padding:column.padding}}>
                                                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
+                                                    <Fab className="actions" aria-label="edit" id="edit" onClick={()=>edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }} key="edit">
                                                         <EditIcon />
                                                     </Fab>
-                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
+                                                    <Fab className="actions" aria-label="delete" id="delete" onClick={()=>deleteuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }} key="delete">
                                                         <DeleteIcon />
-                                                    </Fab>
-                                                    <Fab className="actions" aria-label="edit" onClick={()=>viewuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'5px' }}>
-                                                        <VisibilityIcon />
                                                     </Fab>
                                                     </Box>
                                                 </TableCell>
@@ -235,7 +229,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                         </TableBody>
                     </Table>
                 </TableContainer>
-                <TablePagination
+                {/* <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
                     count={userTableData.length}
@@ -243,7 +237,7 @@ function Managepatient({data,getpatientdata,deletepatientrecord,registerUser,upd
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
-                />
+                /> */}
             </Paper>
           </div>
                                 </Box>

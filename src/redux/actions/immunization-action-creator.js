@@ -40,10 +40,8 @@ export const addimmunizationdata = (ImmunizationData) => {
 
         axios.post(`http://localhost:9999/immunization`,ImmunizationData,config)
             .then(res => {
-              console.log(res);
               axios.get(`http://localhost:9999/immunization?id=134`)
             .then(response => {
-              console.log(response);
                 dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, PatientImmunizationData:response.data});  
             })
             .catch(err => {

@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import './managephysician.css';
 import { connect } from "react-redux";
-import { getrolespecificuserdata, deletephysicianrecord, addnewphysicianrecord, updateexistingphysicianrecord, registerUser } from '../../../redux/actions/common-action-creator';
+import { getrolespecificuserdata, deletephysicianrecord, updateexistingphysicianrecord, registerUser } from '../../../redux/actions/common-action-creator';
 import Addphysician from './add-physician/index';
 import SearchBar from "material-ui-search-bar";
 import Backdrop from '@mui/material/Backdrop';
@@ -22,7 +22,6 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import '../../../styles/common-style.css';
 import { Container } from '@material-ui/core';
 const columns = [
@@ -35,15 +34,15 @@ const columns = [
 ];
 
 function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord, registerUser, updateexistingphysicianrecord }) {
-
     const tableData = data;
+    const [userTableData, setUserTableData] = React.useState(tableData);
+
 
     useEffect(() => {
         getrolespecificuserdata("physician");
-    }, []);
+    }, [userTableData]);
 
 
-    const [userTableData, setUserTableData] = React.useState(tableData);
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -85,9 +84,6 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
 
     }
 
-    const viewuser = (id) => {
-
-    }
     const deleteuser = (id) => {
         deletephysicianrecord(id);
     }
@@ -207,14 +203,11 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                                                                 </TableCell>
                                                                     : <TableCell key={column.id} align={column.align} style={{padding:'0'}}>
                                                                         <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                                            <Fab className="actions" aria-label="edit" id="edit" onClick={() => edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }}>
+                                                                            <Fab className="actions" aria-label="edit" id="edit" onClick={() => edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="edit">
                                                                                 <EditIcon />
                                                                             </Fab>
-                                                                            <Fab className="actions" aria-label="delete" id="delete" onClick={() => deleteuser(row.id)} style={{backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }}>
+                                                                            <Fab className="actions" aria-label="delete" id="delete" onClick={() => deleteuser(row.id)} style={{backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="delete">
                                                                                 <DeleteIcon />
-                                                                            </Fab>
-                                                                            <Fab className="actions" aria-label="edit" onClick={() => viewuser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }}>
-                                                                                <VisibilityIcon />
                                                                             </Fab>
                                                                         </Box>
                                                                     </TableCell>
@@ -228,7 +221,7 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-                            <TablePagination
+                            {/* <TablePagination
                                 rowsPerPageOptions={[10, 25, 100]}
                                 component="div"
                                 count={userTableData.length}
@@ -236,7 +229,7 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                                 page={page}
                                 onPageChange={handleChangePage}
                                 onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
+                            /> */}
                         </Paper>
                     </div>
                 </Box>

@@ -284,7 +284,6 @@ function SignUp({ registerUser, data, err }) {
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     data: state.auth.data,
     err: state.auth.errors

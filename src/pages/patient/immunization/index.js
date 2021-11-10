@@ -59,7 +59,6 @@ function a11yProps(index) {
 function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationdata,updateexistingphysicianrecord}) {
 
     let { id, role } = useParams();
-    console.log(id);
 
         const SubmitImmunization = (event) => {
             event.preventDefault();

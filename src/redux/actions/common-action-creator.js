@@ -86,6 +86,7 @@ export const userLogin = (params) => {
       authToken: "",
       role: "",
       id:"",
+      users: []
     };
 
 
@@ -101,7 +102,6 @@ export const getAppointments = (role) => {
 
     axios.get(`hhttp://localhost:9999/scheduleAppointment`)
         .then(res => {
-            console.log(res);
                 dispatch({type: ACTION_TYPE.GET_ALL_APPOINTMENT, appointmentData:res.data});
         })
         .catch(err => {
@@ -118,10 +118,8 @@ export const adddemographicsdata = (DemographicsData) => {
   
         axios.post(`http://localhost:9999/patientDemographics`,DemographicsData,config)
             .then(res => {
-              console.log(res);
                 axios.get(`http://localhost:9999/patientDemographics`)
                 .then(res => {
-                  console.log(res);
                     dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
                 })
                 .catch(err => {
@@ -139,7 +137,6 @@ export const adddemographicsdata = (DemographicsData) => {
         authToken = getState().auth.authToken;
                 axios.get(`http://localhost:9999/patientDemographics?id=38`)
                 .then(res => {
-                  console.log(res);
                     dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
                 })
                 .catch(err => {
@@ -178,10 +175,8 @@ export const addimmunizationdata = (ImmunizationData) => {
   
           axios.post(`http://localhost:9999/immunization`,ImmunizationData,config)
               .then(res => {
-                console.log(res);
                 axios.get(`http://localhost:9999/immunization?id=134`)
               .then(response => {
-                console.log(response);
                   dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, PatientImmunizationData:response.data});  
               })
               .catch(err => {

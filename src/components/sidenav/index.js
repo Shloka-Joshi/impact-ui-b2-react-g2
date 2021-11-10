@@ -40,10 +40,6 @@ function Sidenav(props) {
                         <Link to={`/dashboard/${id}/${role}/Managephysician`} className='link'>Physician </Link>
                     </h6>
                 </div>
-                <div className='item'>
-                    <TodayIcon className='icon' />
-                    <h6 className='text'><Link to={`/dashboard/${id}/${role}/Manageappointment`} className='link'>Appointments</Link></h6>
-                </div>
             </Container>
             // For Physician _____________________________________________________________________________________
             : role == 'physician' ? 
@@ -57,12 +53,6 @@ function Sidenav(props) {
                 <div className='item' style={{ fontFamily: 'Nunito' }}>
                     <RecentActorsIcon className='icon' />
                     <h6 className='text'><Link to={`/dashboard/${id}/${role}/ViewAppointment`} className='link'>View All Appointments </Link></h6>
-                </div>
-                <div className='item'>
-                    <LocalLibraryIcon className='icon' />
-                    <h6 className='text'>
-                        <Link to={`/dashboard/${id}/${role}/#/`} className='link'>Patient Details </Link>
-                    </h6>
                 </div>
             </Container>
             // For Patient _________________________________________________________________________________________

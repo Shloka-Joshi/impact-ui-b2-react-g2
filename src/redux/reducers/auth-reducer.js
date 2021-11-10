@@ -16,7 +16,6 @@ const authReducer = (state = initialState, actions) => {
         isLoggedIn: actions.data.isLoggedIn,
         currentUser:actions.data.currentUser,
       
-        
       };
 
     case ACTION_TYPE.FAILURE:
@@ -30,6 +29,13 @@ const authReducer = (state = initialState, actions) => {
         role: actions.data.role,
         authToken: actions.data.authToken,
         isLoggedIn: actions.data.isLoggedIn,
+        users:[],
+        message: "",
+        DemographicsData : [],
+        ImmunizationData : [],
+        physicianData : [],
+        patientData: [],
+        schedulerData:[],
       };
 
     default:
