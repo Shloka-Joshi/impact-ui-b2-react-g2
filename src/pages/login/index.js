@@ -78,7 +78,7 @@ function SignIn({ data, userLogin ,isLoggedIn, errors}) {
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid container>
             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-              <h1 className="title-registration">Login Form</h1>
+              <h1 className="title-registration">Login</h1>
             </Grid>
           </Grid>
         </Box>
