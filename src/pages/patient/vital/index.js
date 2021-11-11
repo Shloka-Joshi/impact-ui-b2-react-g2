@@ -38,7 +38,8 @@ function Patientvital(props) {
   
     const dispatch  =useDispatch()
     let {id}= useParams ();
-    
+    const classes = useStyles();
+
     const diagnosis = useSelector((state) => state.diagnosisreportsdata);
     const [vitals, setvitals] = React.useState()
     useEffect(()=>{
@@ -47,15 +48,10 @@ function Patientvital(props) {
 
     useEffect(()=>{
         if(diagnosis?.diagnosisreportsData?.length > 0 ){
-            console.log(vitals)
             setvitals(diagnosis?.diagnosisreportsData?.[0].patientVitals);
         }
     },[diagnosis])
-    console.log ("vitals",vitals);
-    const user = useSelector((state) => state.auth);
-    console.log("user",user);
 
-const classes = useStyles();
 return (
     <>
   <Container component="main" maxWidth="lg" className="contain">
@@ -89,7 +85,7 @@ return (
           <Avatar><BloodtypeIcon/></Avatar>
         </Grid>
         <Grid item xs>
-        <Typography style={{color: 'var(--list-icon-color)',fontWeight: "bold",textDecoration: "underline"}}>{bloodpressure}{vitals?.bloodPressure }</Typography>
+        <Typography style={{color: 'var(--list-icon-color)',fontWeight: "bold",textDecoration: "underline"}}>{bloodpressure} {vitals?.bloodPressure }</Typography>
         <Typography>Blood Pressure :- A normal blood pressure level is less than 120/80 mmHg . </Typography>
              </Grid>
       </Grid>
