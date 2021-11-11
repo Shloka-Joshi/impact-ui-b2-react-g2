@@ -20,19 +20,18 @@ import './demographics.css';
 import Select from '@mui/material/Select';
 import BasicModal from "../../../components/modals";
 
+
 const theme = createTheme();
 const useStyles = makeStyles((theme) => ({
     container: {
         paddingTop: theme.spacing(6)
     }
-}));
-    
-const style = {position: 'absolute',top: '50%',left: '50%',transform: 'translate(-50%, -50%)',
-  width: 400,bgcolor: 'background.paper',border: '2px solid #000',boxShadow: 24,p: 4,
-};
+}));  
 
-function PatientDemographics({DemographicsData,adddemographicsdata,getdemographicsdata,...props}) 
+function PatientDemographics({DemographicsData,adddemographicsdata,getdemographicsdata}) 
 {
+ 
+  const [demographicsformdata, setdemographicsformdata] = React.useState(DemographicsData);
   let { id, role } = useParams();
 
   const SubmitDemographicsDetails = (event) => {
@@ -47,29 +46,33 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
     handleOpen();
   };
 
-  let history = useHistory();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false)
   };
+   const [addFormValue,setFormValue] = React.useState({});
 
-  const dispatch  =useDispatch()
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormValue(prevState => ({
+      formdata: { ...prevState, [id]: value }
+    }));
+  };
+
+
 
   useEffect(()=>{
-    getdemographicsdata();
-  },[DemographicsData])
-  const d = props.getdemographicsdata ;
-
-  const tableData = DemographicsData;
-  const [userTableData] = React.useState(tableData);
+    getdemographicsdata(id);
+    if(demographicsformdata?.length>0){
+       setFormValue(prevState => ({
+          ...prevState,...demographicsformdata[0]
+       }))
+    }
+  },[demographicsformdata])
 
     const genders = ["Male", "Female","Others"];
-    const [value, setValue] = React.useState(0);
     const classes = useStyles();
-    const handleChange = (event, newValue) => {
-      setValue(newValue);
-    };
 
     return (
         <>
@@ -93,8 +96,10 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="firstName" name="firstName" 
-                label="First Name"  value={d?.firstName}  placeholder='First Name'
+                label="First Name"   placeholder='First Name'
                 autoComplete="off" 
+                onChange={handleChange}
+                value={addFormValue.firstName}
                 InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}
@@ -104,6 +109,8 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
               <TextField
                 required fullWidth id="lastName"   placeholder='Last Name'name="lastName" label="Last Name"
                 autoComplete="off" 
+                onChange={handleChange}
+                value={addFormValue.lastName}
                 InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}
@@ -111,7 +118,10 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField required fullWidth id="dob"  placeholder='Birth Date' name="dob"
-                label="Birth Date" type="date" autoComplete="off"    InputProps={{
+                label="Birth Date" type="date" autoComplete="off"
+                onChange={handleChange}
+                value={addFormValue.dob}
+                    InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
@@ -126,7 +136,7 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
                     }
                   }}
                 variant="outlined" select id="gender"  placeholder='Gender' name="gender"
-                label="Gender" fullWidth   InputProps={{
+                label="Gender" value={addFormValue.gender} onChange={handleChange} fullWidth   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}
               >
@@ -140,21 +150,21 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="ethnicity"  placeholder='Ethnicity' name="ethnicity"
-                label="Ethnicity / Race" autoComplete="off"   InputProps={{
+                label="Ethnicity / Race" autoComplete="off" value={addFormValue.ethnicity}   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} /> 
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="education"  placeholder='Patient Education' name="education"
-                label="Patient Education" autoComplete="off"   InputProps={{
+                label="Patient Education" autoComplete="off" value={addFormValue.education}   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="occupation" name="occupation" label="Employment"
-                autoComplete="off"   placeholder='Employment'  InputProps={{
+                autoComplete="off"  value={addFormValue.occupation} placeholder='Employment'  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid> 
@@ -163,8 +173,8 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
 
             <Grid item xs={12} sm={6}>
                 <TextField
-                required fullWidth id="contact"  placeholder='Contact Number'  name="contact"
-                label="Contact Number" type="tel"  autoComplete="off"   InputProps={{
+                required fullWidth id="contact"  placeholder='Contact Number'   name="contact"
+                label="Contact Number" type="tel" value={addFormValue.contact} autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
@@ -172,13 +182,13 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="medicalHistory"  placeholder='Medical History' name="medicalHistory"
-                label="Medical History" autoComplete="off"   InputProps={{
+                label="Medical History" autoComplete="off" value={addFormValue.medicalHistory}  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="familyMedicalHistory"  placeholder='Family Medical History' name="familyMedicalHistory"
+                required fullWidth id="familyMedicalHistory"  placeholder='Family Medical History' name="familyMedicalHistory" value={addFormValue.familyMedicalHistory}
                 label="Family Medical History" autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -187,13 +197,13 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="surgeries" name="surgeries"  placeholder='Surgery' label="Surgery"
-                autoComplete="off"   InputProps={{
+                autoComplete="off" value={addFormValue.surgeries}  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required fullWidth id="insuranceProvider"  placeholder='Insurance Provider' name="insuranceProvider"
+                required fullWidth id="insuranceProvider"  placeholder='Insurance Provider' name="insuranceProvider" value={addFormValue.insuranceProvider}
                 label=" Insurance Provider"  autoComplete="off"   InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }}/>
@@ -202,7 +212,7 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
             <Grid item xs={12}>
                 <TextField
                 required fullWidth id="address"  placeholder='Address' name="address" label="Address"
-                autoComplete="off"  InputProps={{
+                autoComplete="off" value={addFormValue.address}  InputProps={{
                     startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                   }} />
             </Grid>
