@@ -227,7 +227,7 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
     </Container>
   </ThemeProvider>
   <BasicModal state={open} onClose={handleClose}>
-  <h3>Demographics Data Added Successfully</h3>
+  Demographics Data Added Successfully
                   </BasicModal>
      </Container>
      </Container>

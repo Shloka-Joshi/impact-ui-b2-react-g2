@@ -65,7 +65,7 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
               <p><b>Status : </b>{item.status}</p>
               </div>
               </>
-              
+    
              })
              : <p>Invalid ID </p>
             }

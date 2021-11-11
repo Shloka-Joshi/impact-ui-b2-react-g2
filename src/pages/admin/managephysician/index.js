@@ -24,16 +24,24 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import '../../../styles/common-style.css';
 import { Container } from '@material-ui/core';
+import BasicModal from '../../../components/modals';
+
 const columns = [
-    { id: 'sno', label: 'Serial No.', minWidth: 60, padding: '0',align: 'center' },
+    { id: 'sno', label: 'Serial No.', minWidth: 50, padding: '0',align: 'center' },
     { id: 'firstName', label: 'First Name', minWidth: 70, padding: '0',align: 'center' },
-    { id: 'lastName', label: 'Last Name', minWidth: 60, align: 'center',padding: '0' },
-    { id: 'contact', label: 'Contact',padding: '0', minWidth: 100, align: 'center' },
+    { id: 'lastName', label: 'Last Name', minWidth: 70, align: 'center',padding: '0' },
+    { id: 'contact', label: 'Contact',padding: '0', minWidth: 70, align: 'center' },
     { id: 'email', label: 'Email', minWidth: 100,padding: '0', align: 'center' },
     { id: 'action', label: 'Action', minWidth: 100,padding: '0', align: 'center' }
 ];
 
 function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord, registerUser, updateexistingphysicianrecord }) {
+    const [open1, setOpen1] = React.useState(false);
+    const handleOpen1 = () => setOpen1(true);
+    const handleClose1 = () => {
+      setOpen1(false);
+    };
+   
     const tableData = data;
     const [userTableData, setUserTableData] = React.useState(tableData);
 
@@ -86,6 +94,7 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
 
     const deleteuser = (id) => {
         deletephysicianrecord(id);
+        handleOpen1();
     }
 
     const adduserformvaluechange = (e) => {
@@ -182,7 +191,7 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                                                 <TableCell
                                                     key={column.id}
                                                     align={column.align}
-                                                    style={{ minWidth: column.minWidth,padding:'5px',background: '#d9edf3' }}
+                                                    style={{ minWidth: column.minWidth,padding:'6px',background: '#d9edf3' }}
                                                 >
                                                     {column.label}
                                                 </TableCell>
@@ -203,10 +212,10 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                                                                 </TableCell>
                                                                     : <TableCell key={column.id} align={column.align} style={{padding:'0'}}>
                                                                         <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                                                                            <Fab className="actions" aria-label="edit" id="edit" onClick={() => edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="edit">
+                                                                            <Fab className="actions" aria-label="edit" id="edit" onClick={() => edituser(row.id)} style={{ backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0' }} key="edit">
                                                                                 <EditIcon />
                                                                             </Fab>
-                                                                            <Fab className="actions" aria-label="delete" id="delete" onClick={() => deleteuser(row.id)} style={{backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0',margin:'0' }} key="delete">
+                                                                            <Fab className="actions" aria-label="delete" id="delete" onClick={() => deleteuser(row.id)} style={{backgroundColor: 'transparent',color:'var(--solid-button-color)',boxShadow:'none',padding:'0' }} key="delete">
                                                                                 <DeleteIcon />
                                                                             </Fab>
                                                                         </Box>
@@ -234,6 +243,9 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                     </div>
                 </Box>
             </Container>
+            <BasicModal state={open1} onClose={handleClose1}>
+                    Deleted
+                </BasicModal>
         </Grid>
     );
 }
