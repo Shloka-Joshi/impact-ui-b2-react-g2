@@ -53,10 +53,8 @@ function Header({data, logOut, authToken, isLoggedIn}){
                     </Grid>
                 </Toolbar> 
                 <BasicModal state={open} onClose={handleClose}>
-                    {/* Null check */}
                     { data.message }
-                    {/* {data?.message} */}
-                </BasicModal>
+                    </BasicModal>
             </AppBar>
             
         </>

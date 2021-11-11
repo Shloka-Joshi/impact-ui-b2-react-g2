@@ -135,7 +135,7 @@ export const adddemographicsdata = (DemographicsData) => {
     return (dispatch,getState) => {
   
         authToken = getState().auth.authToken;
-                axios.get(`http://localhost:9999/patientDemographics?id=38`)
+                axios.get(`http://localhost:9999/patientDemographics?userId=${id}`)
                 .then(res => {
                     dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
                 })
@@ -234,7 +234,7 @@ export const updateexistingpatientrecord = (id,updatedpatientData) => {
 
         authToken = getState().auth.authToken;
 
-        axios.put(`http://localhost:9999/users/${id}`,updatedpatientData,config)
+       axios.put(`http://localhost:9999/users/${id}`,updatedpatientData,config)
             .then(res => {
                 axios.get(`http://localhost:9999/users?role=patient`)
                 .then(res => {
