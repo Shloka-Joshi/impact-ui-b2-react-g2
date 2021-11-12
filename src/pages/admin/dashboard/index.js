@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { connect } from "react-redux";
-import { getpatientdata, updateexistingpatientrecord, deletepatientrecord } from "../../../redux/actions/common-action-creator";
+import {getpatientdata,acceptRejectUserRequest,deletepatientrecord} from "../../../redux/actions/common-action-creator";
 import SearchBar from "material-ui-search-bar";
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -28,7 +28,7 @@ const columns = [
     { id: 'action', label: 'Action', minWidth: 100, align: 'center' }
 ];
 
-function AdminDashboard({ data, getpatientdata, updateexistingpatientrecord, deletepatientrecord }) {
+function AdminDashboard({ data, getpatientdata, acceptRejectUserRequest, deletepatientrecord }) {
     
     const [open1, setOpen1] = React.useState(false);
     const handleOpen1 = () => setOpen1(true);
@@ -68,8 +68,8 @@ function AdminDashboard({ data, getpatientdata, updateexistingpatientrecord, del
     };
 
     const accept = (user) => {
-        let approvedUser = { ...user, approvedUser: true };
-        updateexistingpatientrecord(user.id, approvedUser)
+        let approvedUser = {approvedUser:true};
+        acceptRejectUserRequest(user.id,approvedUser)
         handleOpen1();
     }
     const reject = (id) => {
@@ -190,7 +190,7 @@ const mapStateToProps = (state) => {
 const mapdispatchToProps = (dispatch) => {
     return {
         getpatientdata: (data) => dispatch(getpatientdata(data)),
-        updateexistingpatientrecord: (id, data) => dispatch(updateexistingpatientrecord(id, data)),
+        acceptRejectUserRequest: (id,data) => dispatch(acceptRejectUserRequest(id,data)),
         deletepatientrecord: (id) => dispatch(deletepatientrecord(id))
     };
 };

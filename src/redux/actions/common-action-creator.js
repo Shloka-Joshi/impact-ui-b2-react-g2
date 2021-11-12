@@ -250,6 +250,27 @@ export const updateexistingpatientrecord = (id,updatedpatientData) => {
     };
 }
 
+export const acceptRejectUserRequest = (id,actionVal) => {
+  return (dispatch,getState) => {
+
+      authToken = getState().auth.authToken;
+
+      axios.patch(`http://localhost:9999/users/${id}`,actionVal,config)
+          .then(res => {
+              axios.get(`http://localhost:9999/users?role=patient`)
+              .then(res => {
+                  dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});  
+              })
+              .catch(err => {
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
+              })
+          })
+          .catch(err => {
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
+          })
+  };
+}
+
 export const deletepatientrecord = (id) => {
     return (dispatch,getState) => {
 
