@@ -126,7 +126,7 @@ export default function Addpatient({ handleChange, handleSubmit, userData }) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Sucessfull
+            Successful
           </Typography>
         </Box>
       </Modal>

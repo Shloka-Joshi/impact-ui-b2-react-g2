@@ -135,7 +135,7 @@ function Managephysician({ data, getrolespecificuserdata, deletephysicianrecord,
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <Grid container>
                         <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-                            <h2 className="header-title" style={{ margin: '0' }}>Physician Records</h2>
+                            <h2 className="header-title" style={{ margin: '0' }}>Physicians Records</h2>
                         </Grid>
                     </Grid>
                 </Box>
