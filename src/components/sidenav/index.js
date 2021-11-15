@@ -82,6 +82,10 @@ function Sidenav(props) {
                 <TodayIcon className='icon' />
                 <h6 className='text'><Link to={`/dashboard/${id}/${role}/immunization`} className='link'>Immunization</Link></h6>
             </div>
+            <div className='item'>
+                <TodayIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/patient-education`} className='link'>Patient Education</Link></h6>
+            </div>
         </Container>
         // Invlid user_________________________________________________________________________________________________
             : "Invalid login"}
