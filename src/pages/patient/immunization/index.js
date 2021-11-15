@@ -57,17 +57,16 @@ function a11yProps(index) {
 }
 
 function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationdata,updateexistingphysicianrecord}) {
-
-    let { id, role } = useParams();
-
-        const SubmitImmunization = (event) => {
+            let { id, role } = useParams();
+            const dispatch  =useDispatch()
+            const SubmitImmunization = (event) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
             let body = {};
             for (let entry of data.entries()) {
               body[entry[0]] = entry[1];
             }
-            body = {...body,userId:id,UpdatedDate:new Date()}
+            body = JSON.stringify({ userId:id, covid: {...body,UpdatedDate:new Date()}})
             addimmunizationdata(body);
             handleOpen();
           };
@@ -81,11 +80,11 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
           const SubmitVaccineDetails = (event) => {
             event.preventDefault();
             const data = new FormData(event.currentTarget);
-            let body = {};
+            let  body = { };
             for (let entry of data.entries()) {
               body[entry[0]] = entry[1];
             }
-            body = {...body,userId: id,UpdatedDate:new Date()}
+            body = JSON.stringify({ userId:id, others: {...body,UpdatedDate:new Date()} })
             addimmunizationdata(body);
             handleOpen();
           };
@@ -94,12 +93,38 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
   const VaccineName = ["Covishield", "Covaxin"];
   const [value, setValue] = React.useState(0);
   const classes = useStyles();
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
-    const tableData = ImmunizationData;
-    const [userTableData,setUserTableData] = React.useState(tableData);
+  const [immunizationformdata, setimmunizationformdata] = React.useState(ImmunizationData);
+  const [addFormValue,setFormValue] = React.useState({});
+    useEffect(()=>{
+        dispatch(getimmunizationdata(id));
+    },[]);
+
+    const handleChange = (e,newValue) => {
+    const { id, value } = e.target;
+    setValue(newValue);
+    setFormValue(prevState => ({
+        formdata: { ...prevState, [id]: value }
+    }));
+    };
+
+    useEffect(()=>{
+    getimmunizationdata(id);
+        if(immunizationformdata?.length>0){
+        setFormValue(prevState => ({
+            ...prevState,...immunizationformdata[0].covid
+        }))
+        }
+    },[immunizationformdata])
+
+  const [vaccinedata, setvaccinedata] = React.useState(ImmunizationData)
+  const [othervaccine, setvaccine] = React.useState({})
+
+  useEffect(()=>{
+      if(vaccinedata?.length > 0 ){
+          setvaccine(vaccinedata?.[1].others);
+      }
+  },[vaccinedata])
 
   return (
       <>
@@ -127,128 +152,202 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                 </Tabs>
                             </Box>
                         </Grid>
-                           
-                        <TabPanel value={value} index={0}>
-                            <Box component="form" onSubmit={SubmitImmunization} sx={{ mt: 3 }}sm={12}>
-                                <Box  sx={{ mt: 3 }}sm={12}>
-                                    <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            SelectProps={{ MenuProps: {
-                                                    PopoverClasses: {
-                                                    root: classes.customMenuPopover
-                                                                    }
+                      
+                                    <TabPanel value={value} index={0}>
+                                    <Box component="form" onSubmit={SubmitImmunization} sx={{ mt: 3 }}sm={12}>
+                                        <Box  sx={{ mt: 3 }}sm={12}>
+                                            <Grid container spacing={2}>
+                                            <Grid item xs={12} sm={4}>
+                                            {
+                                (addFormValue?.Vaccine1 == undefined || addFormValue?.Vaccine1 == "")
+                                ?
+                                (
+                                    <TextField
+                                    SelectProps={{ MenuProps: {
+                                            PopoverClasses: {
+                                            root: classes.customMenuPopover
                                                             }
-                                                        }}
-                                        variant="outlined" select id="Vaccine1" name="Vaccine1"label="Vaccine Dose" fullWidth   
-                                        InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
-                                                    }}>
-                                                {Vaccine.map((Vaccine, index) => (
-                                                    <MenuItem key={index} value={Vaccine}>
-                                                    {Vaccine}
-                                                    </MenuItem>
-                                                ))}
-                                                </TextField>
-                                        </Grid>
-                                        <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            SelectProps={{
-                                                MenuProps: {
-                                                    PopoverClasses: {
-                                                    root: classes.customMenuPopover
-                                                                    }
+                                                    }
+                                                }}
+                                variant="outlined" select id="Vaccine1" name="Vaccine1" label="Vaccine Dose" fullWidth   
+                                InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
+                                            }}>
+                                        {Vaccine.map((Vaccine, index) => (
+                                            <MenuItem key={index} value={Vaccine}>
+                                            {Vaccine} 
+                                            </MenuItem>
+                                        ))}
+                                        </TextField>
+                                )
+                                :
+                                (
+                                    <TextField  value={addFormValue?.Vaccine1} inputProps={{ readOnly: true }}
+                                    InputProps={{
+                              startAdornment: <InputAdornment style={{ padding: '0' }} position="start"  
+                              inputProps={{ readOnly: true }}></InputAdornment>
+                                  }}>    
+                                 </TextField>
+                                )
+                                }
+                                              
+                                                </Grid>
+                                                <Grid item xs={12} sm={4}>
+                                                {
+                                // (immunizationformdata?.covid?.VaccineName1 == undefined)
+                                (addFormValue?.VaccineName1 == undefined || addFormValue?.VaccineName1 == "")
+                                ?
+                                (
+                                    <TextField
+                                    SelectProps={{
+                                        MenuProps: {
+                                            PopoverClasses: {
+                                            root: classes.customMenuPopover
                                                             }
-                                                        }}
-                                                    variant="outlined" select id="VaccineName1" name="VaccineName1" label="Vaccine Name" fullWidth   InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
-                                                    }}
-                                                >
-                                                {VaccineName.map((VaccineName, index) => (
-                                                    <MenuItem key={index} value={VaccineName}>
-                                                    {VaccineName}
-                                                    </MenuItem>
-                                                ))}
-                                                </TextField>
-                                        </Grid>
-                                        <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            fullWidth id="Vaccinatedon1" name="Vaccinatedon1" label="When to give" autoComplete="off"  
-                                            InputProps={{
+                                                    }
+                                                }}
+                                            variant="outlined" select id="VaccineName1"  name="VaccineName1" label="Vaccine Name" fullWidth   InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                             }}
-                                        />
+                                        >
+                                        {VaccineName.map((VaccineName, index) => (
+                                            <MenuItem key={index} value={VaccineName}>
+                                            {VaccineName}
+                                            </MenuItem>
+                                        ))}
+                                        </TextField>
+                                )
+                                :
+                                (
+                                    <TextField value={addFormValue.VaccineName1} inputProps={{ readOnly: true }}
+                                    InputProps={{
+                              startAdornment: <InputAdornment style={{ padding: '0' }} position="start"  
+                              inputProps={{ readOnly: true }}> </InputAdornment>
+                                  }}>    
+                                 </TextField>
+                                )
+                                }
+
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <TextField
+                                    fullWidth id="Vaccinatedon1" value={addFormValue.Vaccinatedon1}  name="Vaccinatedon1" label="When to give" autoComplete="off"  
+                                    InputProps={{
+                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                    }}
+                                />
                                         </Grid>
                                     </Grid>
                                 </Box>
                                 <Box sx={{ mt: 3 }}sm={12}>
                                     <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            SelectProps={{
-                                                MenuProps: {
-                                                    PopoverClasses: {
-                                                    root: classes.customMenuPopover
-                                                                    }
-                                                            }
-                                                        }}
-                                                    variant="outlined" select id="Vaccine2" name="Vaccine2" placeholder='Vaccine Dose'
-                                                    label="Vaccine Dose" fullWidth   InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
-                                                    }}
-                                                >
-                                                {Vaccine.map((Vaccine, index) => (
-                                                    <MenuItem key={index} value={Vaccine}>
-                                                    {Vaccine}
-                                                    </MenuItem>
-                                                ))}
-                                                </TextField>
-                                        </Grid>
                                         <Grid item xs={12} sm={4}>
-                                        <TextField
-                                            SelectProps={{
-                                                MenuProps: {
-                                                    PopoverClasses: {
-                                                    root: classes.customMenuPopover
-                                                                    }
+                                {
+                                (addFormValue?.Vaccine2 == undefined || addFormValue?.Vaccine2 == "")
+                                ?
+                                (
+                                    <TextField
+                                    SelectProps={{
+                                        MenuProps: {
+                                            PopoverClasses: {
+                                            root: classes.customMenuPopover
                                                             }
-                                                        }}
-                                                    variant="outlined" select id="VaccineName2"  placeholder='Vaccine Name' name="VaccineName2"
-                                                    label="Vaccine Name" fullWidth   InputProps={{
-                                                        startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
-                                                    }}
-                                                >
-                                                {VaccineName.map((vaccinename, index) => (
-                                                    <MenuItem key={index} value={vaccinename}>
-                                                    {vaccinename}
-                                                    </MenuItem>
-                                                ))}
-                                                </TextField>
-                                        </Grid>
-                                        <Grid item xs={12} sm={4}>
-                                            <TextField
-                                          fullWidth id="VaccinatedOn2" name="VaccinatedOn2" 
-                                            label="When to give"  
-                                            autoComplete="off" 
-                                            InputProps={{
+                                                    }
+                                                }}
+                                            variant="outlined" select id="Vaccine2"  name="Vaccine2" placeholder='Vaccine Dose'
+                                            label="Vaccine Dose" fullWidth   InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                             }}
-                                        />
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                              <center>
-                                <Grid item sm={4}>
+                                        >
+                                        {Vaccine.map((Vaccine, index) => (
+                                            <MenuItem key={index} value={Vaccine}>
+                                            {Vaccine}
+                                            </MenuItem>
+                                        ))}
+                                        </TextField>
+                                )
+                                :
+                                (
+                                    <TextField value={addFormValue?.Vaccine2} inputProps={{ readOnly: true }}
+                                    InputProps={{
+                              startAdornment: <InputAdornment style={{ padding: '0' }} position="start"  
+                              inputProps={{ readOnly: true }}></InputAdornment>
+                                  }}>    
+                                 </TextField>
+                                )
+                                }
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                {
+                                (addFormValue?.VaccineName2 == undefined || addFormValue?.VaccineName2 == "")
+                                ?
+                                (
+                                    <TextField
+                                    SelectProps={{
+                                        MenuProps: {
+                                            PopoverClasses: {
+                                            root: classes.customMenuPopover
+                                                            }
+                                                    }
+                                                }}
+                                            variant="outlined" select id="VaccineName2" value={addFormValue.VaccineName2}  placeholder='Vaccine Name' name="VaccineName2"
+                                            label="Vaccine Name" fullWidth   InputProps={{
+                                                startAdornment: <InputAdornment style={{ padding: '0' }} position="start"></InputAdornment>,
+                                            }}
+                                        >
+                                        {VaccineName.map((vaccinename, index) => (
+                                            <MenuItem key={index} value={vaccinename}>
+                                            {vaccinename}
+                                            </MenuItem>
+                                        ))}
+                                        </TextField>
+                                )
+                                :
+                                (
+                                    <TextField value={addFormValue.VaccineName2} inputProps={{ readOnly: true }}
+                                    InputProps={{
+                              startAdornment: <InputAdornment style={{ padding: '0' }} position="start"  
+                              inputProps={{ readOnly: true }}></InputAdornment>
+                                  }}>    
+                                 </TextField>
+                                )
+                                }
+                                </Grid>
+                                <Grid item xs={12} sm={4}>
+                                    <TextField
+                                    fullWidth id="VaccinatedOn2" name="VaccinatedOn2" 
+                                      label="When to give"   value={addFormValue.VaccinatedOn2}
+                                      autoComplete="off" 
+                                      InputProps={{
+                                          startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
+                                      }}
+                                  /> 
+                                                </Grid>
+                                            </Grid>
+                                        </Box>
+                                      <center>
+                                        <Grid item sm={4}>
+                                        {
+                                (addFormValue == undefined || addFormValue == 0)
+                                ?
+                                (
                                     <Button 
                                     styles={{ padding: '0', margin: '30' }} type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
                                     <div className='solid-button'>Submit</div>
                                     </Button>
-                                    </Grid></center>
-                          
-                            </Box>
-                          
-                            </TabPanel>
-                            
+                                )
+                                :
+                                (
+                                    <Button 
+                                    styles={{ padding: '0', margin: '30' }} type="button" fullWidth sx={{ mt: 3, mb: 2 }}>
+                                    <div className='solid-button'>Back</div>
+                                    </Button>
+                                )
+                                }
+                                            </Grid></center>
+                                  
+                                    </Box>
+                                </TabPanel>
                             <TabPanel value={value} index={1}>
                             <Box component="form" onSubmit={SubmitVaccineDetails} sx={{ mt: 3 }}sm={12}>
                                 <Box  sx={{ mt: 3 }}sm={12}>
@@ -256,7 +355,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                     <Grid item xs={12} sm={4}>
                                     <TextField
                                             fullWidth id="VaccineName_1" name="VaccineName_1" 
-                                            label="Vaccine Name"  placeholder='Vaccine Name'
+                                            label="Vaccine Name"  placeholder='Vaccine Name'  value={othervaccine?.VaccineName_1}
                                             autoComplete="off" 
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -266,7 +365,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         <Grid item xs={12} sm={4}>
                                         <TextField
                                             fullWidth id="VaccineDate_1" name="VaccineDate_1" 
-                                            label="Vaccine Date"  placeholder='Vaccine Date'
+                                            label="Vaccine Date"  placeholder='Vaccine Date' value={othervaccine.VaccineDate_1}
                                             autoComplete="off" 
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -276,7 +375,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         <Grid item xs={12} sm={4}>
                                         <TextField
                                             fullWidth id="VaccineDescription_1" name="VaccineDescription_1" 
-                                            label="Vaccine Description"  placeholder='Vaccine Description'
+                                            label="Vaccine Description"  placeholder='Vaccine Description' value={othervaccine.VaccineDescription_1}
                                             autoComplete="off" 
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
@@ -291,7 +390,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                     <TextField
                                             fullWidth id="VaccineName_2" name="VaccineName_2" 
                                             label="Vaccine Name"  placeholder='Vaccine Name'
-                                            autoComplete="off" 
+                                            autoComplete="off"   value={othervaccine.VaccineName_2}
                                             InputProps={{
                                                 startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>,
                                             }}
@@ -299,7 +398,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                         <TextField
-                                            fullWidth id="VaccineDate_2" name="VaccineDate_2" 
+                                            fullWidth id="VaccineDate_2" name="VaccineDate_2"  value={othervaccine.VaccineDate_2}
                                             label="Vaccine Date"  placeholder='Vaccine Date'
                                             autoComplete="off" 
                                             InputProps={{
@@ -309,7 +408,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                         <TextField
-                                            fullWidth id="VaccineDescription_2" name="VaccineDescription_2" 
+                                            fullWidth id="VaccineDescription_2" name="VaccineDescription_2" value={othervaccine.VaccineDescription_2}
                                             label="Vaccine Description"  placeholder='Vaccine Description'
                                             autoComplete="off" 
                                             InputProps={{
@@ -323,7 +422,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                     <Grid container spacing={2}>
                                     <Grid item xs={12} sm={4}>
                                     <TextField
-                                            fullWidth id="VaccineName_3" name="VaccineName_3" 
+                                            fullWidth id="VaccineName_3" name="VaccineName_3" value={othervaccine.VaccineName_3}
                                             label="Vaccine Name"  placeholder='Vaccine Name'
                                             autoComplete="off" 
                                             InputProps={{
@@ -333,7 +432,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                         <TextField
-                                            fullWidth id="VaccineDate_3" name="VaccineDate_3" 
+                                            fullWidth id="VaccineDate_3" name="VaccineDate_3"  value={othervaccine.VaccineDate_3}
                                             label="Vaccine Date"  placeholder='Vaccine Date'
                                             autoComplete="off" 
                                             InputProps={{
@@ -343,7 +442,7 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                         <TextField
-                                            fullWidth id="VaccineDescription_3" name="VaccineDescription_3" 
+                                            fullWidth id="VaccineDescription_3" name="VaccineDescription_3" value={othervaccine.VaccineDescription_3}
                                             label="Vaccine Description"  placeholder='Vaccine Description'
                                             autoComplete="off" 
                                             InputProps={{
@@ -353,16 +452,26 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                                         </Grid>
                                     </Grid>
                                 </Box>
+                                <center>
                                 <Grid item sm={4}>
-                                    <Button 
-                                    styles={{ padding: '0', margin: '30' }}
-                                    type="submit"
-                                    fullWidth
-                                    sx={{ mt: 3, mb: 2 }}>
+                                {
+                                (othervaccine == undefined || othervaccine == 0)
+                                ?
+                                (
+                                    <Button styles={{ padding: '0', margin: '30' }}type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
                                     <div className='solid-button'>Submit</div>
                                     </Button>
-                                    </Grid>
+                                )
+                                :
+                                (
+                                    <Button styles={{ padding: '0', margin: '30' }}type="submit" fullWidth sx={{ mt: 3, mb: 2 }}>
+                                    <div className='solid-button'>Back </div>
+                                    </Button>
+                                )
+                                }
+                                    </Grid></center>
                                 </Box>
+
                             </TabPanel>
                             </Box>
                             </Container>
@@ -378,19 +487,16 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
             </div>
             
                 </>
- );
-                        
+ );              
 }
 
 const mapStateToProps = (state) => {
     return {
         ImmunizationData: state.immunization.ImmunizationData,
-        PatientImmunizationData: state.immunization.ImmunizationData,
     };
   };
   const mapdispatchToProps = (dispatch) => {
     return {
-        // getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         addimmunizationdata: (data) => dispatch(addimmunizationdata(data)),
     };
   };
