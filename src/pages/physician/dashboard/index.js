@@ -23,8 +23,11 @@ function PhyMain({ appointmentsData,getscheduledappointmentdata,updateexistingsc
     const handleClose2 = () => {setReject(false);};
     
     let appointments = appointmentsData?.filter((item) => item.status === "Pending");
+   
+    let {id} = useParams()
+
     useEffect(()=>{
-        getscheduledappointmentdata();
+        getscheduledappointmentdata(id);
     },[]);
 
 
@@ -93,7 +96,7 @@ const mapStateToProps = (state) => {
   };
   const mapdispatchToProps = (dispatch) => {
     return {
-        getscheduledappointmentdata: () => dispatch(getscheduledappointmentdata()),
+        getscheduledappointmentdata: (id) => dispatch(getscheduledappointmentdata(id)),
         updateexistingschedulerrecord: (appointmentId,appointmentData) => dispatch(updateexistingschedulerrecord(appointmentId,appointmentData)),
         deleteschedulerrecord: (id) => dispatch(deleteschedulerrecord(id))
     };

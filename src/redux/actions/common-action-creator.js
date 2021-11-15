@@ -381,7 +381,7 @@ export const getscheduledappointmentdata = (id=null) => {
     return (dispatch, getState) => {
       authToken = getState().auth.authToken;
       dispatch(LOAD());
-      axios.get(`http://localhost:9999/scheduleAppointment`)
+      axios.get(`http://localhost:9999/scheduleAppointment?physicianId=${id}`)
         .then(res => {
           dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: res.data });
         })

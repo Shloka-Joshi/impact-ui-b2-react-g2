@@ -46,7 +46,7 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
 
         useEffect(() => {
             getrolespecificuserdata("physician");
-            getscheduledappointmentdata();
+            // getscheduledappointmentdata(id);
         }, [physicians]);
 
         const handleChange = e => {
