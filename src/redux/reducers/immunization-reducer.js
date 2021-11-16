@@ -5,7 +5,6 @@ const ImmunizationDataReducer = (state = initialState, action) => {
  if (action.type === ACTION_TYPE.GET_IMMUNIZATION_DATA) 
  {
       return {
-        ...state,
         ImmunizationData:action.ImmunizationData,
       };
     }
