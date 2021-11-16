@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "firstName": "PurcellLuka123",
+      "firstName": "Purcell",
       "lastName": "Glisane",
       "dob": "07/04/1978",
       "email": "Purcell.Glisane@gmail.com",
@@ -17,8 +17,8 @@
     {
       "email": "sam@gmail.com",
       "password": "$2a$10$tFnRsPmogdLvpyI.w.ONKeFvoA9Yi3hO0ijzxujrUPggwl/yBTd7y",
-      "firstName": "doctor",
-      "lastName": "sam",
+      "firstName": "Sam",
+      "lastName": "Sundar",
       "dob": "2021-11-23",
       "contact": "1212121212",
       "cnfPassword": "12345678",
@@ -28,8 +28,10 @@
       "id": "5ckD7Af"
     },
     {
-      "firstName": "Patient",
-      "lastName": "lastname",
+      "email": "Patient1@gmail.com",
+      "password": "$2a$10$IgGOs.UcvNVEoYLbUL4.4uCrKCF34iERHfEoHkz/vdJ8jlwrnlqlS",
+      "firstName": "Nitu",
+      "lastName": "Kumari",
       "dob": "1995-04-09",
       "email": "Patient1@gmail.com",
       "contact": "9876543210",
@@ -55,6 +57,19 @@
       "id": "PRjpx6I"
     },
     {
+      "email": "queen@gmail.com",
+      "password": "$2a$10$nlJiQ2hWVUS/9X/DJFADUeBO8WxZtBh/UchNJaM8aBHwTKFhrzieW",
+      "firstName": "queen",
+      "lastName": "jack",
+      "dob": "1999-02-02",
+      "contact": "1234567890",
+      "cnfPassword": "queen@12",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-09T12:23:16.348Z",
+      "id": "41PgIMS"
+    },
+    {
       "email": "marcell@gmail.com",
       "password": "$2a$10$A0YFToyXgZLoLqnj3q.dJuifQgHDZyQFug0p3PYWmXlTVWLAaPMWS",
       "firstName": "marcell",
@@ -69,39 +84,13 @@
       "id": "s5-uyuQ"
     },
     {
-      "email": "loka@gmail.com",
-      "password": "$2a$10$tPnU5sdv5qLf.g/Q5Fpyju/drce/FLf75Zj0cRI85EQ.AjnORuk2S",
-      "firstName": "loka",
-      "lastName": "p",
-      "dob": "2021-03-17",
-      "contact": "987654321",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-11-10T06:03:01.191Z",
-      "id": "7zOur81"
-    },
-    {
-      "email": "peter2p@gmail.com",
-      "password": "$2a$10$BdtDY4q6r076qmRXhYN/SOxwRQhmUeCRchk2HaOzrAh/VJWEd37Nq",
-      "firstName": "peter2",
-      "lastName": "p",
-      "dob": "2021-11-10",
-      "contact": "987654321",
-      "cnfPassword": "12345678",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-11-10T12:05:58.219Z",
-      "id": "GePxv83"
-    },
-    {
-      "email": "ravip12@gmail.com",
-      "password": "$2a$10$bdUSLQJAZrkYo6WF2X5XNenYW1jFhyQWxiGQJzKVZnGF.9YaQCFcG",
-      "firstName": "ravip12",
-      "lastName": "p",
-      "dob": "2021-11-10",
-      "contact": "987654321",
-      "cnfPassword": "12345678",
+      "email": "alexa@gmail.com",
+      "password": "$2a$10$0Bxb7A/0wUkKtT7KHvW0PeuRxa23BSzfmkdifx34hSnibQhW2yBee",
+      "firstName": "alexa",
+      "lastName": "peterson",
+      "dob": "1999-03-04",
+      "contact": "9876541234",
+      "cnfPassword": "alexa@12",
       "role": "patient",
       "approvedUser": true,
       "registrationDate": "2021-11-10T16:10:21.312Z",
@@ -169,21 +158,21 @@
       "cnfPassword": "12345678",
       "role": "patient",
       "approvedUser": true,
-      "registrationDate": "2021-11-12T05:19:26.229Z",
-      "id": "NPowGml"
+      "registrationDate": "2021-11-12T04:06:51.429Z",
+      "id": "UPRtuAd"
     },
     {
-      "email": "ravinew@gmail.com",
-      "password": "$2a$10$/6GYeSvofQj0i5v2BOv2k..W9wrTNGpXFyavbqVdF7QNq4QwZs87a",
-      "firstName": "Ravi",
-      "lastName": "New",
-      "dob": "2021-06-15",
+      "email": "abhimanyu@gmail.com",
+      "password": "$2a$10$zXNORhEgpJ0rdv8KcshL8eT5bSSKF8xL77/IS1DEqSBsJvNqIVC.2",
+      "firstName": "Abhimanyu",
+      "lastName": "Prasad",
+      "dob": "1999-11-03",
       "contact": "987654321",
-      "retypePassword": "12345678",
+      "cnfPassword": "12345678",
       "role": "patient",
       "approvedUser": true,
-      "registrationDate": "2021-11-12T05:58:40.389Z",
-      "id": "Qt01JPX"
+      "registrationDate": "2021-11-16T07:58:45.316Z",
+      "id": "ED8LKsP"
     }
   ],
   "patientDemographics": [
@@ -297,8 +286,8 @@
   ],
   "scheduleAppointment": [
     {
-      "meetingTitle": "fvere",
-      "reason": "hghgh",
+      "meetingTitle": "Fever",
+      "reason": "Cold",
       "time": "12pm - 1pm",
       "date": "2021-11-10",
       "physicianName": "doctor",
@@ -334,26 +323,26 @@
     },
     {
       "meetingTitle": "Fever",
-      "reason": "Cold ",
-      "date": "2021-11-13",
-      "time": "1pm - 1:30pm",
-      "physicianName": "Ravi",
-      "patientId": "Qt01JPX",
-      "physicianId": "ezPYlNZ",
-      "patientname": "Ravi",
+      "reason": "Cold",
+      "date": "2021-11-17",
+      "time": "12pm - 12:30pm",
+      "physicianName": "Sam",
+      "patientId": "ED8LKsP",
+      "physicianId": "5ckD7Af",
+      "patientname": "Abhimanyu",
       "status": "Pending",
       "id": 5
     },
     {
       "meetingTitle": "Fever",
       "reason": "Cold",
-      "date": "2021-11-13",
-      "time": "12:30pm - 1pm",
-      "physicianName": "doctor",
-      "patientId": "Qt01JPX",
-      "physicianId": "5ckD7Af",
-      "patientname": "Ravi",
-      "status": "accepted",
+      "date": "2021-11-18",
+      "time": "1pm - 1:30pm",
+      "physicianName": "marcell",
+      "patientId": "ED8LKsP",
+      "physicianId": "s5-uyuQ",
+      "patientname": "Abhimanyu",
+      "status": "Pending",
       "id": 6
     }
   ],
@@ -369,6 +358,18 @@
         "weight": "65kg"
       },
       "id": "2"
+    },
+    {
+      "userId": "ED8LKsP",
+      "patientVitals": {
+        "bloodPressure": "120/80",
+        "pulseRate": "74",
+        "temperature": "97.5",
+        "respiration": "108",
+        "height": "153cm",
+        "weight": "65kg"
+      },
+      "id": "3"
     }
   ],
   "allergies": [
