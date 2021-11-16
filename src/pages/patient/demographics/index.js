@@ -93,7 +93,7 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
           <Box >
         <Box component="form" name="demographics" onSubmit={SubmitDemographicsDetails}  style={{padding:'0px'}}>
           <Grid container spacing={2} style={{padding:'0px'}}>
-            <Grid item xs={12} sm={6}>
+            {/* <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="firstName" name="firstName" 
                 label="First Name"   placeholder='First Name'
@@ -126,8 +126,8 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
                   }}/>
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <TextField
+            <Grid item xs={12} sm={6}> */}
+              {/* <TextField
                   SelectProps={{
                     MenuProps: {
                       PopoverClasses: {
@@ -146,7 +146,7 @@ function PatientDemographics({DemographicsData,adddemographicsdata,getdemographi
                 </MenuItem>
               ))}
              </TextField>
-      </Grid>
+      </Grid> */}
             <Grid item xs={12} sm={6}>
               <TextField
                 required fullWidth id="ethnicity"  placeholder='Ethnicity' name="ethnicity"
