@@ -7,8 +7,11 @@ import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
 import interactionPlugin from "@fullcalendar/interaction";
 import BasicModal from "../../components/modals";
+import { useParams } from "react-router";
 
 function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
+
+  let {id,role} = useParams()
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -29,7 +32,7 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   }
 
   useEffect(() => {
-    getscheduledappointmentdata();
+    getscheduledappointmentdata(id);
   }, []);
 
   const eventArray = appointmentsData.map((item) => {
@@ -75,7 +78,7 @@ const mapStateToProps = (state) => {
 };
 const mapdispatchToProps = (dispatch) => {
   return {
-    getscheduledappointmentdata: () => dispatch(getscheduledappointmentdata()),
+    getscheduledappointmentdata: (id) => dispatch(getscheduledappointmentdata(id)),
   };
 };
 export default connect(mapStateToProps, mapdispatchToProps)(EventCalendar);

@@ -80,7 +80,7 @@ function SignUp({ registerUser, data, err }) {
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Grid container>
             <Grid item sm={12} lg={12} xl={12} md={12} xs={12}>
-              <h1 className="title-registration">Registration Form</h1>
+              <h1 className="title-registration">Registration</h1>
             </Grid>
           </Grid>
         </Box>
