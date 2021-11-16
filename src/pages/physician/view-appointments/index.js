@@ -36,7 +36,10 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
   }, []);
 
   const eventArray = appointmentsData.map((item) => {
-    return { title: item.patientname, id: item.id, date: item.date };
+    return { title: item.patientname, id: item.id, date: item.date, 
+    backgroundColor: item.status == "accepted"?'#33cc33' 
+                     :item.status ==  "rejected"?"#ff0000" :
+                     "#19a3c6", color:"black !important"  };
   })
 
 
@@ -65,7 +68,8 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
               <p><b>Title : </b>{item.meetingTitle}</p>
               <p><b>Reason :</b> {item.reason}</p>
               <p><b>Time : </b> {item.time}</p>
-              <p><b>Status : </b>{item.status}</p>
+              {item.status=="Pending" ?
+              <p style={{color:'#ff0000'}}><b>Status : </b>{item.status}</p>: <p style={{color:'#00ff00'}}><b>Status : </b>{item.status}</p>}
               </div>
               </>
     
