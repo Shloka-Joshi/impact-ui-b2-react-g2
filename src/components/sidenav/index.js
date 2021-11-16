@@ -32,12 +32,12 @@ function Sidenav(props) {
                 </div>
                 <div className='item' style={{ fontFamily: 'Nunito' }}>
                     <RecentActorsIcon className='icon' />
-                    <h6 className='text'><Link to={`/dashboard/${id}/${role}/Managepatient`} className='link'>Patient </Link></h6>
+                    <h6 className='text'><Link to={`/dashboard/${id}/${role}/Managepatient`} className='link'>Patients </Link></h6>
                 </div>
                 <div className='item'>
                     <LocalLibraryIcon className='icon' />
                     <h6 className='text'>
-                        <Link to={`/dashboard/${id}/${role}/Managephysician`} className='link'>Physician </Link>
+                        <Link to={`/dashboard/${id}/${role}/Managephysician`} className='link'>Physicians </Link>
                     </h6>
                 </div>
             </Container>
@@ -81,6 +81,10 @@ function Sidenav(props) {
             <div className='item'>
                 <TodayIcon className='icon' />
                 <h6 className='text'><Link to={`/dashboard/${id}/${role}/immunization`} className='link'>Immunization</Link></h6>
+            </div>
+            <div className='item'>
+                <TodayIcon className='icon' />
+                <h6 className='text'><Link to={`/dashboard/${id}/${role}/patient-education`} className='link'>Patient Education</Link></h6>
             </div>
         </Container>
         // Invlid user_________________________________________________________________________________________________

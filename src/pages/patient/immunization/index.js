@@ -4,18 +4,18 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {Grid ,Container, MenuItem , Button} from '../../../utils/mui';
+import { Grid, Container, MenuItem, Button } from '../../../utils/mui';
 import './immunization.css';
 import '../../../styles/common-style.css';
 import TextField from '@mui/material/TextField';
 import { InputAdornment } from "@mui/material";
 import { makeStyles } from '@material-ui/core';
-import { Switch, Route, useRouteMatch ,useParams,useHistory} from "react-router";
-import { PatientImmunizationData,getimmunizationdata,addimmunizationdata,updateimmunizationdata} from "../../../redux/actions/common-action-creator";
-import { connect,useDispatch, useSelector } from "react-redux";
+import { Switch, Route, useRouteMatch, useParams, useHistory } from "react-router";
+import { PatientImmunizationData, getimmunizationdata, addimmunizationdata, updateimmunizationdata } from "../../../redux/actions/common-action-creator";
+import { connect, useDispatch, useSelector } from "react-redux";
 import BasicModal from "../../../components/modals";
 import * as Yup from 'yup';
-import {useFormik} from 'formik';
+import { useFormik } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -24,36 +24,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+    const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
 };
 
 function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
 }
 
 function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationdata,updateexistingphysicianrecord}) {
@@ -126,9 +126,9 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
       }
   },[vaccinedata])
 
-  return (
-      <>
-                <div className="page-container">
+    return (
+        <>
+            <div className="page-container">
                 <div className="page-wrapper">
               
                 <Grid container >                 
@@ -476,10 +476,10 @@ function Immunization({ImmunizationData,PatientImmunizationData,addimmunizationd
                             </Box>
                             </Container>
                             <BasicModal state={open} onClose={handleClose}>
-  <h3>Vaccination Data Added Successfully</h3>
-                  </BasicModal>
-                    </Grid>
-                    
+                                Vaccination Data Added Successfully
+                            </BasicModal>
+                        </Grid>
+
                     </Grid>
                 </div>
             </div>
@@ -494,11 +494,11 @@ const mapStateToProps = (state) => {
     return {
         ImmunizationData: state.immunization.ImmunizationData,
     };
-  };
-  const mapdispatchToProps = (dispatch) => {
+};
+const mapdispatchToProps = (dispatch) => {
     return {
         addimmunizationdata: (data) => dispatch(addimmunizationdata(data)),
     };
-  };
+};
 
-  export default connect(mapStateToProps, mapdispatchToProps)(Immunization);
+export default connect(mapStateToProps, mapdispatchToProps)(Immunization);

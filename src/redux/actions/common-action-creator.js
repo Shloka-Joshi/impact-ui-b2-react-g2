@@ -135,7 +135,7 @@ export const adddemographicsdata = (DemographicsData) => {
     return (dispatch,getState) => {
   
         authToken = getState().auth.authToken;
-                axios.get(`http://localhost:9999/patientDemographics?id=38`)
+                axios.get(`http://localhost:9999/patientDemographics?userId=${id}`)
                 .then(res => {
                     dispatch({type: ACTION_TYPE.GET_DEMOGRAPHICS_DATA, DemographicsData:res.data});  
                 })
@@ -239,7 +239,7 @@ export const updateexistingpatientrecord = (id,updatedpatientData) => {
 
         authToken = getState().auth.authToken;
 
-        axios.put(`http://localhost:9999/users/${id}`,updatedpatientData,config)
+       axios.put(`http://localhost:9999/users/${id}`,updatedpatientData,config)
             .then(res => {
                 axios.get(`http://localhost:9999/users?role=patient`)
                 .then(res => {
@@ -253,6 +253,27 @@ export const updateexistingpatientrecord = (id,updatedpatientData) => {
                     dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
             })
     };
+}
+
+export const acceptRejectUserRequest = (id,actionVal) => {
+  return (dispatch,getState) => {
+
+      authToken = getState().auth.authToken;
+
+      axios.patch(`http://localhost:9999/users/${id}`,actionVal,config)
+          .then(res => {
+              axios.get(`http://localhost:9999/users?role=patient`)
+              .then(res => {
+                  dispatch({type: ACTION_TYPE.GET_PATIENT_DATA, patientData:res.data});  
+              })
+              .catch(err => {
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
+              })
+          })
+          .catch(err => {
+                  dispatch({type: ACTION_TYPE.FAILURE, errors:err.response.data});
+          })
+  };
 }
 
 export const deletepatientrecord = (id) => {
@@ -365,7 +386,7 @@ export const getscheduledappointmentdata = (id=null) => {
     return (dispatch, getState) => {
       authToken = getState().auth.authToken;
       dispatch(LOAD());
-      axios.get(`http://localhost:9999/scheduleAppointment`)
+      axios.get(`http://localhost:9999/scheduleAppointment?physicianId=${id}`)
         .then(res => {
           dispatch({ type: ACTION_TYPE.GET_SCHEDULER_DATA, schedulerData: res.data });
         })

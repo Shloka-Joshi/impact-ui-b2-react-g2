@@ -11,7 +11,7 @@ const InitState = ({isLoggedIn,getrolespecificuserdata,getpatientdata,getschedul
         {
             getrolespecificuserdata("physician")
             getpatientdata()
-            getscheduledappointmentdata()
+            // getscheduledappointmentdata()
         }  
     },[]);
 
@@ -32,7 +32,7 @@ const mapdispatchToProps = (dispatch) => {
     return {
         getrolespecificuserdata: (data) => dispatch(getrolespecificuserdata(data)),
         getpatientdata: () => dispatch(getpatientdata()),
-        getscheduledappointmentdata: () => dispatch(getscheduledappointmentdata()),
+        getscheduledappointmentdata: (id) => dispatch(getscheduledappointmentdata(id)),
 
     };
   };

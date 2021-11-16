@@ -7,6 +7,7 @@ import { Container } from "@material-ui/core";
 import { connect } from "react-redux";
 import interactionPlugin from "@fullcalendar/interaction";
 import BasicModal from "../../../components/modals";
+import { useParams } from "react-router";
 
 function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
 
@@ -28,8 +29,10 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
     handleOpen()
   }
 
+  let{id} = useParams()
+
   useEffect(() => {
-    getscheduledappointmentdata();
+    getscheduledappointmentdata(id);
   }, []);
 
   const eventArray = appointmentsData.map((item) => {
@@ -65,7 +68,7 @@ function EventCalendar({ getscheduledappointmentdata, appointmentsData }) {
               <p><b>Status : </b>{item.status}</p>
               </div>
               </>
-              
+    
              })
              : <p>Invalid ID </p>
             }
@@ -81,7 +84,7 @@ const mapStateToProps = (state) => {
 };
 const mapdispatchToProps = (dispatch) => {
   return {
-    getscheduledappointmentdata: () => dispatch(getscheduledappointmentdata()),
+    getscheduledappointmentdata: (id) => dispatch(getscheduledappointmentdata(id)),
   };
 };
 export default connect(mapStateToProps, mapdispatchToProps)(EventCalendar);

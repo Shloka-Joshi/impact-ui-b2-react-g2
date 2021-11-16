@@ -1,0 +1,19 @@
+.section-form-education{
+    border: 2px solid var(--card-bg-color2);
+    border-radius: 5px;
+    margin: 10px 0;
+    font-family:'Nunito';
+    box-shadow: 0 30px 60px 0 rgb(0 0 0 / 30%);
+}
+
+.title-education{
+    background-color: white;
+    color: var(--heading-solid-text-color);
+}
+ul
+{
+    margin: 5px 0;
+    display: block;
+    flex-wrap: wrap;
+    padding: 0;
+}

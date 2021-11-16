@@ -46,7 +46,7 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
 
         useEffect(() => {
             getrolespecificuserdata("physician");
-            getscheduledappointmentdata();
+            // getscheduledappointmentdata(id);
         }, [physicians]);
 
         const handleChange = e => {
@@ -113,21 +113,27 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
                                         </FormControl>
                                     </Grid>
                                     <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
-                                    <FormControl fullWidth lg={{ m: 1, minWidth: 120 }}>
-                                        <FormHelperText>Select Time</FormHelperText>
-                                            <Select fullWidth value={time} onChange={handleChangetime} id="time" name="time">
-                                                <MenuItem key={"10"} value={'10am - 11am'}>10am - 11am</MenuItem>
-                                                <MenuItem key={"12"} value={'12pm - 1pm'}>12pm - 1pm</MenuItem>
-                                                <MenuItem key={"2"} value={'2pm - 3pm'}>2pm - 3pm</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-
-                                    <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
                                         <FormHelperText>Select Date</FormHelperText>
                                         <TextField required fullWidth id="date" name="date" type="date" autoComplete="off"
                                             InputProps={{ startAdornment: <InputAdornment style={{ padding: '0' }} position="start"> </InputAdornment>, }} />
                                     </Grid>
+                                    <Grid item xs={12} sm={12} lg={6} xl={6} md={6}>
+                                    <FormControl fullWidth lg={{ m: 1, minWidth: 120 }}>
+                                        <FormHelperText>Select Time</FormHelperText>
+                                            <Select fullWidth value={time} onChange={handleChangetime} id="time" name="time">
+                                                <MenuItem key={"1"} value={'10am - 10:30am'}>10:00am - 10:30am</MenuItem>
+                                                <MenuItem key={"2"} value={'10:30am - 11am'}>10:30am - 11:00am</MenuItem>
+                                                <MenuItem key={"3"} value={'11am - 11:30am'}>11:00am - 11:30am</MenuItem>
+                                                <MenuItem key={"4"} value={'11:30am - 12pm'}>11:30am - 12:00pm</MenuItem>
+                                                <MenuItem key={"5"} value={'12pm - 12:30pm'}>12:00pm - 12:30am</MenuItem>
+                                                <MenuItem key={"6"} value={'12:30pm - 1pm'}>12:30am - 01:00pm</MenuItem>
+                                                <MenuItem key={"7"} value={'1pm - 1:30pm'}>01:00pm - 01:30pm</MenuItem>
+
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+
+                                    
                                     <Grid item xs={12} sm={12} lg={12} xl={12} md={12}>
                                         <FormControl required fullWidth>
                                             <FormHelperText>Select Physician</FormHelperText>
@@ -148,8 +154,7 @@ function ScheduleAppointment({patientname,errors, schedulerdata, physiciandata, 
                                                     </Button>
                                         </Grid>
                                     </Grid>
-                                    {/* <PhyMain data={schedulerdata} /> */}
-                                        {/* <EventCalendar /> */}
+
                                     </center>
                             </div>
                         </form>

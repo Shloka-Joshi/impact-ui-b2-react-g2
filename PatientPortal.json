@@ -15,19 +15,6 @@
       "registrationDate": "2021-10-28T16:11:17.339Z"
     },
     {
-      "email": "anjali.k@ytup.com",
-      "password": "$2a$10$7YyidoxtaRgC6a.FOGGHuu2k6AzrJ7G7KrVtixmZe0K00V5RGxpUi",
-      "firstName": "anjali",
-      "lastName": "k",
-      "dob": "1999-02-09",
-      "contact": "1234567890",
-      "cnfPassword": "anju@123",
-      "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-10-26T13:45:16.445Z",
-      "id": "L8GkhnH"
-    },
-    {
       "email": "sam@gmail.com",
       "password": "$2a$10$tFnRsPmogdLvpyI.w.ONKeFvoA9Yi3hO0ijzxujrUPggwl/yBTd7y",
       "firstName": "doctor",
@@ -68,14 +55,14 @@
     },
     {
       "email": "queen@gmail.com",
-      "password": "$2a$10$pBezCwVT6e.MzDlpWhWah.7yC97BvxEYMzDHLnKdHYfragImYcIIe",
+      "password": "$2a$10$nlJiQ2hWVUS/9X/DJFADUeBO8WxZtBh/UchNJaM8aBHwTKFhrzieW",
       "firstName": "queen",
       "lastName": "j",
       "dob": "1999-02-02",
       "contact": "1234567890",
       "cnfPassword": "queen@12",
       "role": "patient",
-      "approvedUser": false,
+      "approvedUser": true,
       "registrationDate": "2021-11-09T12:23:16.348Z",
       "id": "41PgIMS"
     },
@@ -94,30 +81,43 @@
       "id": "s5-uyuQ"
     },
     {
-      "email": "peter@gmail.com",
-      "password": "$2a$10$n0zAvYLCT1YJCp5tetpYkOl4CzrZDhI3u8AMHFon1iRiiMZoMATku",
-      "firstName": "peter",
-      "lastName": "e",
-      "dob": "1999-03-04",
-      "contact": "1234567890",
-      "cnfPassword": "peter@12",
-      "role": "patient",
-      "approvedUser": false,
-      "registrationDate": "2021-11-10T04:18:36.035Z",
-      "id": "FMEDdzk"
-    },
-    {
       "email": "loka@gmail.com",
-      "password": "$2a$10$.1x7yRBnnVdU5ZwypAe5K.0FphhcEQB3o6me7LLIfQiFCBooRU2wq",
+      "password": "$2a$10$tPnU5sdv5qLf.g/Q5Fpyju/drce/FLf75Zj0cRI85EQ.AjnORuk2S",
       "firstName": "loka",
       "lastName": "p",
       "dob": "1999-03-06",
       "contact": "1234567890",
       "retypePassword": "loka@123",
       "role": "patient",
-      "approvedUser": false,
+      "approvedUser": true,
       "registrationDate": "2021-11-10T04:34:34.012Z",
       "id": "RbDXY7e"
+    },
+    {
+      "email": "alexa@gmail.com",
+      "password": "$2a$10$0Bxb7A/0wUkKtT7KHvW0PeuRxa23BSzfmkdifx34hSnibQhW2yBee",
+      "firstName": "alexa",
+      "lastName": "p",
+      "dob": "1999-03-04",
+      "contact": "9876541234",
+      "cnfPassword": "alexa@12",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-10T06:01:05.187Z",
+      "id": "du3ihep"
+    },
+    {
+      "email": "jack@gmail.com",
+      "password": "$2a$10$WRw6pEDNLetfcPgbmJBBwuCj76BWrR7H2b8TcLUePc5tVWtjMOl6S",
+      "firstName": "jack",
+      "lastName": "peter",
+      "dob": "1999-03-04",
+      "contact": "1234567890",
+      "cnfPassword": "jack@123",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-12T04:06:51.429Z",
+      "id": "UPRtuAd"
     }
   ],
   "patientDemographics": [
@@ -186,8 +186,20 @@
       "patientId": "BUIZMS8",
       "physicianId": "2",
       "patientname": "Patient",
-      "status": "Pending",
+      "status": "accepted",
       "id": 3
+    },
+    {
+      "meetingTitle": "covid test",
+      "reason": "covid symptoms",
+      "time": "12pm - 1pm",
+      "date": "2021-11-12",
+      "physicianName": "PurcellLuka123",
+      "patientId": "BUIZMS8",
+      "physicianId": "2",
+      "patientname": "Patient",
+      "status": "accepted",
+      "id": 4
     }
   ],
   "diagnosisReports": [
