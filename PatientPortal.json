@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "firstName": "PurcellLuka123",
+      "firstName": "Purcell",
       "lastName": "Glisane",
       "dob": "07/04/1978",
       "email": "Purcell.Glisane@gmail.com",
@@ -17,8 +17,8 @@
     {
       "email": "sam@gmail.com",
       "password": "$2a$10$tFnRsPmogdLvpyI.w.ONKeFvoA9Yi3hO0ijzxujrUPggwl/yBTd7y",
-      "firstName": "doctor",
-      "lastName": "sam",
+      "firstName": "Sam",
+      "lastName": "Sundar",
       "dob": "2021-11-23",
       "contact": "1212121212",
       "cnfPassword": "12345678",
@@ -30,8 +30,8 @@
     {
       "email": "Patient1@gmail.com",
       "password": "$2a$10$IgGOs.UcvNVEoYLbUL4.4uCrKCF34iERHfEoHkz/vdJ8jlwrnlqlS",
-      "firstName": "Patient",
-      "lastName": "1",
+      "firstName": "Nitu",
+      "lastName": "Kumari",
       "dob": "1995-04-09",
       "contact": "9876543210",
       "cnfPassword": "12345678",
@@ -57,7 +57,7 @@
       "email": "queen@gmail.com",
       "password": "$2a$10$nlJiQ2hWVUS/9X/DJFADUeBO8WxZtBh/UchNJaM8aBHwTKFhrzieW",
       "firstName": "queen",
-      "lastName": "j",
+      "lastName": "jack",
       "dob": "1999-02-02",
       "contact": "1234567890",
       "cnfPassword": "queen@12",
@@ -81,23 +81,10 @@
       "id": "s5-uyuQ"
     },
     {
-      "email": "loka@gmail.com",
-      "password": "$2a$10$tPnU5sdv5qLf.g/Q5Fpyju/drce/FLf75Zj0cRI85EQ.AjnORuk2S",
-      "firstName": "loka",
-      "lastName": "p",
-      "dob": "1999-03-06",
-      "contact": "1234567890",
-      "retypePassword": "loka@123",
-      "role": "patient",
-      "approvedUser": true,
-      "registrationDate": "2021-11-10T04:34:34.012Z",
-      "id": "RbDXY7e"
-    },
-    {
       "email": "alexa@gmail.com",
       "password": "$2a$10$0Bxb7A/0wUkKtT7KHvW0PeuRxa23BSzfmkdifx34hSnibQhW2yBee",
       "firstName": "alexa",
-      "lastName": "p",
+      "lastName": "peterson",
       "dob": "1999-03-04",
       "contact": "9876541234",
       "cnfPassword": "alexa@12",
@@ -118,6 +105,19 @@
       "approvedUser": true,
       "registrationDate": "2021-11-12T04:06:51.429Z",
       "id": "UPRtuAd"
+    },
+    {
+      "email": "abhimanyu@gmail.com",
+      "password": "$2a$10$zXNORhEgpJ0rdv8KcshL8eT5bSSKF8xL77/IS1DEqSBsJvNqIVC.2",
+      "firstName": "Abhimanyu",
+      "lastName": "Prasad",
+      "dob": "1999-11-03",
+      "contact": "987654321",
+      "cnfPassword": "12345678",
+      "role": "patient",
+      "approvedUser": true,
+      "registrationDate": "2021-11-16T07:58:45.316Z",
+      "id": "ED8LKsP"
     }
   ],
   "patientDemographics": [
@@ -166,8 +166,8 @@
   ],
   "scheduleAppointment": [
     {
-      "meetingTitle": "fvere",
-      "reason": "hghgh",
+      "meetingTitle": "Fever",
+      "reason": "Cold",
       "time": "12pm - 1pm",
       "date": "2021-11-10",
       "physicianName": "doctor",
@@ -200,6 +200,30 @@
       "patientname": "Patient",
       "status": "accepted",
       "id": 4
+    },
+    {
+      "meetingTitle": "Fever",
+      "reason": "Cold",
+      "date": "2021-11-17",
+      "time": "12pm - 12:30pm",
+      "physicianName": "Sam",
+      "patientId": "ED8LKsP",
+      "physicianId": "5ckD7Af",
+      "patientname": "Abhimanyu",
+      "status": "Pending",
+      "id": 5
+    },
+    {
+      "meetingTitle": "Fever",
+      "reason": "Cold",
+      "date": "2021-11-18",
+      "time": "1pm - 1:30pm",
+      "physicianName": "marcell",
+      "patientId": "ED8LKsP",
+      "physicianId": "s5-uyuQ",
+      "patientname": "Abhimanyu",
+      "status": "Pending",
+      "id": 6
     }
   ],
   "diagnosisReports": [
@@ -214,6 +238,18 @@
         "weight": "65kg"
       },
       "id": "2"
+    },
+    {
+      "userId": "ED8LKsP",
+      "patientVitals": {
+        "bloodPressure": "120/80",
+        "pulseRate": "74",
+        "temperature": "97.5",
+        "respiration": "108",
+        "height": "153cm",
+        "weight": "65kg"
+      },
+      "id": "3"
     }
   ],
   "allergies": [
