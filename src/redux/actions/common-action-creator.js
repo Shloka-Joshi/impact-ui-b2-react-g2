@@ -170,30 +170,25 @@ export const adddemographicsdata = (DemographicsData) => {
 
 export const addimmunizationdata = (ImmunizationData) => {
     return (dispatch,getState) => {
+  
       authToken = getState().auth.authToken;
+  
           axios.post(`http://localhost:9999/immunization`,ImmunizationData,config)
-              .then(res => { 
-                  dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, ImmunizationData:res.data});  
+              .then(res => {
+                axios.get(`http://localhost:9999/immunization?id=134`)
+              .then(response => {
+                  dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, PatientImmunizationData:response.data});  
+              })
+              .catch(err => {
+                  dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, ImmunizationData:err.response.data});
+              })
               })
               .catch(err => {
                       dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, ImmunizationData:err.res.data});
               })
       };
   }
-  export const getimmunizationdata = (id) => {
-    return (dispatch,getState) => {
-  
-        authToken = getState().auth.authToken;
-                axios.get(`http://localhost:9999/immunization?userId=${id}`)
-                .then(res => {
-                  console.log(res);
-                    dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, ImmunizationData:res.data});  
-                })
-                .catch(err => {
-                    dispatch({type: ACTION_TYPE.GET_IMMUNIZATION_DATA, ImmunizationData:err.res.data});
-                })
-    };
-  }
+
   export const getpatientdata = (role) => {
     return (dispatch,getState) => {
 
